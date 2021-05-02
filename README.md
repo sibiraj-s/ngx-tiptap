@@ -20,6 +20,10 @@ npm i ngx-tiptap
 yarn add ngx-tiptap
 ```
 
+**Note**: This package just provides the bindings for angular. For configuring/customizing the editor, refer [tiptap's official documentation](https://www.tiptap.dev/).
+
+For any issues with the editor. You may need to open the issue on [tiptap's repository](https://github.com/ueberdosis/tiptap/issues)
+
 ## Usage
 
 Import the module
@@ -58,7 +62,7 @@ export class AppComponent {
     extensions: defaultExtensions(),
   });
 
-  value = 'Hello, Tiptap!';
+  value = 'Hello, Tiptap!'; // can be HTML or JSON, see https://www.tiptap.dev/guide/output#export
 }
 ```
 
@@ -68,6 +72,14 @@ and in HTML
 <tiptap [editor]="editor" [(ngModel)]="value"></tiptap>
 ```
 
-**Note**: No styling is provided by default. You are in full control of how your editor looks. See the [styling guide](https://www.tiptap.dev/guide/styling) for more information.
+**Note**: No styling is provided by default. You are in full control of how your editor looks. Refer [tiptaps's styling guide](https://www.tiptap.dev/guide/styling) for more information.
 
-And, Since the editor is dynamically created you may need to set [view-encapsulation](https://angular.io/guide/view-encapsulation) to `None` apply the styles.
+And, Since the editor is dynamically created you may need to set [ViewEncapsulation](https://angular.io/guide/view-encapsulation) to `None` apply the styles.
+
+## Options
+
+- outputFormat [`json` or `html`] - defaults to html.
+
+You can get the json or html format from the editor directly as well.
+
+Refer https://www.tiptap.dev/guide/output#export
