@@ -1,0 +1,25 @@
+{
+  "name": "ngx-tiptap",
+  "description": "Angular bindings for Tiptap v2",
+  "version": "0.0.0",
+  "license": "MIT",
+  "repository": "https://github.com/sibiraj-s/ngx-tiptap.git",
+  "bugs": "https://github.com/sibiraj-s/ngx-tiptap/issues",
+  "homepage": "https://github.com/sibiraj-s/ngx-tiptap",
+  "keywords": [
+    "tiptap",
+    "angular-tiptap",
+    "angular-editor",
+    "angular-rich-text-editor",
+    "wysiwyg-editor",
+    "rich-text-editor"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^11.2.12",
+    "@angular/core": "^11.2.12",
+    "@tiptap/core": "*"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}
