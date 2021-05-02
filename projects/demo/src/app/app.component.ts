@@ -24,8 +24,4 @@ export class AppComponent {
       }
     }
   })
-
-  handleChange () {
-    console.log(this.editor.getHTML())
-  }
 }
