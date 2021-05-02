@@ -11,7 +11,7 @@ import Placeholder from '@tiptap/extension-placeholder'
 })
 
 export class AppComponent {
-  value = 'Hello World!'
+  value = '<p>Hello, Tiptap!</p>'
 
   editor = new Editor({
     extensions: [

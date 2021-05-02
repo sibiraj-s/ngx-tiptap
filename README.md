@@ -61,7 +61,7 @@ export class AppComponent {
     extensions: defaultExtensions(),
   });
 
-  value = 'Hello, Tiptap!'; // can be HTML or JSON, see https://www.tiptap.dev/guide/output#export
+  value = '<p>Hello, Tiptap!</p>'; // can be HTML or JSON, see https://www.tiptap.dev/api/editor#content
 }
 ```
 
