@@ -82,3 +82,9 @@ And, Since the editor is dynamically created you may need to set [ViewEncapsulat
 You can get the json or html format from the editor directly as well.
 
 Refer https://www.tiptap.dev/guide/output#export
+
+### TODO's
+
+- [ ] Floating Menu Component
+- [ ] Bubble Menu Component
+- [ ] Nodeview Renderer
