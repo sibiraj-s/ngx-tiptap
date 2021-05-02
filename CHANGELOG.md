@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v1.1.0 (2021-05-03)
+
+#### Features
+
+- add support for floating menu and bubble menu ([1a7eded](https://github.com/sibiraj-s/ngx-tiptap/commit/1a7eded))
+
 ## v1.0.1 (2021-05-02)
 
 #### Documentation
