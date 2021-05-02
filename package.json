@@ -38,6 +38,8 @@
     "@commitlint/cli": "^12.1.1",
     "@commitlint/config-conventional": "^12.1.1",
     "@tiptap/core": "*",
+    "@tiptap/extension-bubble-menu": "*",
+    "@tiptap/extension-floating-menu": "*",
     "@tiptap/extension-placeholder": "*",
     "@tiptap/starter-kit": "*",
     "@types/jasmine": "~3.6.0",

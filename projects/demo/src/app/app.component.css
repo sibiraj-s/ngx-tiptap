@@ -5,3 +5,16 @@
   pointer-events: none;
   height: 0;
 }
+
+.ProseMirror > * + * {
+  margin-top: 0.75em;
+}
+
+.ProseMirror ul,
+.ProseMirror ol {
+  padding-left: 1rem;
+}
+
+.ProseMirror li {
+  list-style: initial !important;
+}

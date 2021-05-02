@@ -6,12 +6,12 @@ import { Editor } from '@tiptap/core';
   selector: 'tiptap, [tiptap], tiptap-editor, [tiptapEditor]',
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => NgxTiptapDirective),
+    useExisting: forwardRef(() => EditorDirective),
     multi: true
   }]
 })
 
-export class NgxTiptapDirective implements OnInit, ControlValueAccessor, OnDestroy {
+export class EditorDirective implements OnInit, ControlValueAccessor, OnDestroy {
   @Input() editor: Editor;
   @Input() outputFormat: 'json' | 'html' = 'html';
 

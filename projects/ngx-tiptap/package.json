@@ -17,7 +17,9 @@
   "peerDependencies": {
     "@angular/common": "^11.2.12",
     "@angular/core": "^11.2.12",
-    "@tiptap/core": "*"
+    "@tiptap/core": "*",
+    "@tiptap/extension-bubble-menu": "*",
+    "@tiptap/extension-floating-menu": "*"
   },
   "dependencies": {
     "tslib": "^2.0.0"

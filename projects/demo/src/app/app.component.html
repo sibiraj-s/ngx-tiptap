@@ -1,3 +1,30 @@
 <div class="mx-auto w-3/4 md:w-3/4 xl:w-1/2 mt-6 h-auto">
-  <tiptap [editor]="editor" [ngModel]="value"></tiptap>
+  <tiptap-editor [editor]="editor" [ngModel]="value"></tiptap-editor>
+
+  <tiptap-floting-menu [editor]="editor">
+    <div class="border border-black rounded bg-gray-300">
+      <button type="button" class="px-1" (click)="editor.chain().focus().toggleHeading({ level: 1 }).run()"
+        [ngClass]="{'bg-gray-900 text-white': editor.isActive('heading', { level: 1 })}">h1</button>
+      <button type="button" class="px-1 boder border-0 border-l border-black"
+        (click)="editor.chain().focus().toggleHeading({ level: 2 }).run()"
+        [ngClass]="{'bg-gray-900 text-white': editor.isActive('heading', { level: 2 })}">h2</button>
+      <button type="button" class="px-1 boder border-0 border-l border-black"
+        (click)="editor.chain().focus().toggleBulletList().run()"
+        [ngClass]="{'bg-gray-900 text-white': editor.isActive('bulletList')}">bullet list</button>
+    </div>
+  </tiptap-floting-menu>
+
+  <tiptap-bubble-menu [editor]="editor">
+    <div class="border border-black rounded bg-gray-300">
+      <button type="button" class="px-1"
+        (click)="editor.chain().focus().toggleBold().run()"
+        [ngClass]="{'bg-gray-900 text-white': editor.isActive('bold')}">bold</button>
+      <button type="button" class="px-1 boder border-0 border-l border-black"
+        (click)="editor.chain().focus().toggleItalic().run()"
+        [ngClass]="{'bg-gray-900 text-white': editor.isActive('italic')}">italic</button>
+      <button type="button" class="px-1 boder border-0 border-l border-black"
+        (click)="editor.chain().focus().toggleStrike().run()"
+        [ngClass]="{'bg-gray-900 text-white': editor.isActive('strike')}">strike</button>
+    </div>
+  </tiptap-bubble-menu>
 </div>

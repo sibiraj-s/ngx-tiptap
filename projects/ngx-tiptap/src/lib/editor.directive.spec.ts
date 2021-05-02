@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 import { Editor } from '@tiptap/core';
 import { defaultExtensions } from '@tiptap/starter-kit';
 
-import { NgxTiptapDirective } from './editor.directive';
+import { EditorDirective } from './editor.directive';
 
 @Component({
   template: '<div tiptap [editor]="editor"></div>'
@@ -22,7 +22,7 @@ describe('NgxTiptapDirective', () => {
     TestBed.configureTestingModule({
       declarations: [
         TestComponent,
-        NgxTiptapDirective
+        EditorDirective
       ]
     });
 
@@ -43,7 +43,7 @@ describe('NgxTiptapDirective', () => {
     const hostEl = fixture.debugElement.query(By.css('div'));
     const renderer = fixture.debugElement.injector.get(Renderer2);
 
-    const directive = new NgxTiptapDirective(hostEl, renderer);
+    const directive = new EditorDirective(hostEl, renderer);
     expect(directive).toBeTruthy();
   });
 });
@@ -60,13 +60,13 @@ describe('NgxTiptapDirective FormsModule', () => {
   let component: TestFormComponent;
   let fixture: ComponentFixture<TestFormComponent>;
   let directiveEl: DebugElement
-  let directive: NgxTiptapDirective
+  let directiveInstance: EditorDirective
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [
         TestFormComponent,
-        NgxTiptapDirective
+        EditorDirective
       ],
       imports: [
         FormsModule,
@@ -84,8 +84,8 @@ describe('NgxTiptapDirective FormsModule', () => {
 
     component.editor = editor
 
-    directiveEl = fixture.debugElement.query(By.directive(NgxTiptapDirective));
-    directive = directiveEl.injector.get(NgxTiptapDirective);
+    directiveEl = fixture.debugElement.query(By.directive(EditorDirective));
+    directiveInstance = directiveEl.injector.get(EditorDirective);
 
     fixture.detectChanges()
   });
@@ -94,17 +94,17 @@ describe('NgxTiptapDirective FormsModule', () => {
     const hostEl = fixture.debugElement.query(By.css('div'));
     const renderer = fixture.debugElement.injector.get(Renderer2);
 
-    const directive = new NgxTiptapDirective(hostEl, renderer);
+    const directive = new EditorDirective(hostEl, renderer);
     expect(directive).toBeTruthy();
   });
 
   it('should attach the editor to the div', () => {
     expect(directiveEl).not.toBeNull();
-    expect(directiveEl.query(By.css('.ProseMirror'))).toBeTruthy()
+    expect(fixture.debugElement.query(By.css('.ProseMirror'))).toBeTruthy()
   })
 
   it('should bind to the model correctly', async () => {
-    directive.writeValue('Hi.')
+    directiveInstance.writeValue('Hi.')
     await fixture.whenStable()
     fixture.detectChanges()
 
@@ -118,7 +118,7 @@ describe('NgxTiptapDirective FormsModule', () => {
   })
 
   it('should disable the editor correctly', async () => {
-    directive.setDisabledState(true)
+    directiveInstance.setDisabledState(true)
     await fixture.whenStable()
     fixture.detectChanges()
 

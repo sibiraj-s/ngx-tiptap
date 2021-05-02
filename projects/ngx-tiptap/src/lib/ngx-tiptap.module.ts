@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
 
-import { NgxTiptapDirective } from './editor.directive';
+import { EditorDirective } from './editor.directive';
+import { FloatingMenuDirective } from './floating-menu.directive';
+import { BubbleMenuDirective } from './bubble-menu.directive';
 
 @NgModule({
   declarations: [
-    NgxTiptapDirective
+    EditorDirective,
+    FloatingMenuDirective,
+    BubbleMenuDirective,
   ],
   exports: [
-    NgxTiptapDirective
+    EditorDirective,
+    FloatingMenuDirective,
+    BubbleMenuDirective
   ]
 })
 export class NgxTiptapModule { }

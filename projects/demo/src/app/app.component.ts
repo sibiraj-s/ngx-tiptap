@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Editor } from '@tiptap/core';
 import { defaultExtensions } from '@tiptap/starter-kit'
-import Placeholder from '@tiptap/extension-placeholder'
+// import Placeholder from '@tiptap/extension-placeholder'
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,7 @@ export class AppComponent {
   editor = new Editor({
     extensions: [
       ...defaultExtensions(),
-      Placeholder
+      // Placeholder
     ],
     editorProps: {
       attributes: {

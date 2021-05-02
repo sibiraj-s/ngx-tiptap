@@ -83,8 +83,36 @@ You can get the json or html format from the editor directly as well.
 
 Refer https://www.tiptap.dev/guide/output#export
 
+### Floating Menu
+
+This will make a contextual menu appear near a selection of text.
+
+The markup and styling is totally up to you.
+
+```html
+<tiptap-editor [editor]="editor"></tiptap-editor>
+<tiptap-floating-menu [editor]="editor">
+  <!-- Anything that should be rendered inside bubble menu -->
+</tiptap-floating-menu>
+```
+
+Refer: https://www.tiptap.dev/api/extensions/floating-menu
+
+### Bubble Menu
+
+This will make a contextual menu appear near a selection of text. Use it to let users apply marks to their text selection.
+
+The markup and styling is totally up to you.
+
+```html
+<tiptap-editor [editor]="editor"></tiptap-editor>
+<tiptap-bubble-menu [editor]="editor">
+  <!-- Anything that should be rendered inside floating menu -->
+</tiptap-bubble-menu>
+```
+
+Refer: https://www.tiptap.dev/api/extensions/bubble-menu
+
 ### TODO's
 
-- [ ] Floating Menu Component
-- [ ] Bubble Menu Component
 - [ ] Nodeview Renderer

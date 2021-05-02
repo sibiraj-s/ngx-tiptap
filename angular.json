@@ -7,7 +7,7 @@
       "projectType": "library",
       "root": "projects/ngx-tiptap",
       "sourceRoot": "projects/ngx-tiptap/src",
-      "prefix": "lib",
+      "prefix": "tiptap",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
