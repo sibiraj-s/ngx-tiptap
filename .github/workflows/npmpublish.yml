@@ -8,13 +8,14 @@ on:
     tags: v*
 
 jobs:
-  publish:
+  build-publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: ${{env.NODE_VERSION}}
+          registry-url: https://registry.npmjs.org/
 
       - uses: actions/cache@v2
         with:
