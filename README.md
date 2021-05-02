@@ -92,7 +92,7 @@ The markup and styling is totally up to you.
 ```html
 <tiptap-editor [editor]="editor"></tiptap-editor>
 <tiptap-floating-menu [editor]="editor">
-  <!-- Anything that should be rendered inside bubble menu -->
+  <!-- Anything that should be rendered inside floating menu -->
 </tiptap-floating-menu>
 ```
 
@@ -107,7 +107,7 @@ The markup and styling is totally up to you.
 ```html
 <tiptap-editor [editor]="editor"></tiptap-editor>
 <tiptap-bubble-menu [editor]="editor">
-  <!-- Anything that should be rendered inside floating menu -->
+  <!-- Anything that should be rendered inside bubble menu -->
 </tiptap-bubble-menu>
 ```
 
