@@ -54,8 +54,7 @@ import { defaultExtensions } from '@tiptap/starter-kit';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  template: './app.component.html',
 })
 export class AppComponent {
   editor = new Editor({
