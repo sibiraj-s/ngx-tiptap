@@ -2,6 +2,12 @@
 
 > Angular bindings for [tiptap v2](https://www.tiptap.dev/)
 
+[![Tests](https://github.com/sibiraj-s/ngx-tiptap/actions/workflows/tests.yml/badge.svg)](https://github.com/sibiraj-s/ngx-tiptap/actions/workflows/tests.yml)
+[![NPM Version](https://badgen.net/npm/v/ngx-tiptap)](https://www.npmjs.com/package/ngx-tiptap)
+[![Total Downloads](https://badgen.net/npm/dt/ngx-tiptap)](https://www.npmjs.com/package/ngx-tiptap)
+[![Monthly Downloads](https://badgen.net/npm/dm/ngx-tiptap)](https://www.npmjs.com/package/ngx-tiptap)
+[![License](https://badgen.net/npm/license/ngx-tiptap)](https://github.com/sibiraj-s/ngx-editor/blob/master/LICENSE)
+
 ## Installation
 
 ```bash
@@ -24,7 +30,6 @@ import { AppComponent } from './app.component';
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, FormsModule, NgxTiptapModule],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
@@ -33,7 +38,7 @@ export class AppModule {}
 Create an instance of the editor
 
 ```ts
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 import { Editor } from '@tiptap/core';
 import { defaultExtensions } from '@tiptap/starter-kit';
 
