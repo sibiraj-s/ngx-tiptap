@@ -25,4 +25,10 @@ jobs:
 
       - run: npm ci
       - run: npm run build
-      - run: npm publish dist/ngx-tiptap/
+        env:
+          NODE_ENV: production
+
+      - name: Publish to NPM
+        run: npm publish dist/ngx-tiptap/
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
