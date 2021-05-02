@@ -1,0 +1,28 @@
+name: NPM Publish
+
+env:
+  NODE_VERSION: 16
+
+on:
+  push:
+    tags: v*
+
+jobs:
+  test-lib:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{env.NODE_VERSION}}
+
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - run: npm ci
+      - run: npm run build
+      - run: npm publish dist/ngx-tiptap/
