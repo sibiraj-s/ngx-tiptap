@@ -8,6 +8,8 @@
 [![Monthly Downloads](https://badgen.net/npm/dm/ngx-tiptap)](https://www.npmjs.com/package/ngx-tiptap)
 [![License](https://badgen.net/npm/license/ngx-tiptap)](https://github.com/sibiraj-s/ngx-editor/blob/master/LICENSE)
 
+[demo on stackblitz](https://ngx-tiptap.stackblitz.io/) | [edit stackblitz](https://stackblitz.com/edit/ngx-tiptap)
+
 ## Installation
 
 ```bash
