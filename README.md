@@ -13,7 +13,11 @@
 ## Installation
 
 ```bash
-ng add ngx-tiptap
+npm i ngx-tiptap
+
+# or
+
+yarn add ngx-tiptap
 ```
 
 ## Usage
