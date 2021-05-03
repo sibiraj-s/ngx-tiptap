@@ -210,6 +210,6 @@ this.updateAttributes({
 });
 ```
 
-### Contributing
+## Contributing
 
 All types of contributions are welcome. See [CONTRIBUTING.md][./.github/contributing.md] to get started.
