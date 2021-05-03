@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v1.2.0 (2021-05-03)
+
+#### Features
+
+- add `AngularNodeViewRenderer` to render angular components as nodeViews ([ebb7851](https://github.com/sibiraj-s/ngx-tiptap/commit/ebb7851)), ([4e9911f](https://github.com/sibiraj-s/ngx-tiptap/commit/4e9911f))
+
 ## v1.1.0 (2021-05-03)
 
 #### Features
