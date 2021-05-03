@@ -2,6 +2,11 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/ngx-tiptap",
   "lib": {
-    "entryFile": "src/public-api.ts"
+    "entryFile": "src/public-api.ts",
+    "umdModuleIds": {
+      "@tiptap/extension-floating-menu": "tiptapFloatingMenu",
+      "@tiptap/extension-bubble-menu": "tiptapBubbleMenu",
+      "@tiptap/core": "tiptapCore"
+    }
   }
 }
