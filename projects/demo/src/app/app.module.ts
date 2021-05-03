@@ -4,8 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgxTiptapModule } from 'ngx-tiptap';
 
 import { AppComponent } from './app.component';
-import { NodeviewCounterComponent } from './nodeview-counter/nodeview-counter.component';
-import { NodeviewEditableComponent } from './nodeview-editable/nodeview-editable.component';
+import { NodeviewCounterComponent } from './nodeviews/counter/counter.component';
+import { NodeviewEditableComponent } from './nodeviews/editable/editable.component';
 
 @NgModule({
   declarations: [

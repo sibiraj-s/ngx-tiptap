@@ -6,6 +6,7 @@ import { defaultExtensions } from '@tiptap/starter-kit';
 import { By } from '@angular/platform-browser';
 
 import { NgxTiptapModule } from 'ngx-tiptap';
+import { CommonModule } from '@angular/common';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>
@@ -17,6 +18,7 @@ describe('AppComponent', () => {
         AppComponent
       ],
       imports: [
+        CommonModule,
         FormsModule,
         NgxTiptapModule
       ]

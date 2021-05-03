@@ -3,9 +3,10 @@ import { AngularNodeViewComponent } from 'ngx-tiptap';
 
 @Component({
   selector: 'app-nodeview-counter',
-  templateUrl: './nodeview-counter.component.html',
-  styleUrls: ['./nodeview-counter.component.css']
+  templateUrl: './counter.component.html',
+  styleUrls: ['./counter.component.css']
 })
+
 export class NodeviewCounterComponent extends AngularNodeViewComponent {
   increment(): void {
     this.props.updateAttributes({

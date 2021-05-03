@@ -2,8 +2,8 @@ import { Injector } from '@angular/core'
 import { Node, mergeAttributes } from '@tiptap/core'
 import { AngularNodeViewRenderer } from 'ngx-tiptap'
 
-import { NodeviewCounterComponent } from './nodeview-counter/nodeview-counter.component'
-import { NodeviewEditableComponent } from './nodeview-editable/nodeview-editable.component'
+import { NodeviewCounterComponent } from './nodeviews/counter/counter.component'
+import { NodeviewEditableComponent } from './nodeviews/editable/editable.component'
 
 export const AngularComponent = (injector: Injector): Node => {
   return Node.create({
