@@ -4,10 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgxTiptapModule } from 'ngx-tiptap';
 
 import { AppComponent } from './app.component';
+import { NodeviewCounterComponent } from './nodeview-counter/nodeview-counter.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NodeviewCounterComponent
   ],
   imports: [
     BrowserModule,

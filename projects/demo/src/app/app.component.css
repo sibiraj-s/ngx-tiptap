@@ -1,3 +1,7 @@
+.ProseMirror > * + * {
+  margin-top: 0.75rem;
+}
+
 .ProseMirror p.is-editor-empty:first-child::before {
   content: attr(data-placeholder);
   float: left;
@@ -6,15 +10,8 @@
   height: 0;
 }
 
-.ProseMirror > * + * {
-  margin-top: 0.75em;
-}
-
 .ProseMirror ul,
 .ProseMirror ol {
   padding-left: 1rem;
-}
-
-.ProseMirror li {
   list-style: initial !important;
 }

@@ -91,7 +91,7 @@ Refer: https://www.tiptap.dev/api/extensions
 
 This will make a contextual menu appear near a selection of text.
 
-The markup and styling is totally up to you.
+The markup and styling are totally up to you.
 
 ```html
 <tiptap-editor [editor]="editor"></tiptap-editor>
@@ -106,7 +106,7 @@ Refer: https://www.tiptap.dev/api/extensions/floating-menu
 
 This will make a contextual menu appear near a selection of text. Use it to let users apply marks to their text selection.
 
-The markup and styling is totally up to you.
+The markup and styling are totally up to you.
 
 ```html
 <tiptap-editor [editor]="editor"></tiptap-editor>
@@ -117,9 +117,98 @@ The markup and styling is totally up to you.
 
 Refer: https://www.tiptap.dev/api/extensions/bubble-menu
 
-### TODO's
+## AngularNodeViewRenderer
 
-- [ ] Nodeview Renderer
+This enables rendering Angular Components as NodeViews.
+
+### Create a Node Extension
+
+```ts
+import { Injector } from '@angular/core';
+import { Node, mergeAttributes } from '@tiptap/core';
+import { AngularNodeViewRenderer } from 'ngx-tiptap';
+
+import { NodeviewCounterComponent } from './nodeview-counter/nodeview-counter.component';
+
+const AngularExtension = (injector: Injector): Node => {
+  return Node.create({
+    // ...configuration
+    addNodeView() {
+      return AngularNodeViewRenderer(NodeviewCounterComponent, injector);
+    },
+  });
+};
+
+export default AngularExtension;
+```
+
+### Create a Component
+
+```ts
+import { Component } from '@angular/core';
+import { AngularNodeViewComponent } from 'ngx-tiptap';
+
+@Component({
+  selector: 'app-nodeview-counter',
+})
+export class NodeviewCounterComponent extends AngularNodeViewComponent {
+  increment(): void {
+    this.updateAttributes({
+      count: (this.attributes.count as number) + 1,
+    });
+  }
+}
+```
+
+### Use the extension
+
+```ts
+import { Component, Injector, OnInit, ViewEncapsulation } from '@angular/core';
+import { Editor } from '@tiptap/core';
+import { defaultExtensions } from '@tiptap/starter-kit';
+
+import AngularExtension from './AngularExtension';
+
+export class AppComponent implements OnInit {
+  editorA: Editor;
+
+  constructor(private injector: Injector) {}
+
+  ngOnInit(): void {
+    this.editorA = new Editor({
+      content: `
+        <p>This is still the text editor you’re used to, but enriched with node views.</p>
+        <angular-component-counter count="0"></angular-component-counter>
+        <p>Did you see that? That’s a Angular component. We are really living in the future.</p>
+        <p>The below is another counter component with different scope, The count is preset to "1"</p>
+        <angular-component-counter count="1"></angular-component-counter>
+      `,
+      extensions: [...defaultExtensions(), AngularExtension(this.injector)],
+      editorProps: {
+        attributes: {
+          class: 'p-2 border-black focus:border-blue-700 border-2 rounded-md outline-none',
+        },
+      },
+    });
+  }
+}
+```
+
+### Access/Update Attributes
+
+You will recieve `attribues` and `updateAttributes` via Input. You can access it directly like this.
+
+```ts
+this.attributes;
+```
+
+To update the attributes
+
+```ts
+this.updateAttributes({
+  count: (this.attributes.count as number) + 1,
+});
+```
 
 ### Contributing
 

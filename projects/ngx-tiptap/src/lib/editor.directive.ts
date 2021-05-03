@@ -17,12 +17,12 @@ export class EditorDirective implements OnInit, ControlValueAccessor, OnDestroy 
 
   constructor(private el: ElementRef<HTMLElement>, private _renderer: Renderer2) { }
 
-  private onChange: (value: Record<string, any> | string) => void = () => {/** */ };
-  private onTouched: () => void = () => { /** */};
+  private onChange: (value: Record<string, unknown> | string) => void = () => {/** */ };
+  private onTouched: () => void = () => { /** */ };
 
   // Writes a new value to the element.
   // This methods is called when programmatic changes from model to view are requested.
-  writeValue(value: Record<string, any> | string | null): void {
+  writeValue(value: Record<string, unknown> | string | null): void {
     if (!value) {
       return
     }
@@ -35,12 +35,12 @@ export class EditorDirective implements OnInit, ControlValueAccessor, OnDestroy 
   }
 
   // Registers a callback function that is called when the control's value changes in the UI.
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: () => void): void {
     this.onChange = fn;
   }
 
   // Registers a callback function that is called by the forms API on initialization to update the form model on blur.
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 
@@ -50,7 +50,7 @@ export class EditorDirective implements OnInit, ControlValueAccessor, OnDestroy 
     this._renderer.setProperty(this.el.nativeElement, 'disabled', isDisabled);
   }
 
-  private handleChange = ({ transaction }) => {
+  private handleChange = ({ transaction }): void => {
     if (!transaction.docChanged) {
       return
     }
@@ -63,7 +63,7 @@ export class EditorDirective implements OnInit, ControlValueAccessor, OnDestroy 
     this.onChange(this.editor.getJSON());
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (!this.editor) {
       throw new Error('Required: Input `editor`')
     }
@@ -92,7 +92,7 @@ export class EditorDirective implements OnInit, ControlValueAccessor, OnDestroy 
     this.editor.on('transaction', this.handleChange)
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.editor.destroy()
   }
 }
