@@ -83,6 +83,10 @@ You can get the json or html format from the editor directly as well.
 
 Refer https://www.tiptap.dev/guide/output#export
 
+## Extensions
+
+Refer: https://www.tiptap.dev/api/extensions
+
 ### Floating Menu
 
 This will make a contextual menu appear near a selection of text.
