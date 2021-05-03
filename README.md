@@ -116,3 +116,7 @@ Refer: https://www.tiptap.dev/api/extensions/bubble-menu
 ### TODO's
 
 - [ ] Nodeview Renderer
+
+### Contributing
+
+All types of contributions are welcome. See [CONTRIBUTING.md][./.github/contributing.md] to get started.
