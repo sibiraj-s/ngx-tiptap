@@ -1,9 +1,9 @@
-<div class="angular-component">
-  <div class="label">Angular Component</div>
+<div class="angular-component" [ngClass]="{'selected': this.props.selected}">
+  <span class="label">Angular Component</span>
 
   <div class="content">
     <button type="button" class="border-black border-2 rounded px-2" (click)="increment()">
-      This button has been clicked {{this.attributes.count}} times.
+      This button has been clicked {{this.props.node.attrs.count}} times.
     </button>
   </div>
 </div>

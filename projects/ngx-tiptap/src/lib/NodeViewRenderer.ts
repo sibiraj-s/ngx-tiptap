@@ -2,23 +2,29 @@ import {
   ApplicationRef, Component, ComponentFactoryResolver, ComponentRef,
   ElementRef, Injector, Input, Type
 } from "@angular/core";
-import { Editor, NodeView, NodeViewRenderer, NodeViewRendererProps } from "@tiptap/core";
-
-type Attributes = Record<string, unknown>
+import { Editor, NodeView, NodeViewProps, NodeViewRenderer, NodeViewRendererProps } from "@tiptap/core";
+import { Decoration, NodeView as ProseMirrorNodeView } from 'prosemirror-view'
+import { Node as ProseMirrorNode } from 'prosemirror-model'
 
 @Component({ template: '' })
 export class AngularNodeViewComponent {
-  @Input() attributes: Attributes
-  @Input() updateAttributes: (attrs: Attributes) => void
+  @Input() props: NodeViewProps
 }
 
-class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> {
+interface AngularNodeViewRendererOptions {
+  stopEvent?: ((event: Event) => boolean) | null,
+  update?: ((node: ProseMirrorNode, decorations: Decoration[]) => boolean) | null,
+  injector: Injector
+}
+
+class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> implements ProseMirrorNodeView {
   renderer: ElementRef<HTMLElement>
   componentRef: ComponentRef<AngularNodeViewComponent>
   applicationRef: ApplicationRef
+  contentDOMElement: HTMLElement | null
 
   mount() {
-    const injector = (this.options as any).injector as Injector
+    const injector = (this.options as AngularNodeViewRendererOptions).injector as Injector
     this.applicationRef = injector.get(ApplicationRef)
 
     const componentFactoryResolver = injector.get(ComponentFactoryResolver)
@@ -29,34 +35,89 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> {
     // Attach to the view so that the change detector knows to run
     this.applicationRef.attachView(this.componentRef.hostView);
 
-    // Pass input props to the component
-    this.componentRef.instance.attributes = this.node.attrs
-    this.componentRef.instance.updateAttributes = (attrs: Attributes) => {
-      this.updateAttrs(attrs)
+    const props: NodeViewProps = {
+      editor: this.editor,
+      node: this.node,
+      decorations: this.decorations,
+      selected: false,
+      extension: this.extension,
+      getPos: () => this.getPos(),
+      updateAttributes: (attributes = {}) => this.updateAttributes(attributes),
     }
 
+    // Pass input props to the component
+    this.componentRef.instance.props = props
     this.renderer = this.componentRef.injector.get(ElementRef)
+
+    this.contentDOMElement = this.node.isLeaf ? null : document.createElement(this.node.isInline ? 'span' : 'div')
+
+    if (this.contentDOMElement) {
+      // For some reason the whiteSpace prop is not inherited properly in Chrome and Safari
+      // With this fix it seems to work fine
+      // See: https://github.com/ueberdosis/tiptap/issues/1197
+      // this.contentDOMElement.style.whiteSpace = 'inherit'
+    }
   }
 
   get dom() {
     return this.renderer.nativeElement
   }
 
-  private updateAttrs = (attrs: Attributes) => {
-    this.updateAttributes({
-      ...this.node.attrs,
-      ...attrs
-    })
+  get contentDOM() {
+    if (this.node.isLeaf) {
+      return null
+    }
 
-    this.componentRef.instance.attributes = this.node.attrs
+    const contentElement = this.dom.querySelector('[data-node-view-content]')
+
+    if (
+      this.contentDOMElement
+      && contentElement
+      && !contentElement.contains(this.contentDOMElement)
+    ) {
+      contentElement.appendChild(this.contentDOMElement)
+    }
+
+    return this.contentDOMElement
+  }
+
+  private updateProps = (props: Partial<NodeViewProps>): void => {
+    this.componentRef.instance.props = {
+      ...this.componentRef.instance.props,
+      ...props
+    }
+  }
+
+  update(node: ProseMirrorNode, decorations: Decoration[]): boolean {
+    if (this.options.update) {
+      return this.options.update(node, decorations)
+    }
+
+    if (node.type !== this.node.type) {
+      return false
+    }
+
+    if (node === this.node && this.decorations === decorations) {
+      return true
+    }
+
+    this.node = node
+    this.decorations = decorations
+    this.updateProps({ node, decorations })
+
+    return true
+  }
+
+  stopEvent(event: Event): boolean | null {
+    return this.options.stopEvent?.(event) ?? null
   }
 
   selectNode() {
-    this.updateAttrs({ selected: true })
+    this.updateProps({ selected: true })
   }
 
   deselectNode() {
-    this.updateAttrs({ selected: false })
+    this.updateProps({ selected: false })
   }
 
   destroy() {
@@ -64,8 +125,8 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> {
   }
 }
 
-export const AngularNodeViewRenderer = (component: Type<AngularNodeViewComponent>, injector: Injector): NodeViewRenderer => {
+export const AngularNodeViewRenderer = (component: Type<AngularNodeViewComponent>, options: AngularNodeViewRendererOptions): NodeViewRenderer => {
   return (props: NodeViewRendererProps) => {
-    return new AngularNodeView(component, props, ({ injector } as any))
+    return new AngularNodeView(component, props, options) as ProseMirrorNodeView
   }
 }

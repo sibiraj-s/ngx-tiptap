@@ -5,11 +5,13 @@ import { NgxTiptapModule } from 'ngx-tiptap';
 
 import { AppComponent } from './app.component';
 import { NodeviewCounterComponent } from './nodeview-counter/nodeview-counter.component';
+import { NodeviewEditableComponent } from './nodeview-editable/nodeview-editable.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NodeviewCounterComponent
+    NodeviewCounterComponent,
+    NodeviewEditableComponent
   ],
   imports: [
     BrowserModule,

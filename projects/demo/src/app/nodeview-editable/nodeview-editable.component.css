@@ -1,4 +1,4 @@
-.angular-component {
+.angular-component-with-content {
   background: #faf594;
   border: 3px solid #0d0d0d;
   border-radius: 0.5rem;
@@ -6,11 +6,7 @@
   position: relative;
 }
 
-.angular-component.selected {
-  @apply border-green-500;
-}
-
-.angular-component .label {
+.angular-component-with-content .label {
   margin-left: 1rem;
   background-color: #0d0d0d;
   font-size: 0.6rem;
@@ -24,7 +20,9 @@
   border-radius: 0 0 0.5rem 0.5rem;
 }
 
-.angular-component .content {
-  margin-top: 1.5rem;
-  padding: 1rem;
+.angular-component-with-content .content {
+  margin: 2.5rem 1rem 1rem;
+  padding: 0.5rem;
+  border: 2px dashed #0d0d0d20;
+  border-radius: 0.5rem;
 }

@@ -8,8 +8,8 @@ import { AngularNodeViewComponent } from 'ngx-tiptap';
 })
 export class NodeviewCounterComponent extends AngularNodeViewComponent {
   increment(): void {
-    this.updateAttributes({
-      count: (this.attributes.count as number) + 1
+    this.props.updateAttributes({
+      count: this.props.node.attrs.count + 1
     })
   }
 }

@@ -3,7 +3,7 @@ import { Editor } from '@tiptap/core';
 import { defaultExtensions } from '@tiptap/starter-kit'
 import Placeholder from '@tiptap/extension-placeholder'
 
-import AngularExtension from './AngularExtension';
+import { AngularComponent, AngularEditableComponent } from './extensions';
 
 @Component({
   selector: 'app-root',
@@ -40,7 +40,6 @@ export class AppComponent implements OnInit {
     extensions: [
       ...defaultExtensions(),
       Placeholder,
-      AngularExtension(this.injector)
     ],
     editorProps: {
       attributes: {
@@ -58,14 +57,17 @@ export class AppComponent implements OnInit {
       content: `
         <p>This is still the text editor you’re used to, but enriched with node views.</p>
         <angular-component-counter count="0"></angular-component-counter>
-        <p>Did you see that? That’s a Angular component. We are really living in the future.</p>
         <p>The below is another counter component with different scope, The count is preset to "1"</p>
         <angular-component-counter count="1"></angular-component-counter>
+        <p>You can also create an editable component item inside the component</p>
+        <angular-component-editable><p>This is editable</p></angular-component-editable>
+        <p>Did you see that? These are Angular components. We are really living in the future.</p>
       `,
       extensions: [
         ...defaultExtensions(),
         Placeholder,
-        AngularExtension(this.injector)
+        AngularComponent(this.injector),
+        AngularEditableComponent(this.injector)
       ],
       editorProps: {
         attributes: {

@@ -134,7 +134,7 @@ const AngularExtension = (injector: Injector): Node => {
   return Node.create({
     // ...configuration
     addNodeView() {
-      return AngularNodeViewRenderer(NodeviewCounterComponent, injector);
+      return AngularNodeViewRenderer(NodeviewCounterComponent, { injector });
     },
   });
 };
@@ -153,8 +153,8 @@ import { AngularNodeViewComponent } from 'ngx-tiptap';
 })
 export class NodeviewCounterComponent extends AngularNodeViewComponent {
   increment(): void {
-    this.updateAttributes({
-      count: (this.attributes.count as number) + 1,
+    this.props.updateAttributes({
+      count: this.props.node.attrs.count + 1,
     });
   }
 }
@@ -179,9 +179,6 @@ export class AppComponent implements OnInit {
       content: `
         <p>This is still the text editor you’re used to, but enriched with node views.</p>
         <angular-component-counter count="0"></angular-component-counter>
-        <p>Did you see that? That’s a Angular component. We are really living in the future.</p>
-        <p>The below is another counter component with different scope, The count is preset to "1"</p>
-        <angular-component-counter count="1"></angular-component-counter>
       `,
       extensions: [...defaultExtensions(), AngularExtension(this.injector)],
       editorProps: {
@@ -199,14 +196,14 @@ export class AppComponent implements OnInit {
 You will recieve `attribues` and `updateAttributes` via Input. You can access it directly like this.
 
 ```ts
-this.attributes;
+this.props.node.attrs;
 ```
 
 To update the attributes
 
 ```ts
-this.updateAttributes({
-  count: (this.attributes.count as number) + 1,
+this.props.updateAttributes({
+  count: this.props.node.attrs.count + 1,
 });
 ```
 
