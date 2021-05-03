@@ -1,5 +1,5 @@
-import { Component, DebugElement, Input } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, Input } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Editor } from '@tiptap/core';
 import { defaultExtensions } from '@tiptap/starter-kit';
@@ -10,7 +10,7 @@ import { FloatingMenuDirective } from './floating-menu.directive';
 @Component({
   template: `
       <tiptap-editor [editor]="editor"></tiptap-editor>
-      <tiptap-floting-menu [editor]="editor"></tiptap-floting-menu>
+      <tiptap-floting-menu [editor]="editor">Floater</tiptap-floting-menu>
     `
 })
 class TestComponent {
@@ -49,15 +49,19 @@ describe('FloatingMenuDirective', () => {
     expect(directive).toBeTruthy();
   });
 
-  // it('should render the floating menu', async () => {
-  //   const directiveEl = fixture.debugElement.query(By.directive(EditorDirective));
-  //   expect(directiveEl.query(By.css('[data-tippy-root]'))).toBeFalsy()
+  it('should render the floating menu', fakeAsync(() => {
+    const directiveEl = fixture.debugElement.query(By.directive(EditorDirective));
+    expect(directiveEl.query(By.css('[data-tippy-root]'))).toBeFalsy()
 
-  //   directiveEl.query(By.css('.ProseMirror')).nativeElement.dispatchEvent(new Event('focus'))
-  //   fixture.detectChanges()
-  //   await fixture.whenStable()
-  //   console.log(directiveEl.nativeElement)
+    component.editor.chain().clearContent().focus().run()
+    directiveEl.query(By.css('.ProseMirror')).nativeElement.dispatchEvent(new Event('focus'))
+    fixture.detectChanges()
 
-  //   expect(directiveEl.query(By.css('[data-tippy-root]'))).toBeTruthy()
-  // })
+    tick(100)
+
+    fixture.whenStable().then(() => {
+      expect(directiveEl.query(By.css('[data-tippy-root]'))).toBeTruthy()
+      expect(directiveEl.query(By.css('[data-tippy-root]')).nativeElement.innerHTML).toContain('Floater')
+    })
+  }))
 });
