@@ -3,7 +3,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Editor } from '@tiptap/core';
 
 @Directive({
-  selector: 'tiptap, [tiptap], tiptap-editor, [tiptapEditor]',
+  selector: 'tiptap[editor], [tiptap][editor], tiptap-editor[editor], [tiptapEditor][editor]',
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => EditorDirective),

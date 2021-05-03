@@ -3,7 +3,7 @@ import { Editor } from '@tiptap/core';
 import { FloatingMenuPlugin, FloatingMenuPluginKey, FloatingMenuPluginProps } from '@tiptap/extension-floating-menu'
 
 @Directive({
-  selector: 'tiptap-floting-menu, [tiptapFloatingMenu]'
+  selector: 'tiptap-floting-menu[editor], [tiptapFloatingMenu][editor]'
 })
 
 export class FloatingMenuDirective implements OnInit, OnDestroy {
@@ -13,6 +13,10 @@ export class FloatingMenuDirective implements OnInit, OnDestroy {
   constructor(private _el: ElementRef<HTMLElement>) { }
 
   ngOnInit(): void {
+    if (!this.editor) {
+      throw new Error('Required: Input `editor`')
+    }
+
     this.editor.registerPlugin(FloatingMenuPlugin({
       editor: this.editor,
       element: this._el.nativeElement,
