@@ -19,7 +19,9 @@
     "@angular/core": "^11.2.12",
     "@tiptap/core": "*",
     "@tiptap/extension-bubble-menu": "*",
-    "@tiptap/extension-floating-menu": "*"
+    "@tiptap/extension-floating-menu": "*",
+    "prosemirror-model": "^1.14.1",
+    "prosemirror-view": "^1.18.4"
   },
   "dependencies": {
     "tslib": "^2.0.0"
