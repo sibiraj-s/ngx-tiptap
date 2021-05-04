@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v1.2.1 (2021-05-04)
+
+#### Bug Fixes
+
+- fix typo in floating-menu directive selector ([99775a0](https://github.com/sibiraj-s/ngx-tiptap/commit/99775a0))
+
 ## v1.2.0 (2021-05-03)
 
 #### Features
