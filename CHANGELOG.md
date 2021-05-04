@@ -13,6 +13,16 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v1.2.2 (2021-05-04)
+
+#### Bug Fixes
+
+- attach `stopEvent` only if provided ([d385e10](https://github.com/sibiraj-s/ngx-tiptap/commit/d385e10))
+
+#### Internal
+
+- fix e2e tests ([27b054a](https://github.com/sibiraj-s/ngx-tiptap/commit/27b054a))
+
 ## v1.2.1 (2021-05-04)
 
 #### Bug Fixes
