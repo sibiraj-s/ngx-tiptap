@@ -68,7 +68,7 @@ export class AppComponent {
 and in HTML
 
 ```html
-<tiptap [editor]="editor" [(ngModel)]="value"></tiptap>
+<tiptap-editor [editor]="editor" [(ngModel)]="value"></tiptap-editor>
 ```
 
 **Note**: No styling is provided by default. You are in full control of how your editor looks. Refer [tiptaps's styling guide](https://www.tiptap.dev/guide/styling) for more information.
