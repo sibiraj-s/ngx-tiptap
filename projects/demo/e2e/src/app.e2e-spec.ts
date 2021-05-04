@@ -8,9 +8,10 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', async () => {
+  it('should render prosemirror instance', async () => {
     await page.navigateTo();
-    expect(await page.getTitleText()).toEqual('demo app is running!');
+    console.log(await page.getProseMirrorInstanceValue())
+    expect(await page.getProseMirrorInstanceValue()).toEqual('Hello, Tiptap!');
   });
 
   afterEach(async () => {
