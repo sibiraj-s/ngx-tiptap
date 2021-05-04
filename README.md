@@ -133,6 +133,12 @@ import { NodeviewCounterComponent } from './nodeview-counter/nodeview-counter.co
 const AngularExtension = (injector: Injector): Node => {
   return Node.create({
     // ...configuration
+    parseHTML() {
+      return [{ tag: 'angular-component-counter' }];
+    },
+    renderHTML({ HTMLAttributes }) {
+      return ['angular-component-counter', mergeAttributes(HTMLAttributes)];
+    },
     addNodeView() {
       return AngularNodeViewRenderer(NodeviewCounterComponent, { injector });
     },
