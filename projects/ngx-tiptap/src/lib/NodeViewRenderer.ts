@@ -57,6 +57,11 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
       // See: https://github.com/ueberdosis/tiptap/issues/1197
       // this.contentDOMElement.style.whiteSpace = 'inherit'
     }
+
+    // attach stopEvent
+    if(this.options.stopEvent) {
+      this.stopEvent = this.options.stopEvent
+    }
   }
 
   get dom() {
@@ -106,10 +111,6 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
     this.updateProps({ node, decorations })
 
     return true
-  }
-
-  stopEvent(event: Event): boolean | null {
-    return this.options.stopEvent?.(event) ?? null
   }
 
   selectNode() {
