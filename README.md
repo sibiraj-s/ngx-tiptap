@@ -176,12 +176,12 @@ import { defaultExtensions } from '@tiptap/starter-kit';
 import AngularExtension from './AngularExtension';
 
 export class AppComponent implements OnInit {
-  editorA: Editor;
+  editor: Editor;
 
   constructor(private injector: Injector) {}
 
   ngOnInit(): void {
-    this.editorA = new Editor({
+    this.editor = new Editor({
       content: `
         <p>This is still the text editor you’re used to, but enriched with node views.</p>
         <angular-component-counter count="0"></angular-component-counter>
