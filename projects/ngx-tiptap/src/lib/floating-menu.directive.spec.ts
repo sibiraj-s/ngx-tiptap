@@ -10,7 +10,7 @@ import { FloatingMenuDirective } from './floating-menu.directive';
 @Component({
   template: `
       <tiptap-editor [editor]="editor"></tiptap-editor>
-      <tiptap-floting-menu [editor]="editor">Floater</tiptap-floting-menu>
+      <tiptap-floating-menu [editor]="editor">Floater</tiptap-floating-menu>
     `
 })
 class TestComponent {
@@ -44,7 +44,7 @@ describe('FloatingMenuDirective', () => {
   });
 
   it('should create an instance', () => {
-    const hostEl = fixture.debugElement.query(By.css('tiptap-floting-menu'));
+    const hostEl = fixture.debugElement.query(By.css('tiptap-floating-menu'));
     const directive = new FloatingMenuDirective(hostEl);
     expect(directive).toBeTruthy();
   });

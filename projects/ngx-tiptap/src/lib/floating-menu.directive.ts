@@ -3,7 +3,7 @@ import { Editor } from '@tiptap/core';
 import { FloatingMenuPlugin, FloatingMenuPluginKey, FloatingMenuPluginProps } from '@tiptap/extension-floating-menu'
 
 @Directive({
-  selector: 'tiptap-floting-menu[editor], [tiptapFloatingMenu][editor]'
+  selector: 'tiptap-floating-menu[editor], [tiptapFloatingMenu][editor]'
 })
 
 export class FloatingMenuDirective implements OnInit, OnDestroy {
