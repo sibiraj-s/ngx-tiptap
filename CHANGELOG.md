@@ -13,6 +13,20 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v1.2.3 (2021-05-10)
+
+#### Bug Fixes
+
+- update typings ([1237cf0](https://github.com/sibiraj-s/ngx-tiptap/commit/1237cf0))
+
+#### Dependency Updates
+
+- update dependencies and devDependencies ([cfb68de](https://github.com/sibiraj-s/ngx-tiptap/commit/cfb68de))
+
+#### Documentation
+
+- update examples to use `StarterKit` instead of `defaultExtensions` ([92c93c9](https://github.com/sibiraj-s/ngx-tiptap/commit/92c93c9))
+
 ## v1.2.2 (2021-05-04)
 
 #### Bug Fixes
