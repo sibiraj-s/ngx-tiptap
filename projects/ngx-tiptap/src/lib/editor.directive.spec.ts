@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { Editor } from '@tiptap/core';
-import { defaultExtensions } from '@tiptap/starter-kit';
+import StarterKit from '@tiptap/starter-kit';
 
 import { EditorDirective } from './editor.directive';
 
@@ -32,7 +32,7 @@ describe('NgxTiptapDirective', () => {
     component = fixture.componentInstance;
 
     const editor = new Editor({
-      extensions: defaultExtensions()
+      extensions: [StarterKit]
     })
 
     component.editor = editor
@@ -79,7 +79,7 @@ describe('NgxTiptapDirective FormsModule', () => {
     component = fixture.componentInstance;
 
     const editor = new Editor({
-      extensions: defaultExtensions()
+      extensions: [StarterKit]
     })
 
     component.editor = editor

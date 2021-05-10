@@ -1,6 +1,6 @@
 import { Component, Injector, OnInit, ViewEncapsulation } from '@angular/core';
 import { Editor } from '@tiptap/core';
-import { defaultExtensions } from '@tiptap/starter-kit'
+import StarterKit from '@tiptap/starter-kit'
 import Placeholder from '@tiptap/extension-placeholder'
 
 import { AngularComponent, AngularEditableComponent } from './extensions';
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
 
   editor = new Editor({
     extensions: [
-      ...defaultExtensions(),
+      StarterKit,
       Placeholder
     ],
     editorProps: {
@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
   })
 
   editorF = new Editor({
-    extensions: defaultExtensions(),
+    extensions: [StarterKit],
     editorProps: {
       attributes: {
         class: 'p-2 border-black focus:border-blue-700 border-2 rounded-md outline-none'
@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
 
   editorB = new Editor({
     extensions: [
-      ...defaultExtensions(),
+      StarterKit,
       Placeholder,
     ],
     editorProps: {
@@ -64,7 +64,7 @@ export class AppComponent implements OnInit {
         <p>Did you see that? These are Angular components. We are really living in the future.</p>
       `,
       extensions: [
-        ...defaultExtensions(),
+        StarterKit,
         Placeholder,
         AngularComponent(this.injector),
         AngularEditableComponent(this.injector)

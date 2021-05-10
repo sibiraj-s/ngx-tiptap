@@ -50,7 +50,7 @@ Create an instance of the editor
 ```ts
 import { Component } from '@angular/core';
 import { Editor } from '@tiptap/core';
-import { defaultExtensions } from '@tiptap/starter-kit';
+import StarterKit from '@tiptap/starter-kit';
 
 @Component({
   selector: 'app-root',
@@ -58,7 +58,7 @@ import { defaultExtensions } from '@tiptap/starter-kit';
 })
 export class AppComponent {
   editor = new Editor({
-    extensions: defaultExtensions(),
+    extensions: [StarterKit],
   });
 
   value = '<p>Hello, Tiptap!</p>'; // can be HTML or JSON, see https://www.tiptap.dev/api/editor#content
@@ -171,7 +171,7 @@ export class NodeviewCounterComponent extends AngularNodeViewComponent {
 ```ts
 import { Component, Injector, OnInit, ViewEncapsulation } from '@angular/core';
 import { Editor } from '@tiptap/core';
-import { defaultExtensions } from '@tiptap/starter-kit';
+import StarterKit from '@tiptap/starter-kit';
 
 import AngularExtension from './AngularExtension';
 
@@ -186,7 +186,7 @@ export class AppComponent implements OnInit {
         <p>This is still the text editor you’re used to, but enriched with node views.</p>
         <angular-component-counter count="0"></angular-component-counter>
       `,
-      extensions: [...defaultExtensions(), AngularExtension(this.injector)],
+      extensions: [StarterKit, AngularExtension(this.injector)],
       editorProps: {
         attributes: {
           class: 'p-2 border-black focus:border-blue-700 border-2 rounded-md outline-none',

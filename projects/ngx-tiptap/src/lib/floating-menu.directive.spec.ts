@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Editor } from '@tiptap/core';
-import { defaultExtensions } from '@tiptap/starter-kit';
+import StarterKit from '@tiptap/starter-kit';
 
 import { EditorDirective } from './editor.directive';
 import { FloatingMenuDirective } from './floating-menu.directive';
@@ -36,7 +36,7 @@ describe('FloatingMenuDirective', () => {
     component = fixture.componentInstance;
 
     const editor = new Editor({
-      extensions: defaultExtensions()
+      extensions: [StarterKit]
     })
 
     component.editor = editor

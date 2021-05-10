@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { Editor } from '@tiptap/core';
-import { defaultExtensions } from '@tiptap/starter-kit';
+import StarterKit from '@tiptap/starter-kit';
 import { By } from '@angular/platform-browser';
 
 import { NgxTiptapModule } from 'ngx-tiptap';
@@ -30,7 +30,7 @@ describe('AppComponent', () => {
 
   beforeEach(() => {
     app.editor = new Editor({
-      extensions: defaultExtensions()
+      extensions: [StarterKit]
     })
 
     fixture.detectChanges()
