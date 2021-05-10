@@ -1,6 +1,6 @@
 import { Directive, ElementRef, forwardRef, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Editor } from '@tiptap/core';
+import { Content, Editor, JSONContent } from '@tiptap/core';
 
 @Directive({
   selector: 'tiptap[editor], [tiptap][editor], tiptap-editor[editor], [tiptapEditor][editor]',
@@ -17,12 +17,12 @@ export class EditorDirective implements OnInit, ControlValueAccessor, OnDestroy 
 
   constructor(private el: ElementRef<HTMLElement>, private _renderer: Renderer2) { }
 
-  private onChange: (value: Record<string, unknown> | string) => void = () => {/** */ };
+  private onChange: (value: Content) => void = () => {/** */ };
   private onTouched: () => void = () => { /** */ };
 
   // Writes a new value to the element.
   // This methods is called when programmatic changes from model to view are requested.
-  writeValue(value: Record<string, unknown> | string | null): void {
+  writeValue(value: Content): void {
     if (!value) {
       return
     }
@@ -60,7 +60,7 @@ export class EditorDirective implements OnInit, ControlValueAccessor, OnDestroy 
       return;
     }
 
-    this.onChange(this.editor.getJSON());
+    this.onChange(this.editor.getJSON() as JSONContent);
   }
 
   ngOnInit(): void {
