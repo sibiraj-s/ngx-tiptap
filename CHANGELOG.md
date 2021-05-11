@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v1.3.0 (2021-05-11)
+
+#### Features
+
+- support dragging nodeviews ([55c70c0](https://github.com/sibiraj-s/ngx-tiptap/commit/55c70c0))
+
 ## v1.2.3 (2021-05-10)
 
 #### Bug Fixes
