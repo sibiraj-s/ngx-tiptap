@@ -10,6 +10,7 @@ export const AngularComponent = (injector: Injector): Node => {
     name: 'angularCounterComponent',
     group: 'block',
     atom: true,
+    draggable: true,
 
     addAttributes() {
       return {

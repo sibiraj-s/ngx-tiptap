@@ -49,6 +49,12 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
     this.componentRef.instance.props = props
     this.renderer = this.componentRef.injector.get(ElementRef)
 
+    if (this.extension.config.draggable) {
+      this.renderer.nativeElement.ondragstart = (e: DragEvent) => {
+        this.onDragStart(e)
+      }
+    }
+
     this.contentDOMElement = this.node.isLeaf ? null : document.createElement(this.node.isInline ? 'span' : 'div')
 
     if (this.contentDOMElement) {
@@ -59,7 +65,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
     }
 
     // attach stopEvent
-    if(this.options.stopEvent) {
+    if (this.options.stopEvent) {
       this.stopEvent = this.options.stopEvent
     }
   }

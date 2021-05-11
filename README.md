@@ -213,6 +213,10 @@ this.props.updateAttributes({
 });
 ```
 
+### Dragging
+
+To make your node views draggable, set `draggable: true` in the extension and add `tiptapDraggable` directive to the DOM element inside the component that should function as the drag handle.
+
 ## Contributing
 
 All types of contributions are welcome. See [CONTRIBUTING.md][./.github/contributing.md] to get started.
