@@ -213,6 +213,19 @@ this.props.updateAttributes({
 });
 ```
 
+### Adding a content editable
+
+There is another directive called `tiptapNodeViewContent` which helps you adding editable content to your node view. Here is an example.
+
+```html
+<!-- editable.component.html -->
+<div class="angular-component-with-content">
+  <p tiptapNodeViewContent></p>
+</div>
+```
+
+Refer: https://www.tiptap.dev/guide/node-views/react/#adding-a-content-editable
+
 ### Dragging
 
 To make your node views draggable, set `draggable: true` in the extension and add `tiptapDraggable` directive to the DOM element inside the component that should function as the drag handle.

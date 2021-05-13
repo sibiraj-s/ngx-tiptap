@@ -4,6 +4,7 @@ import { EditorDirective } from './editor.directive';
 import { FloatingMenuDirective } from './floating-menu.directive';
 import { BubbleMenuDirective } from './bubble-menu.directive';
 import { DraggableDirective } from './draggable.directive';
+import { NodeViewContentDirective } from './node-view-content.directive';
 
 @NgModule({
   declarations: [
@@ -11,12 +12,14 @@ import { DraggableDirective } from './draggable.directive';
     FloatingMenuDirective,
     BubbleMenuDirective,
     DraggableDirective,
+    NodeViewContentDirective,
   ],
   exports: [
     EditorDirective,
     FloatingMenuDirective,
     BubbleMenuDirective,
-    DraggableDirective
+    DraggableDirective,
+    NodeViewContentDirective
   ]
 })
 export class NgxTiptapModule { }
