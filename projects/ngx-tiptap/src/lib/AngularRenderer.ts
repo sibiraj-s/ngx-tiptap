@@ -4,8 +4,8 @@ import {
 } from "@angular/core";
 
 export class AngularRenderer<C> {
-  applicationRef: ApplicationRef
-  componentRef: ComponentRef<C>
+  private applicationRef: ApplicationRef
+  private componentRef: ComponentRef<C>
 
   constructor(component: Type<C>, injector: Injector) {
     this.applicationRef = injector.get(ApplicationRef)
