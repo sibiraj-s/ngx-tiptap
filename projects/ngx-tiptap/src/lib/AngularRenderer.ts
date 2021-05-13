@@ -1,11 +1,20 @@
-import { ApplicationRef, ComponentFactoryResolver, ComponentRef, ElementRef, Injector, Type } from "@angular/core";
+import {
+  ApplicationRef, Component, ComponentFactoryResolver,
+  ComponentRef, ElementRef, Injector,
+  Input, Type
+} from "@angular/core";
+import { NodeViewProps } from "@tiptap/core";
 
+@Component({ template: '' })
+export class AngularNodeViewComponent {
+  @Input() props: NodeViewProps
+}
 
-export class AngularRenderer<C> {
+export class AngularRenderer {
   applicationRef: ApplicationRef
-  componentRef: ComponentRef<C>
+  componentRef: ComponentRef<AngularNodeViewComponent>
 
-  constructor(component: Type<C>, injector: Injector) {
+  constructor(component: Type<AngularNodeViewComponent>, injector: Injector) {
     this.applicationRef = injector.get(ApplicationRef)
 
     const componentFactoryResolver = injector.get(ComponentFactoryResolver)
@@ -17,15 +26,30 @@ export class AngularRenderer<C> {
     this.applicationRef.attachView(this.componentRef.hostView);
   }
 
-  get instance(): C {
+  get instance(): AngularNodeViewComponent {
     return this.componentRef.instance
   }
 
-  get elementRef(): ElementRef<HTMLElement> {
+  get elementRef(): ElementRef {
     return this.componentRef.injector.get(ElementRef)
   }
 
-  destroy() {
+  get dom(): HTMLElement {
+    return this.elementRef.nativeElement
+  }
+
+  setProps(props: NodeViewProps): void {
+    this.instance.props = props
+  }
+
+  updateProps(props: Partial<NodeViewProps>): void {
+    this.instance.props = {
+      ...this.instance.props,
+      ...props
+    }
+  }
+
+  destroy(): void {
     this.applicationRef.detachView(this.componentRef.hostView)
   }
 }

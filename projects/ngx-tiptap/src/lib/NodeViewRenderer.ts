@@ -1,13 +1,8 @@
-import { Component, Injector, Input, Type } from "@angular/core";
+import { Injector, Type } from "@angular/core";
 import { Editor, NodeView, NodeViewProps, NodeViewRenderer, NodeViewRendererProps } from "@tiptap/core";
 import { Decoration, NodeView as ProseMirrorNodeView } from 'prosemirror-view'
 import { Node as ProseMirrorNode } from 'prosemirror-model'
-import { AngularRenderer } from "./AngularRenderer";
-
-@Component({ template: '' })
-export class AngularNodeViewComponent {
-  @Input() props: NodeViewProps
-}
+import { AngularNodeViewComponent, AngularRenderer } from "./AngularRenderer";
 
 interface AngularNodeViewRendererOptions {
   stopEvent?: ((event: Event) => boolean) | null,
@@ -16,7 +11,7 @@ interface AngularNodeViewRendererOptions {
 }
 
 class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> implements ProseMirrorNodeView {
-  renderer: AngularRenderer<AngularNodeViewComponent>
+  renderer: AngularRenderer
   contentDOMElement: HTMLElement | null
 
   mount() {
@@ -36,6 +31,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
 
     // Pass input props to the component
     this.renderer.instance.props = props
+    this.renderer.updateProps(props)
 
     if (this.extension.config.draggable) {
       // Register drag handler
@@ -60,7 +56,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
   }
 
   get dom() {
-    return this.renderer.elementRef.nativeElement
+    return this.renderer.dom
   }
 
   get contentDOM() {
@@ -81,13 +77,6 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
     return this.contentDOMElement
   }
 
-  private updateProps = (props: Partial<NodeViewProps>): void => {
-    this.renderer.instance.props = {
-      ...this.renderer.instance.props,
-      ...props
-    }
-  }
-
   update(node: ProseMirrorNode, decorations: Decoration[]): boolean {
     if (this.options.update) {
       return this.options.update(node, decorations)
@@ -103,17 +92,17 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
 
     this.node = node
     this.decorations = decorations
-    this.updateProps({ node, decorations })
+    this.renderer.updateProps({ node, decorations })
 
     return true
   }
 
   selectNode() {
-    this.updateProps({ selected: true })
+    this.renderer.updateProps({ selected: true })
   }
 
   deselectNode() {
-    this.updateProps({ selected: false })
+    this.renderer.updateProps({ selected: false })
   }
 
   destroy() {
