@@ -1,8 +1,13 @@
-import { Injector, Type } from "@angular/core";
+import { Component, Injector, Input, Type } from "@angular/core";
 import { Editor, NodeView, NodeViewProps, NodeViewRenderer, NodeViewRendererProps } from "@tiptap/core";
 import { Decoration, NodeView as ProseMirrorNodeView } from 'prosemirror-view'
 import { Node as ProseMirrorNode } from 'prosemirror-model'
-import { AngularNodeViewComponent, AngularRenderer } from "./AngularRenderer";
+import { AngularRenderer } from "./AngularRenderer";
+
+@Component({ template: '' })
+export class AngularNodeViewComponent {
+  @Input() props: NodeViewProps
+}
 
 interface AngularNodeViewRendererOptions {
   stopEvent?: ((event: Event) => boolean) | null,
@@ -11,7 +16,7 @@ interface AngularNodeViewRendererOptions {
 }
 
 class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> implements ProseMirrorNodeView {
-  renderer: AngularRenderer
+  renderer: AngularRenderer<AngularNodeViewComponent>
   contentDOMElement: HTMLElement | null
 
   mount() {
@@ -31,7 +36,6 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
 
     // Pass input props to the component
     this.renderer.instance.props = props
-    this.renderer.updateProps(props)
 
     if (this.extension.config.draggable) {
       // Register drag handler
@@ -52,6 +56,13 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
     // attach stopEvent
     if (this.options.stopEvent) {
       this.stopEvent = this.options.stopEvent
+    }
+  }
+
+  private updateProps(props: Partial<NodeViewProps>) {
+    this.renderer.instance.props = {
+      ...this.renderer.instance.props,
+      ...props
     }
   }
 
@@ -92,17 +103,17 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
 
     this.node = node
     this.decorations = decorations
-    this.renderer.updateProps({ node, decorations })
+    this.updateProps({ node, decorations })
 
     return true
   }
 
   selectNode() {
-    this.renderer.updateProps({ selected: true })
+    this.updateProps({ selected: true })
   }
 
   deselectNode() {
-    this.renderer.updateProps({ selected: false })
+    this.updateProps({ selected: false })
   }
 
   destroy() {

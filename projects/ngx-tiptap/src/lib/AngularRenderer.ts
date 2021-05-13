@@ -1,20 +1,13 @@
 import {
-  ApplicationRef, Component, ComponentFactoryResolver,
-  ComponentRef, ElementRef, Injector,
-  Input, Type
+  ApplicationRef, ComponentFactoryResolver, ComponentRef,
+  ElementRef, Injector, Type
 } from "@angular/core";
-import { NodeViewProps } from "@tiptap/core";
 
-@Component({ template: '' })
-export class AngularNodeViewComponent {
-  @Input() props: NodeViewProps
-}
-
-export class AngularRenderer {
+export class AngularRenderer<C> {
   applicationRef: ApplicationRef
-  componentRef: ComponentRef<AngularNodeViewComponent>
+  componentRef: ComponentRef<C>
 
-  constructor(component: Type<AngularNodeViewComponent>, injector: Injector) {
+  constructor(component: Type<C>, injector: Injector) {
     this.applicationRef = injector.get(ApplicationRef)
 
     const componentFactoryResolver = injector.get(ComponentFactoryResolver)
@@ -26,7 +19,7 @@ export class AngularRenderer {
     this.applicationRef.attachView(this.componentRef.hostView);
   }
 
-  get instance(): AngularNodeViewComponent {
+  get instance(): C {
     return this.componentRef.instance
   }
 
@@ -38,16 +31,6 @@ export class AngularRenderer {
     return this.elementRef.nativeElement
   }
 
-  setProps(props: NodeViewProps): void {
-    this.instance.props = props
-  }
-
-  updateProps(props: Partial<NodeViewProps>): void {
-    this.instance.props = {
-      ...this.instance.props,
-      ...props
-    }
-  }
 
   destroy(): void {
     this.applicationRef.detachView(this.componentRef.hostView)
