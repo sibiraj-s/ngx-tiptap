@@ -230,6 +230,20 @@ Refer: https://www.tiptap.dev/guide/node-views/react/#adding-a-content-editable
 
 To make your node views draggable, set `draggable: true` in the extension and add `tiptapDraggable` directive to the DOM element inside the component that should function as the drag handle.
 
+### AngularRenderer
+
+You can also manully render the angular components using `AngularRenderer`.
+
+```ts
+import { AngularRenderer } from 'ngx-tiptap';
+
+const renderer = new AngularRenderer(Component, injector);
+
+renderer.instance; // get the instance of the component, can be used to update `@Input` properties
+renderer.dom; // get the HTMLElement for the component
+renderer.destroy(); // destroy the component and its instance
+```
+
 ## Contributing
 
 All types of contributions are welcome. See [CONTRIBUTING.md][./.github/contributing.md] to get started.
