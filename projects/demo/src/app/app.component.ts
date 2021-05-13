@@ -73,9 +73,6 @@ export class AppComponent implements OnInit {
         attributes: {
           class: 'p-2 border-black focus:border-blue-700 border-2 rounded-md outline-none'
         }
-      },
-      onUpdate({editor}) {
-        console.log(editor.getHTML())
       }
     })
   }

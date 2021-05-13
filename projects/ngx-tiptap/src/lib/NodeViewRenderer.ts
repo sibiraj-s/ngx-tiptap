@@ -1,10 +1,8 @@
-import {
-  ApplicationRef, Component, ComponentFactoryResolver, ComponentRef,
-  ElementRef, Injector, Input, Type
-} from "@angular/core";
+import { Component, Injector, Input, Type } from "@angular/core";
 import { Editor, NodeView, NodeViewProps, NodeViewRenderer, NodeViewRendererProps } from "@tiptap/core";
 import { Decoration, NodeView as ProseMirrorNodeView } from 'prosemirror-view'
 import { Node as ProseMirrorNode } from 'prosemirror-model'
+import { AngularRenderer } from "./AngularRenderer";
 
 @Component({ template: '' })
 export class AngularNodeViewComponent {
@@ -18,22 +16,13 @@ interface AngularNodeViewRendererOptions {
 }
 
 class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> implements ProseMirrorNodeView {
-  renderer: ElementRef<HTMLElement>
-  componentRef: ComponentRef<AngularNodeViewComponent>
-  applicationRef: ApplicationRef
+  renderer: AngularRenderer<AngularNodeViewComponent>
   contentDOMElement: HTMLElement | null
 
   mount() {
     const injector = (this.options as AngularNodeViewRendererOptions).injector as Injector
-    this.applicationRef = injector.get(ApplicationRef)
 
-    const componentFactoryResolver = injector.get(ComponentFactoryResolver)
-    const factory = componentFactoryResolver.resolveComponentFactory(this.component);
-
-    this.componentRef = factory.create(injector, []);
-
-    // Attach to the view so that the change detector knows to run
-    this.applicationRef.attachView(this.componentRef.hostView);
+    this.renderer = new AngularRenderer(this.component, injector)
 
     const props: NodeViewProps = {
       editor: this.editor,
@@ -46,11 +35,11 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
     }
 
     // Pass input props to the component
-    this.componentRef.instance.props = props
-    this.renderer = this.componentRef.injector.get(ElementRef)
+    this.renderer.instance.props = props
 
     if (this.extension.config.draggable) {
-      this.renderer.nativeElement.ondragstart = (e: DragEvent) => {
+      // Register drag handler
+      this.renderer.elementRef.nativeElement.ondragstart = (e: DragEvent) => {
         this.onDragStart(e)
       }
     }
@@ -61,7 +50,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
       // For some reason the whiteSpace prop is not inherited properly in Chrome and Safari
       // With this fix it seems to work fine
       // See: https://github.com/ueberdosis/tiptap/issues/1197
-      // this.contentDOMElement.style.whiteSpace = 'inherit'
+      this.contentDOMElement.style.whiteSpace = 'inherit'
     }
 
     // attach stopEvent
@@ -71,7 +60,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
   }
 
   get dom() {
-    return this.renderer.nativeElement
+    return this.renderer.elementRef.nativeElement
   }
 
   get contentDOM() {
@@ -93,8 +82,8 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
   }
 
   private updateProps = (props: Partial<NodeViewProps>): void => {
-    this.componentRef.instance.props = {
-      ...this.componentRef.instance.props,
+    this.renderer.instance.props = {
+      ...this.renderer.instance.props,
       ...props
     }
   }
@@ -128,7 +117,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
   }
 
   destroy() {
-    this.applicationRef.detachView(this.componentRef.hostView);
+    this.renderer.destroy();
   }
 }
 

@@ -10,7 +10,6 @@ describe('workspace-project App', () => {
 
   it('should render prosemirror instance', async () => {
     await page.navigateTo();
-    console.log(await page.getProseMirrorInstanceValue())
     expect(await page.getProseMirrorInstanceValue()).toEqual('Hello, Tiptap!');
   });
 

@@ -8,4 +8,5 @@ export * from './lib/bubble-menu.directive';
 export * from './lib/draggable.directive';
 export * from './lib/ngx-tiptap.module';
 
+export * from './lib/AngularRenderer'
 export * from './lib/NodeViewRenderer'
