@@ -13,6 +13,13 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v1.4.0 (2021-05-13)
+
+#### Features
+
+- add `AngularRenderer` to render custom components ([feaa118](https://github.com/sibiraj-s/ngx-tiptap/commit/feaa118)), ([8ec978b](https://github.com/sibiraj-s/ngx-tiptap/commit/8ec978b))
+- add `tiptapNodeViewContent` to add contenteditable element inside node views ([8d45055](https://github.com/sibiraj-s/ngx-tiptap/commit/8d45055))
+
 ## v1.3.0 (2021-05-11)
 
 #### Features
