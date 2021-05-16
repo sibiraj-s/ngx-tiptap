@@ -10,7 +10,6 @@ import { DraggableDirective } from './draggable.directive';
 class TestComponent { }
 
 describe('DraggableDirective', () => {
-  let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
 
   beforeEach(async () => {
@@ -21,12 +20,11 @@ describe('DraggableDirective', () => {
       ]
     });
 
-    await TestBed.compileComponents()
+    await TestBed.compileComponents();
 
-    fixture = TestBed.createComponent(TestComponent)
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(TestComponent);
 
-    fixture.detectChanges()
+    fixture.detectChanges();
   });
 
   it('should create an instance', () => {
@@ -35,7 +33,7 @@ describe('DraggableDirective', () => {
   });
 
   it('should add the attributes correctly', () => {
-    expect(fixture.debugElement.query(By.css('[data-drag-handle]'))).toBeTruthy()
-    expect(fixture.debugElement.query(By.css('[draggable]'))).toBeTruthy()
-  })
+    expect(fixture.debugElement.query(By.css('[data-drag-handle]'))).toBeTruthy();
+    expect(fixture.debugElement.query(By.css('[draggable]'))).toBeTruthy();
+  });
 });

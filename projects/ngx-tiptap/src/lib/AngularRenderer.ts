@@ -8,9 +8,9 @@ export class AngularRenderer<C> {
   private componentRef: ComponentRef<C>
 
   constructor(component: Type<C>, injector: Injector) {
-    this.applicationRef = injector.get(ApplicationRef)
+    this.applicationRef = injector.get(ApplicationRef);
 
-    const componentFactoryResolver = injector.get(ComponentFactoryResolver)
+    const componentFactoryResolver = injector.get(ComponentFactoryResolver);
     const factory = componentFactoryResolver.resolveComponentFactory(component);
 
     this.componentRef = factory.create(injector, []);
@@ -20,15 +20,15 @@ export class AngularRenderer<C> {
   }
 
   get instance(): C {
-    return this.componentRef.instance
+    return this.componentRef.instance;
   }
 
   get elementRef(): ElementRef {
-    return this.componentRef.injector.get(ElementRef)
+    return this.componentRef.injector.get(ElementRef);
   }
 
   get dom(): HTMLElement {
-    return this.elementRef.nativeElement
+    return this.elementRef.nativeElement;
   }
 
   detectChanges():void {
@@ -36,6 +36,6 @@ export class AngularRenderer<C> {
   }
 
   destroy(): void {
-    this.applicationRef.detachView(this.componentRef.hostView)
+    this.applicationRef.detachView(this.componentRef.hostView);
   }
 }

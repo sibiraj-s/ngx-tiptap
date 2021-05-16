@@ -24,14 +24,14 @@ export class EditorDirective implements OnInit, ControlValueAccessor, OnDestroy 
   // This methods is called when programmatic changes from model to view are requested.
   writeValue(value: Content): void {
     if (!value) {
-      return
+      return;
     }
 
     if (!this.outputFormat && typeof value === 'string') {
       this.outputFormat = 'html';
     }
 
-    this.editor.chain().setContent(value, false).run()
+    this.editor.chain().setContent(value, false).run();
   }
 
   // Registers a callback function that is called when the control's value changes in the UI.
@@ -52,7 +52,7 @@ export class EditorDirective implements OnInit, ControlValueAccessor, OnDestroy 
 
   private handleChange = ({ transaction }): void => {
     if (!transaction.docChanged) {
-      return
+      return;
     }
 
     if (this.outputFormat === 'html') {
@@ -65,34 +65,34 @@ export class EditorDirective implements OnInit, ControlValueAccessor, OnDestroy 
 
   ngOnInit(): void {
     if (!this.editor) {
-      throw new Error('Required: Input `editor`')
+      throw new Error('Required: Input `editor`');
     }
 
     // take the inner contents and clear the block
-    const innerHTML = this.el.nativeElement.innerHTML
-    this.el.nativeElement.innerHTML = ''
+    const innerHTML = this.el.nativeElement.innerHTML;
+    this.el.nativeElement.innerHTML = '';
 
     // insert the editor in the dom
-    this.el.nativeElement.appendChild(this.editor.options.element.firstChild)
+    this.el.nativeElement.appendChild(this.editor.options.element.firstChild);
 
     // update the options for the editor
-    this.editor.setOptions({ element: this.el.nativeElement })
+    this.editor.setOptions({ element: this.el.nativeElement });
 
     // update content to the editor
     if (innerHTML) {
-      this.editor.chain().setContent(innerHTML, false).run()
+      this.editor.chain().setContent(innerHTML, false).run();
     }
 
     // register blur handler to update `touched` property
     this.editor.on('blur', () => {
-      this.onTouched()
-    })
+      this.onTouched();
+    });
 
     // register transaction handler to emit changes on update
-    this.editor.on('transaction', this.handleChange)
+    this.editor.on('transaction', this.handleChange);
   }
 
   ngOnDestroy(): void {
-    this.editor.destroy()
+    this.editor.destroy();
   }
 }

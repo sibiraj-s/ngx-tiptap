@@ -1,7 +1,7 @@
 import { Component, Injector, Input, Type } from "@angular/core";
 import { Editor, NodeView, NodeViewProps, NodeViewRenderer, NodeViewRendererProps } from "@tiptap/core";
-import { Decoration, NodeView as ProseMirrorNodeView } from 'prosemirror-view'
-import { Node as ProseMirrorNode } from 'prosemirror-model'
+import { Decoration, NodeView as ProseMirrorNodeView } from 'prosemirror-view';
+import { Node as ProseMirrorNode } from 'prosemirror-model';
 import { AngularRenderer } from "./AngularRenderer";
 
 @Component({ template: '' })
@@ -20,7 +20,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
   contentDOMElement: HTMLElement | null
 
   mount() {
-    const injector = (this.options as AngularNodeViewRendererOptions).injector as Injector
+    const injector = (this.options as AngularNodeViewRendererOptions).injector as Injector;
 
     const props: NodeViewProps = {
       editor: this.editor,
@@ -30,35 +30,35 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
       extension: this.extension,
       getPos: () => this.getPos(),
       updateAttributes: (attributes = {}) => this.updateAttributes(attributes),
-    }
+    };
 
     // create renderer
-    this.renderer = new AngularRenderer(this.component, injector)
+    this.renderer = new AngularRenderer(this.component, injector);
 
     // Pass input props to the component
-    this.renderer.instance.props = props
+    this.renderer.instance.props = props;
 
     if (this.extension.config.draggable) {
       // Register drag handler
       this.renderer.elementRef.nativeElement.ondragstart = (e: DragEvent) => {
-        this.onDragStart(e)
-      }
+        this.onDragStart(e);
+      };
     }
 
-    this.contentDOMElement = this.node.isLeaf ? null : document.createElement(this.node.isInline ? 'span' : 'div')
+    this.contentDOMElement = this.node.isLeaf ? null : document.createElement(this.node.isInline ? 'span' : 'div');
 
     if (this.contentDOMElement) {
       // For some reason the whiteSpace prop is not inherited properly in Chrome and Safari
       // With this fix it seems to work fine
       // See: https://github.com/ueberdosis/tiptap/issues/1197
-      this.contentDOMElement.style.whiteSpace = 'inherit'
+      this.contentDOMElement.style.whiteSpace = 'inherit';
 
       this.renderer.detectChanges();
     }
 
     // attach stopEvent
     if (this.options.stopEvent) {
-      this.stopEvent = this.options.stopEvent
+      this.stopEvent = this.options.stopEvent;
     }
   }
 
@@ -66,57 +66,57 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
     this.renderer.instance.props = {
       ...this.renderer.instance.props,
       ...props
-    }
+    };
   }
 
   get dom() {
-    return this.renderer.dom
+    return this.renderer.dom;
   }
 
   get contentDOM() {
     if (this.node.isLeaf) {
-      return null
+      return null;
     }
 
-    const contentElement = this.dom.querySelector('[data-node-view-content]')
+    const contentElement = this.dom.querySelector('[data-node-view-content]');
 
     if (
       this.contentDOMElement
       && contentElement
       && !contentElement.contains(this.contentDOMElement)
     ) {
-      contentElement.appendChild(this.contentDOMElement)
+      contentElement.appendChild(this.contentDOMElement);
     }
 
-    return this.contentDOMElement
+    return this.contentDOMElement;
   }
 
   update(node: ProseMirrorNode, decorations: Decoration[]): boolean {
     if (this.options.update) {
-      return this.options.update(node, decorations)
+      return this.options.update(node, decorations);
     }
 
     if (node.type !== this.node.type) {
-      return false
+      return false;
     }
 
     if (node === this.node && this.decorations === decorations) {
-      return true
+      return true;
     }
 
-    this.node = node
-    this.decorations = decorations
-    this.updateProps({ node, decorations })
+    this.node = node;
+    this.decorations = decorations;
+    this.updateProps({ node, decorations });
 
-    return true
+    return true;
   }
 
   selectNode() {
-    this.updateProps({ selected: true })
+    this.updateProps({ selected: true });
   }
 
   deselectNode() {
-    this.updateProps({ selected: false })
+    this.updateProps({ selected: false });
   }
 
   destroy() {
@@ -126,6 +126,6 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
 
 export const AngularNodeViewRenderer = (component: Type<AngularNodeViewComponent>, options: AngularNodeViewRendererOptions): NodeViewRenderer => {
   return (props: NodeViewRendererProps) => {
-    return new AngularNodeView(component, props, options) as ProseMirrorNodeView
-  }
-}
+    return new AngularNodeView(component, props, options) as ProseMirrorNodeView;
+  };
+};

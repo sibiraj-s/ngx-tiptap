@@ -11,7 +11,6 @@ import { NodeViewContentDirective } from './node-view-content.directive';
 class TestComponent { }
 
 describe('NodeViewContentDirective', () => {
-  let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
 
   beforeEach(async () => {
@@ -22,15 +21,14 @@ describe('NodeViewContentDirective', () => {
       ]
     });
 
-    await TestBed.compileComponents()
+    await TestBed.compileComponents();
 
-    fixture = TestBed.createComponent(TestComponent)
-    component = fixture.componentInstance;
+    fixture = TestBed.createComponent(TestComponent);
 
-    fixture.detectChanges()
+    fixture.detectChanges();
   });
 
   it('should add the attributes correctly', () => {
-    expect(fixture.debugElement.query(By.css('[data-node-view-content]'))).toBeTruthy()
+    expect(fixture.debugElement.query(By.css('[data-node-view-content]'))).toBeTruthy();
   });
 });

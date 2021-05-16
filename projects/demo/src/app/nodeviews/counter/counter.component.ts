@@ -11,6 +11,6 @@ export class NodeviewCounterComponent extends AngularNodeViewComponent {
   increment(): void {
     this.props.updateAttributes({
       count: this.props.node.attrs.count + 1
-    })
+    });
   }
 }

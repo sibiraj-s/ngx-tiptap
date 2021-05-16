@@ -1,9 +1,9 @@
-import { Injector } from '@angular/core'
-import { Node, mergeAttributes } from '@tiptap/core'
-import { AngularNodeViewRenderer } from 'ngx-tiptap'
+import { Injector } from '@angular/core';
+import { Node, mergeAttributes } from '@tiptap/core';
+import { AngularNodeViewRenderer } from 'ngx-tiptap';
 
-import { NodeviewCounterComponent } from './nodeviews/counter/counter.component'
-import { NodeviewEditableComponent } from './nodeviews/editable/editable.component'
+import { NodeviewCounterComponent } from './nodeviews/counter/counter.component';
+import { NodeviewEditableComponent } from './nodeviews/editable/editable.component';
 
 export const AngularComponent = (injector: Injector): Node => {
   return Node.create({
@@ -17,7 +17,7 @@ export const AngularComponent = (injector: Injector): Node => {
         count: {
           default: 0,
         },
-      }
+      };
     },
 
     parseHTML() {
@@ -25,18 +25,18 @@ export const AngularComponent = (injector: Injector): Node => {
         {
           tag: 'angular-component-counter',
         },
-      ]
+      ];
     },
 
     renderHTML({ HTMLAttributes }) {
-      return ['angular-component-counter', mergeAttributes(HTMLAttributes)]
+      return ['angular-component-counter', mergeAttributes(HTMLAttributes)];
     },
 
     addNodeView() {
-      return AngularNodeViewRenderer(NodeviewCounterComponent, { injector })
+      return AngularNodeViewRenderer(NodeviewCounterComponent, { injector });
     },
-  })
-}
+  });
+};
 
 export const AngularEditableComponent = (injector: Injector): Node => {
   return Node.create({
@@ -45,15 +45,15 @@ export const AngularEditableComponent = (injector: Injector): Node => {
     content: 'inline*',
 
     parseHTML() {
-      return [{ tag: 'angular-component-editable' }]
+      return [{ tag: 'angular-component-editable' }];
     },
 
     renderHTML({ HTMLAttributes }) {
-      return ['angular-component-editable', mergeAttributes(HTMLAttributes), 0]
+      return ['angular-component-editable', mergeAttributes(HTMLAttributes), 0];
     },
 
     addNodeView() {
-      return AngularNodeViewRenderer(NodeviewEditableComponent, { injector })
+      return AngularNodeViewRenderer(NodeviewEditableComponent, { injector });
     },
-  })
-}
+  });
+};

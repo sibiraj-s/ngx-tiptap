@@ -26,17 +26,17 @@ describe('NgxTiptapDirective', () => {
       ]
     });
 
-    await TestBed.compileComponents()
+    await TestBed.compileComponents();
 
-    fixture = TestBed.createComponent(TestComponent)
+    fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
 
     const editor = new Editor({
       extensions: [StarterKit]
-    })
+    });
 
-    component.editor = editor
-    fixture.detectChanges()
+    component.editor = editor;
+    fixture.detectChanges();
   });
 
   it('should create an instance', () => {
@@ -59,8 +59,8 @@ class TestFormComponent {
 describe('NgxTiptapDirective FormsModule', () => {
   let component: TestFormComponent;
   let fixture: ComponentFixture<TestFormComponent>;
-  let directiveEl: DebugElement
-  let directiveInstance: EditorDirective
+  let directiveEl: DebugElement;
+  let directiveInstance: EditorDirective;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
@@ -73,21 +73,21 @@ describe('NgxTiptapDirective FormsModule', () => {
       ],
     });
 
-    await TestBed.compileComponents()
+    await TestBed.compileComponents();
 
-    fixture = TestBed.createComponent(TestFormComponent)
+    fixture = TestBed.createComponent(TestFormComponent);
     component = fixture.componentInstance;
 
     const editor = new Editor({
       extensions: [StarterKit]
-    })
+    });
 
-    component.editor = editor
+    component.editor = editor;
 
     directiveEl = fixture.debugElement.query(By.directive(EditorDirective));
     directiveInstance = directiveEl.injector.get(EditorDirective);
 
-    fixture.detectChanges()
+    fixture.detectChanges();
   });
 
   it('should create an instance', () => {
@@ -100,28 +100,28 @@ describe('NgxTiptapDirective FormsModule', () => {
 
   it('should attach the editor to the div', () => {
     expect(directiveEl).not.toBeNull();
-    expect(fixture.debugElement.query(By.css('.ProseMirror'))).toBeTruthy()
-  })
+    expect(fixture.debugElement.query(By.css('.ProseMirror'))).toBeTruthy();
+  });
 
   it('should bind to the model correctly', async () => {
-    directiveInstance.writeValue('Hi.')
-    await fixture.whenStable()
-    fixture.detectChanges()
+    directiveInstance.writeValue('Hi.');
+    await fixture.whenStable();
+    fixture.detectChanges();
 
-    expect(component.value).toContain('Hi.')
-  })
+    expect(component.value).toContain('Hi.');
+  });
 
   it('should the model when editor is directly updated', () => {
-    component.editor.chain().setContent('Hello World!').run()
-    fixture.detectChanges()
-    expect(component.value).toContain('Hello World!')
-  })
+    component.editor.chain().setContent('Hello World!').run();
+    fixture.detectChanges();
+    expect(component.value).toContain('Hello World!');
+  });
 
   it('should disable the editor correctly', async () => {
-    directiveInstance.setDisabledState(true)
-    await fixture.whenStable()
-    fixture.detectChanges()
+    directiveInstance.setDisabledState(true);
+    await fixture.whenStable();
+    fixture.detectChanges();
 
-    expect(directiveEl.query(By.css('.ProseMirror[contenteditable=false]'))).toBeTruthy()
-  })
+    expect(directiveEl.query(By.css('.ProseMirror[contenteditable=false]'))).toBeTruthy();
+  });
 });

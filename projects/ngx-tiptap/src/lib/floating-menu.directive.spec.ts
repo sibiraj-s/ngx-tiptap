@@ -30,17 +30,17 @@ describe('FloatingMenuDirective', () => {
       ]
     });
 
-    await TestBed.compileComponents()
+    await TestBed.compileComponents();
 
-    fixture = TestBed.createComponent(TestComponent)
+    fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
 
     const editor = new Editor({
       extensions: [StarterKit]
-    })
+    });
 
-    component.editor = editor
-    fixture.detectChanges()
+    component.editor = editor;
+    fixture.detectChanges();
   });
 
   it('should create an instance', () => {
@@ -51,17 +51,17 @@ describe('FloatingMenuDirective', () => {
 
   it('should render the floating menu', fakeAsync(() => {
     const directiveEl = fixture.debugElement.query(By.directive(EditorDirective));
-    expect(directiveEl.query(By.css('[data-tippy-root]'))).toBeFalsy()
+    expect(directiveEl.query(By.css('[data-tippy-root]'))).toBeFalsy();
 
-    component.editor.chain().clearContent().focus().run()
-    directiveEl.query(By.css('.ProseMirror')).nativeElement.dispatchEvent(new Event('focus'))
-    fixture.detectChanges()
+    component.editor.chain().clearContent().focus().run();
+    directiveEl.query(By.css('.ProseMirror')).nativeElement.dispatchEvent(new Event('focus'));
+    fixture.detectChanges();
 
-    tick(100)
+    tick(100);
 
     fixture.whenStable().then(() => {
-      expect(directiveEl.query(By.css('[data-tippy-root]'))).toBeTruthy()
-      expect(directiveEl.query(By.css('[data-tippy-root]')).nativeElement.innerHTML).toContain('Floater')
-    })
-  }))
+      expect(directiveEl.query(By.css('[data-tippy-root]'))).toBeTruthy();
+      expect(directiveEl.query(By.css('[data-tippy-root]')).nativeElement.innerHTML).toContain('Floater');
+    });
+  }));
 });

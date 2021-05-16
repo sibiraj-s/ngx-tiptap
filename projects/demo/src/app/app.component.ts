@@ -1,7 +1,7 @@
 import { Component, Injector, OnInit, ViewEncapsulation } from '@angular/core';
 import { Editor } from '@tiptap/core';
-import StarterKit from '@tiptap/starter-kit'
-import Placeholder from '@tiptap/extension-placeholder'
+import StarterKit from '@tiptap/starter-kit';
+import Placeholder from '@tiptap/extension-placeholder';
 
 import { AngularComponent, AngularEditableComponent } from './extensions';
 
@@ -74,6 +74,6 @@ export class AppComponent implements OnInit {
           class: 'p-2 border-black focus:border-blue-700 border-2 rounded-md outline-none'
         }
       }
-    })
+    });
   }
 }

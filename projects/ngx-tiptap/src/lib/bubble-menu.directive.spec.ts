@@ -30,17 +30,17 @@ describe('BubbleMenuDirective', () => {
       ]
     });
 
-    await TestBed.compileComponents()
+    await TestBed.compileComponents();
 
-    fixture = TestBed.createComponent(TestComponent)
+    fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
 
     const editor = new Editor({
       extensions: [StarterKit]
-    })
+    });
 
-    component.editor = editor
-    fixture.detectChanges()
+    component.editor = editor;
+    fixture.detectChanges();
   });
 
   it('should create an instance', () => {
@@ -50,11 +50,11 @@ describe('BubbleMenuDirective', () => {
   });
 
   it('should create bubble menu', () => {
-    expect(fixture.debugElement.query(By.css('[data-tippy-root]'))).toBeFalsy()
+    expect(fixture.debugElement.query(By.css('[data-tippy-root]'))).toBeFalsy();
 
-    component.editor.chain().setContent('Hello world').focus().selectAll().run()
-    fixture.detectChanges()
+    component.editor.chain().setContent('Hello world').focus().selectAll().run();
+    fixture.detectChanges();
 
-    expect(fixture.debugElement.query(By.css('[data-tippy-root]'))).toBeTruthy()
-  })
+    expect(fixture.debugElement.query(By.css('[data-tippy-root]'))).toBeTruthy();
+  });
 });

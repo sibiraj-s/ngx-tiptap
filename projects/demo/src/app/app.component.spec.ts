@@ -9,8 +9,8 @@ import { NgxTiptapModule } from 'ngx-tiptap';
 import { CommonModule } from '@angular/common';
 
 describe('AppComponent', () => {
-  let fixture: ComponentFixture<AppComponent>
-  let app: AppComponent
+  let fixture: ComponentFixture<AppComponent>;
+  let app: AppComponent;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -31,16 +31,16 @@ describe('AppComponent', () => {
   beforeEach(() => {
     app.editor = new Editor({
       extensions: [StarterKit]
-    })
+    });
 
-    fixture.detectChanges()
-  })
+    fixture.detectChanges();
+  });
 
   it('should create the app', () => {
     expect(app).toBeTruthy();
   });
 
   it(`should render the editor`, () => {
-    expect(fixture.debugElement.query(By.css('.ProseMirror'))).toBeTruthy()
+    expect(fixture.debugElement.query(By.css('.ProseMirror'))).toBeTruthy();
   });
 });
