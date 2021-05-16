@@ -13,6 +13,16 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v1.4.1 (2021-05-16)
+
+#### Bug Fixes
+
+- detectChanges after mounting contentDOMElement ([cc1f8da](https://github.com/sibiraj-s/ngx-tiptap/commit/cc1f8da))
+
+#### Dependency Updates
+
+- update tiptap dependencies ([54ef857](https://github.com/sibiraj-s/ngx-tiptap/commit/54ef857))
+
 ## v1.4.0 (2021-05-13)
 
 #### Features
