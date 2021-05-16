@@ -17,9 +17,9 @@
   "peerDependencies": {
     "@angular/common": "^11.2.12",
     "@angular/core": "^11.2.12",
-    "@tiptap/core": "^2.0.0-beta.54",
-    "@tiptap/extension-bubble-menu": "^2.0.0-beta.15",
-    "@tiptap/extension-floating-menu": "^2.0.0-beta.12",
+    "@tiptap/core": "2.0.0-beta.60",
+    "@tiptap/extension-bubble-menu": "2.0.0-beta.16",
+    "@tiptap/extension-floating-menu": "2.0.0-beta.13",
     "prosemirror-model": "^1.14.1",
     "prosemirror-view": "^1.18.4"
   },
