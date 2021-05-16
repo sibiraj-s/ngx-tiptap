@@ -31,6 +31,9 @@ export class AngularRenderer<C> {
     return this.elementRef.nativeElement
   }
 
+  detectChanges():void {
+    this.componentRef.changeDetectorRef.detectChanges();
+  }
 
   destroy(): void {
     this.applicationRef.detachView(this.componentRef.hostView)

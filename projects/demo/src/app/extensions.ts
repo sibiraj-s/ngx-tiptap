@@ -44,20 +44,8 @@ export const AngularEditableComponent = (injector: Injector): Node => {
     group: 'block',
     content: 'inline*',
 
-    addAttributes() {
-      return {
-        count: {
-          default: 0,
-        },
-      }
-    },
-
     parseHTML() {
-      return [
-        {
-          tag: 'angular-component-editable',
-        },
-      ]
+      return [{ tag: 'angular-component-editable' }]
     },
 
     renderHTML({ HTMLAttributes }) {

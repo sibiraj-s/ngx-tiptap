@@ -22,8 +22,6 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
   mount() {
     const injector = (this.options as AngularNodeViewRendererOptions).injector as Injector
 
-    this.renderer = new AngularRenderer(this.component, injector)
-
     const props: NodeViewProps = {
       editor: this.editor,
       node: this.node,
@@ -33,6 +31,9 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
       getPos: () => this.getPos(),
       updateAttributes: (attributes = {}) => this.updateAttributes(attributes),
     }
+
+    // create renderer
+    this.renderer = new AngularRenderer(this.component, injector)
 
     // Pass input props to the component
     this.renderer.instance.props = props
@@ -51,6 +52,8 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
       // With this fix it seems to work fine
       // See: https://github.com/ueberdosis/tiptap/issues/1197
       this.contentDOMElement.style.whiteSpace = 'inherit'
+
+      this.renderer.detectChanges();
     }
 
     // attach stopEvent
