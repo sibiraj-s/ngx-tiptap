@@ -9,7 +9,6 @@
     "test:demo": "ng test demo --browsers ChromeHeadless --watch false",
     "test": "npm run test:lib && npm run test:demo",
     "lint": "ng lint",
-    "e2e": "ng e2e",
     "prepare": "is-ci || husky install"
   },
   "private": true,
