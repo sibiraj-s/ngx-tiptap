@@ -1,6 +1,7 @@
 import { Directive, ElementRef, forwardRef, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Content, Editor, JSONContent } from '@tiptap/core';
+import { Transaction } from 'prosemirror-state';
 
 @Directive({
   selector: 'tiptap[editor], [tiptap][editor], tiptap-editor[editor], [tiptapEditor][editor]',
@@ -12,7 +13,7 @@ import { Content, Editor, JSONContent } from '@tiptap/core';
 })
 
 export class EditorDirective implements OnInit, ControlValueAccessor, OnDestroy {
-  @Input() editor: Editor;
+  @Input() editor!: Editor;
   @Input() outputFormat: 'json' | 'html' = 'html';
 
   constructor(private el: ElementRef<HTMLElement>, private _renderer: Renderer2) { }
@@ -50,7 +51,7 @@ export class EditorDirective implements OnInit, ControlValueAccessor, OnDestroy 
     this._renderer.setProperty(this.el.nativeElement, 'disabled', isDisabled);
   }
 
-  private handleChange = ({ transaction }): void => {
+  private handleChange = ({ transaction }: { transaction: Transaction }): void => {
     if (!transaction.docChanged) {
       return;
     }
@@ -73,7 +74,7 @@ export class EditorDirective implements OnInit, ControlValueAccessor, OnDestroy 
     this.el.nativeElement.innerHTML = '';
 
     // insert the editor in the dom
-    this.el.nativeElement.appendChild(this.editor.options.element.firstChild);
+    this.el.nativeElement.appendChild(this.editor.options.element.firstChild as ChildNode);
 
     // update the options for the editor
     this.editor.setOptions({ element: this.el.nativeElement });

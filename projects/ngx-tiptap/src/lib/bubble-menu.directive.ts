@@ -6,7 +6,7 @@ import { BubbleMenuPlugin, BubbleMenuPluginKey, BubbleMenuPluginProps } from '@t
   selector: 'tiptap-bubble-menu[editor], [tiptapBubbleMenu][editor]'
 })
 export class BubbleMenuDirective implements OnInit, OnDestroy {
-  @Input() editor: Editor;
+  @Input() editor!: Editor;
   @Input() tippyOptions: BubbleMenuPluginProps['tippyOptions'] = {};
 
   constructor(private _el: ElementRef<HTMLElement>) { }

@@ -11,7 +11,7 @@ import { EditorDirective } from './editor.directive';
   template: '<div tiptap [editor]="editor"></div>'
 })
 class TestComponent {
-  @Input() editor: Editor
+  @Input() editor!: Editor
 }
 
 describe('NgxTiptapDirective', () => {
@@ -52,7 +52,7 @@ describe('NgxTiptapDirective', () => {
   template: '<div tiptap [editor]="editor" [(ngModel)]="value"></div>'
 })
 class TestFormComponent {
-  @Input() editor: Editor
+  @Input() editor!: Editor
   value = 'Default Text'
 }
 

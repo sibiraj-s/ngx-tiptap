@@ -14,7 +14,7 @@ import { FloatingMenuDirective } from './floating-menu.directive';
     `
 })
 class TestComponent {
-  @Input() editor: Editor
+  @Input() editor!: Editor
 }
 
 describe('FloatingMenuDirective', () => {

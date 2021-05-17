@@ -6,7 +6,7 @@ import { AngularRenderer } from "./AngularRenderer";
 
 @Component({ template: '' })
 export class AngularNodeViewComponent {
-  @Input() props: NodeViewProps
+  @Input() props!: NodeViewProps
 }
 
 interface AngularNodeViewRendererOptions {
@@ -16,8 +16,8 @@ interface AngularNodeViewRendererOptions {
 }
 
 class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> implements ProseMirrorNodeView {
-  renderer: AngularRenderer<AngularNodeViewComponent>
-  contentDOMElement: HTMLElement | null
+  renderer!: AngularRenderer<AngularNodeViewComponent>
+  contentDOMElement!: HTMLElement | null
 
   mount() {
     const injector = (this.options as AngularNodeViewRendererOptions).injector as Injector;

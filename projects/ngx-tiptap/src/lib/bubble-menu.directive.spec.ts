@@ -14,7 +14,7 @@ import { EditorDirective } from './editor.directive';
   `
 })
 class TestComponent {
-  @Input() editor: Editor
+  @Input() editor!: Editor
 }
 
 describe('BubbleMenuDirective', () => {

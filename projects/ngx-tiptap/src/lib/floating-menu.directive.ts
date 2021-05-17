@@ -7,7 +7,7 @@ import { FloatingMenuPlugin, FloatingMenuPluginKey, FloatingMenuPluginProps } fr
 })
 
 export class FloatingMenuDirective implements OnInit, OnDestroy {
-  @Input() editor: Editor;
+  @Input() editor!: Editor;
   @Input() tippyOptions: FloatingMenuPluginProps['tippyOptions'] = {};
 
   constructor(private _el: ElementRef<HTMLElement>) { }
