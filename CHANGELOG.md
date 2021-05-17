@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v2.0.0 (2021-05-17)
+
+#### Breaking Changes
+
+- requires angular 12 ([28a8176](https://github.com/sibiraj-s/ngx-tiptap/commit/28a8176))
+
 ## v1.4.1 (2021-05-16)
 
 #### Bug Fixes
