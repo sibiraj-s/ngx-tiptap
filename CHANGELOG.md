@@ -13,6 +13,23 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v2.1.0 (2021-05-30)
+
+#### Features
+
+- add `deleteNode` method to component prop ([7a170a0](https://github.com/sibiraj-s/ngx-tiptap/commit/7a170a0))
+
+#### Bug Fixes
+
+- set correct semver for tiptap packages ([5b08331](https://github.com/sibiraj-s/ngx-tiptap/commit/5b08331))
+- move contentDOM on editor update ([c5f71d9](https://github.com/sibiraj-s/ngx-tiptap/commit/c5f71d9))
+- move all child nodes within EditorContent ([883798e](https://github.com/sibiraj-s/ngx-tiptap/commit/883798e))
+- add missing `@angular/forms` peerDependency ([467619e](https://github.com/sibiraj-s/ngx-tiptap/commit/467619e))
+
+#### Dependency Updates
+
+- update peerDependencies ([52307d4](https://github.com/sibiraj-s/ngx-tiptap/commit/52307d4))
+
 ## v2.0.0 (2021-05-17)
 
 #### Breaking Changes
