@@ -1,7 +1,7 @@
 import {
   ApplicationRef, ComponentFactoryResolver, ComponentRef,
   ElementRef, Injector, Type
-} from "@angular/core";
+} from '@angular/core';
 
 export class AngularRenderer<C> {
   private applicationRef: ApplicationRef

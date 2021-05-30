@@ -40,7 +40,7 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should render the editor`, () => {
+  it('should render the editor', () => {
     expect(fixture.debugElement.query(By.css('.ProseMirror'))).toBeTruthy();
   });
 });
