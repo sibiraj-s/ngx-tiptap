@@ -54,7 +54,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
       // See: https://github.com/ueberdosis/tiptap/issues/1197
       this.contentDOMElement.style.whiteSpace = 'inherit';
 
-      // this.renderer.detectChanges();
+      this.renderer.detectChanges();
     }
 
     // attach stopEvent
@@ -79,6 +79,11 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
       return null;
     }
 
+    this.maybeMoveContentDOM();
+    return this.contentDOMElement;
+  }
+
+  private maybeMoveContentDOM(): void {
     const contentElement = this.dom.querySelector('[data-node-view-content]');
 
     if (
@@ -88,8 +93,6 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
     ) {
       contentElement.appendChild(this.contentDOMElement);
     }
-
-    return this.contentDOMElement;
   }
 
   update(node: ProseMirrorNode, decorations: Decoration[]): boolean {
@@ -108,6 +111,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
     this.node = node;
     this.decorations = decorations;
     this.updateProps({ node, decorations });
+    this.maybeMoveContentDOM();
 
     return true;
   }
