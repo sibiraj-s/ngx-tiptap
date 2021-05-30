@@ -30,6 +30,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
       extension: this.extension,
       getPos: () => this.getPos(),
       updateAttributes: (attributes = {}) => this.updateAttributes(attributes),
+      deleteNode: this.deleteNode
     };
 
     // create renderer
@@ -53,7 +54,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
       // See: https://github.com/ueberdosis/tiptap/issues/1197
       this.contentDOMElement.style.whiteSpace = 'inherit';
 
-      this.renderer.detectChanges();
+      // this.renderer.detectChanges();
     }
 
     // attach stopEvent
