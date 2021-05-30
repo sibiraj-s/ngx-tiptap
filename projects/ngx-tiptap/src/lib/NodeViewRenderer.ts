@@ -30,7 +30,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
       extension: this.extension,
       getPos: () => this.getPos(),
       updateAttributes: (attributes = {}) => this.updateAttributes(attributes),
-      deleteNode: this.deleteNode
+      deleteNode: () => this.deleteNode()
     };
 
     // create renderer
