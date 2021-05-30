@@ -51,7 +51,7 @@ export class AppComponent {
   })
 
   editorA = new Editor({
-    editable: false,
+    editable: true,
     content: `
       <p>This is still the text editor you’re used to, but enriched with node views.</p>
       <angular-component-counter count="0"></angular-component-counter>
