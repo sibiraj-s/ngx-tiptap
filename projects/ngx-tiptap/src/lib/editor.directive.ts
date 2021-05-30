@@ -74,7 +74,7 @@ export class EditorDirective implements OnInit, ControlValueAccessor, OnDestroy 
     this.el.nativeElement.innerHTML = '';
 
     // insert the editor in the dom
-    this.el.nativeElement.appendChild(this.editor.options.element.firstChild as ChildNode);
+    this.el.nativeElement.append(...Array.from(this.editor.options.element.childNodes));
 
     // update the options for the editor
     this.editor.setOptions({ element: this.el.nativeElement });
