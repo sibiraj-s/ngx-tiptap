@@ -1,7 +1,7 @@
 import { Directive, ElementRef, forwardRef, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Content, Editor, JSONContent } from '@tiptap/core';
-import { Transaction } from 'prosemirror-state';
+import type { Transaction } from 'prosemirror-state';
 
 @Directive({
   selector: 'tiptap[editor], [tiptap][editor], tiptap-editor[editor], [tiptapEditor][editor]',

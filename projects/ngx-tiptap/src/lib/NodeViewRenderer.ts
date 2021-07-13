@@ -1,7 +1,8 @@
 import { Component, Injector, Input, Type } from '@angular/core';
 import { Editor, NodeView, NodeViewProps, NodeViewRenderer, NodeViewRendererProps } from '@tiptap/core';
-import { Decoration, NodeView as ProseMirrorNodeView } from 'prosemirror-view';
-import { Node as ProseMirrorNode } from 'prosemirror-model';
+import type { Decoration, NodeView as ProseMirrorNodeView } from 'prosemirror-view';
+import type { Node as ProseMirrorNode } from 'prosemirror-model';
+
 import { AngularRenderer } from './AngularRenderer';
 
 @Component({ template: '' })
