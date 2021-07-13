@@ -3,7 +3,7 @@ import { Editor } from '@tiptap/core';
 import StarterKit from '@tiptap/starter-kit';
 import Placeholder from '@tiptap/extension-placeholder';
 
-import { AngularComponent, AngularEditableComponent } from './extensions';
+import { CounterComponentExtension, EditableComponentExtension } from './extensions';
 
 @Component({
   selector: 'app-root',
@@ -64,8 +64,8 @@ export class AppComponent {
     extensions: [
       StarterKit,
       Placeholder,
-      AngularComponent(this.injector),
-      AngularEditableComponent(this.injector)
+      CounterComponentExtension(this.injector),
+      EditableComponentExtension(this.injector)
     ],
     editorProps: {
       attributes: {
