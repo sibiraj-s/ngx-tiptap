@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v2.1.1 (2021-07-13)
+
+#### Bug Fixes
+
+- use correct peerDependencies ([e48cf70](https://github.com/sibiraj-s/ngx-tiptap/commit/e48cf70))
+
 ## v2.1.0 (2021-05-30)
 
 #### Features
