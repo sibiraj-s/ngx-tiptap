@@ -131,7 +131,7 @@ import { AngularNodeViewRenderer } from 'ngx-tiptap';
 
 import { NodeviewCounterComponent } from './nodeview-counter/nodeview-counter.component';
 
-const AngularExtension = (injector: Injector): Node => {
+const CounterComponentExtension = (injector: Injector): Node => {
   return Node.create({
     // ...configuration
     parseHTML() {
@@ -146,7 +146,7 @@ const AngularExtension = (injector: Injector): Node => {
   });
 };
 
-export default AngularExtension;
+export default CounterComponentExtension;
 ```
 
 ### Create a Component
@@ -174,7 +174,7 @@ import { Component, Injector, OnInit, ViewEncapsulation } from '@angular/core';
 import { Editor } from '@tiptap/core';
 import StarterKit from '@tiptap/starter-kit';
 
-import AngularExtension from './AngularExtension';
+import CounterComponentExtension from './CounterComponentExtension';
 
 export class AppComponent implements OnInit {
   editor: Editor;
@@ -187,7 +187,7 @@ export class AppComponent implements OnInit {
         <p>This is still the text editor you’re used to, but enriched with node views.</p>
         <angular-component-counter count="0"></angular-component-counter>
       `,
-      extensions: [StarterKit, AngularExtension(this.injector)],
+      extensions: [StarterKit, CounterComponentExtension(this.injector)],
       editorProps: {
         attributes: {
           class: 'p-2 border-black focus:border-blue-700 border-2 rounded-md outline-none',
