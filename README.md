@@ -7,6 +7,7 @@
 [![Total Downloads](https://badgen.net/npm/dt/ngx-tiptap)](https://www.npmjs.com/package/ngx-tiptap)
 [![Monthly Downloads](https://badgen.net/npm/dm/ngx-tiptap)](https://www.npmjs.com/package/ngx-tiptap)
 [![License](https://badgen.net/npm/license/ngx-tiptap)](https://github.com/sibiraj-s/ngx-tiptap/blob/master/LICENSE)
+[![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/sibiraj-s/ngx-tiptap)
 
 [demo on stackblitz](https://ngx-tiptap.stackblitz.io/) | [edit stackblitz](https://stackblitz.com/edit/ngx-tiptap)
 
