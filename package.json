@@ -9,7 +9,7 @@
     "test:demo": "ng test demo --browsers ChromeHeadless --watch false",
     "test": "npm run test:lib && npm run test:demo",
     "lint": "ng lint",
-    "prepare": "is-ci || husky install"
+    "prepare": "husky install"
   },
   "private": true,
   "dependencies": {
@@ -51,7 +51,6 @@
     "chalk": "^4.1.1",
     "eslint": "^7.30.0",
     "husky": "^7.0.1",
-    "is-ci": "^3.0.0",
     "jasmine-core": "~3.8.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
