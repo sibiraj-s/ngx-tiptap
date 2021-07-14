@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v2.1.2 (2021-07-14)
+
+#### Bug Fixes
+
+- set correct styles for editable component ([2b53819](https://github.com/sibiraj-s/ngx-tiptap/commit/2b53819))
+
 ## v2.1.1 (2021-07-13)
 
 #### Bug Fixes
