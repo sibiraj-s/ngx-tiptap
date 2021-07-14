@@ -200,10 +200,29 @@ export class AppComponent implements OnInit {
 
 ### Access/Update Attributes
 
-You will recieve `attribues` and `updateAttributes` via Input. You can access it directly like this.
+Refer https://www.tiptap.dev/guide/node-views/react/#all-available-props for the list of all available attributes. You can access them via `Input`, like
 
 ```ts
-this.props.node.attrs;
+import { NodeViewProps } from '@tiptap/core';
+
+class NodeviewCounterComponent {
+  @Input() props!: NodeViewProps
+}
+```
+
+or by extending the `AngularNodeViewComponent`
+
+```ts
+import { AngularNodeViewComponent } from 'ngx-tiptap';
+
+export class NodeviewCounterComponent extends AngularNodeViewComponent {
+  increment(): void {
+    this.props.updateAttributes({
+      count: this.props.node.attrs.count + 1
+    });
+  }
+}
+
 ```
 
 To update the attributes
