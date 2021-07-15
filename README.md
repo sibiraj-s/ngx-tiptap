@@ -266,4 +266,4 @@ renderer.destroy(); // destroy the component and its instance
 
 ## Contributing
 
-All types of contributions are welcome. See [CONTRIBUTING.md][./.github/contributing.md] to get started.
+All types of contributions are welcome. See [CONTRIBUTING.md](./.github/CONTRIBUTING.md) to get started.
