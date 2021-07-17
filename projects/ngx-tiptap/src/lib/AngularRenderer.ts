@@ -1,26 +1,13 @@
 import {
-  ApplicationRef, Component, ComponentFactoryResolver, ComponentRef,
-  ElementRef, Injector, Input, Type
+  ApplicationRef, ComponentFactoryResolver, ComponentRef,
+  ElementRef, Injector, Type
 } from '@angular/core';
-import { NodeViewProps } from '@tiptap/core';
 
-@Component({ template: '' })
-export class AngularNodeViewComponent implements NodeViewProps {
-  @Input() editor!: NodeViewProps['editor'];
-  @Input() node!: NodeViewProps['node'];
-  @Input() decorations!: NodeViewProps['decorations'];
-  @Input() selected!: NodeViewProps['selected'];
-  @Input() extension!: NodeViewProps['extension'];
-  @Input() getPos!: NodeViewProps['getPos'];
-  @Input() updateAttributes!: NodeViewProps['updateAttributes'];
-  @Input() deleteNode!: NodeViewProps['deleteNode'];
-}
-
-export class AngularRenderer<C extends AngularNodeViewComponent> {
+export class AngularRenderer<C, P> {
   private applicationRef: ApplicationRef
   private componentRef: ComponentRef<C>
 
-  constructor(component: Type<C>, injector: Injector, props:NodeViewProps) {
+  constructor(component: Type<C>, injector: Injector, props: Partial<P>) {
     this.applicationRef = injector.get(ApplicationRef);
 
     const componentFactoryResolver = injector.get(ComponentFactoryResolver);
@@ -47,9 +34,9 @@ export class AngularRenderer<C extends AngularNodeViewComponent> {
     return this.elementRef.nativeElement;
   }
 
-  updateProps<T extends NodeViewProps>(props: Partial<T>): void {
-    Object.entries(props).forEach(([k, v]) => {
-      this.instance[k as keyof NodeViewProps] = v;
+  updateProps<T extends P>(props: Partial<T>): void {
+    Object.entries(props).forEach(([key, value]) => {
+      this.instance[key as keyof C] = value as C[keyof C]
     });
   }
 

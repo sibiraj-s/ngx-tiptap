@@ -238,7 +238,7 @@ You can also manually render the angular components using `AngularRenderer`.
 ```ts
 import { AngularRenderer } from 'ngx-tiptap';
 
-const renderer = new AngularRenderer(Component, injector);
+const renderer = new AngularRenderer(Component, injector, props);
 
 renderer.instance; // get the instance of the component, can be used to update `@Input` properties
 renderer.dom; // get the HTMLElement for the component

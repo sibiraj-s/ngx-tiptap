@@ -1,9 +1,21 @@
-import { Injector, Type } from '@angular/core';
+import { Component, Injector, Input, Type } from '@angular/core';
 import { Editor, NodeView, NodeViewProps, NodeViewRenderer, NodeViewRendererProps } from '@tiptap/core';
 import type { Decoration } from 'prosemirror-view';
 import type { Node as ProseMirrorNode } from 'prosemirror-model';
 
-import { AngularRenderer, AngularNodeViewComponent } from './AngularRenderer';
+import { AngularRenderer } from './AngularRenderer';
+
+@Component({ template: '' })
+export class AngularNodeViewComponent implements NodeViewProps {
+  @Input() editor!: NodeViewProps['editor'];
+  @Input() node!: NodeViewProps['node'];
+  @Input() decorations!: NodeViewProps['decorations'];
+  @Input() selected!: NodeViewProps['selected'];
+  @Input() extension!: NodeViewProps['extension'];
+  @Input() getPos!: NodeViewProps['getPos'];
+  @Input() updateAttributes!: NodeViewProps['updateAttributes'];
+  @Input() deleteNode!: NodeViewProps['deleteNode'];
+}
 
 interface AngularNodeViewRendererOptions {
   stopEvent?: ((event: Event) => boolean) | null,
@@ -12,7 +24,7 @@ interface AngularNodeViewRendererOptions {
 }
 
 class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> {
-  renderer!: AngularRenderer<AngularNodeViewComponent>
+  renderer!: AngularRenderer<AngularNodeViewComponent, NodeViewProps>
   contentDOMElement!: HTMLElement | null
 
   mount() {
