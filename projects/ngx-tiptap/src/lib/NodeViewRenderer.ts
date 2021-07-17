@@ -1,14 +1,9 @@
-import { Component, Injector, Input, Type } from '@angular/core';
+import { Injector, Type } from '@angular/core';
 import { Editor, NodeView, NodeViewProps, NodeViewRenderer, NodeViewRendererProps } from '@tiptap/core';
 import type { Decoration, NodeView as ProseMirrorNodeView } from 'prosemirror-view';
 import type { Node as ProseMirrorNode } from 'prosemirror-model';
 
-import { AngularRenderer } from './AngularRenderer';
-
-@Component({ template: '' })
-export class AngularNodeViewComponent {
-  @Input() props!: NodeViewProps
-}
+import { AngularRenderer, AngularNodeViewComponent } from './AngularRenderer';
 
 interface AngularNodeViewRendererOptions {
   stopEvent?: ((event: Event) => boolean) | null,
@@ -35,13 +30,10 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
     };
 
     // create renderer
-    this.renderer = new AngularRenderer(this.component, injector);
+    this.renderer = new AngularRenderer(this.component, injector, props);
 
-    // Pass input props to the component
-    this.renderer.instance.props = props;
-
+    // Register drag handler
     if (this.extension.config.draggable) {
-      // Register drag handler
       this.renderer.elementRef.nativeElement.ondragstart = (e: DragEvent) => {
         this.onDragStart(e);
       };
@@ -54,16 +46,8 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
       // With this fix it seems to work fine
       // See: https://github.com/ueberdosis/tiptap/issues/1197
       this.contentDOMElement.style.whiteSpace = 'inherit';
-
-      this.renderer.detectChanges();
+      this.renderer.detectChanges()
     }
-  }
-
-  private updateProps(props: Partial<NodeViewProps>) {
-    this.renderer.instance.props = {
-      ...this.renderer.instance.props,
-      ...props
-    };
   }
 
   get dom() {
@@ -106,18 +90,18 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
 
     this.node = node;
     this.decorations = decorations;
-    this.updateProps({ node, decorations });
+    this.renderer.updateProps({ node, decorations });
     this.maybeMoveContentDOM();
 
     return true;
   }
 
   selectNode() {
-    this.updateProps({ selected: true });
+    this.renderer.updateProps({ selected: true });
   }
 
   deselectNode() {
-    this.updateProps({ selected: false });
+    this.renderer.updateProps({ selected: false });
   }
 
   destroy() {

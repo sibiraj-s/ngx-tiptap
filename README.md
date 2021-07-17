@@ -74,7 +74,7 @@ and in HTML
 
 **Note**: No styling is provided by default. You are in full control of how your editor looks. Refer [tiptaps's styling guide](https://www.tiptap.dev/guide/styling) for more information.
 
-And, Since the editor is dynamically created you may need to set [ViewEncapsulation](https://angular.io/guide/view-encapsulation) to `None` apply the styles.
+And, Since the editor is dynamically created, You may need to set [ViewEncapsulation](https://angular.io/guide/view-encapsulation) to `None` to apply the styles.
 
 ## Options
 
@@ -160,8 +160,8 @@ import { AngularNodeViewComponent } from 'ngx-tiptap';
 })
 export class NodeviewCounterComponent extends AngularNodeViewComponent {
   increment(): void {
-    this.props.updateAttributes({
-      count: this.props.node.attrs.count + 1,
+    this.updateAttributes({
+      count: this.node.attrs.count + 1,
     });
   }
 }
@@ -203,10 +203,18 @@ export class AppComponent implements OnInit {
 Refer https://www.tiptap.dev/guide/node-views/react/#all-available-props for the list of all available attributes. You can access them via `Input`, like
 
 ```ts
+import { Input } from '@angular/core';
 import { NodeViewProps } from '@tiptap/core';
 
 class NodeviewCounterComponent {
-  @Input() props!: NodeViewProps
+  @Input() editor!: NodeViewProps['editor'];
+  @Input() node!: NodeViewProps['node'];
+  @Input() decorations!: NodeViewProps['decorations'];
+  @Input() selected!: NodeViewProps['selected'];
+  @Input() extension!: NodeViewProps['extension'];
+  @Input() getPos!: NodeViewProps['getPos'];
+  @Input() updateAttributes!: NodeViewProps['updateAttributes'];
+  @Input() deleteNode!: NodeViewProps['deleteNode'];
 }
 ```
 
@@ -217,19 +225,18 @@ import { AngularNodeViewComponent } from 'ngx-tiptap';
 
 export class NodeviewCounterComponent extends AngularNodeViewComponent {
   increment(): void {
-    this.props.updateAttributes({
-      count: this.props.node.attrs.count + 1
+    this.updateAttributes({
+      count: this.node.attrs.count + 1,
     });
   }
 }
-
 ```
 
 To update the attributes
 
 ```ts
-this.props.updateAttributes({
-  count: this.props.node.attrs.count + 1,
+this.updateAttributes({
+  count: this.node.attrs.count + 1,
 });
 ```
 
@@ -252,7 +259,7 @@ To make your node views draggable, set `draggable: true` in the extension and ad
 
 ### AngularRenderer
 
-You can also manully render the angular components using `AngularRenderer`.
+You can also manually render the angular components using `AngularRenderer`.
 
 ```ts
 import { AngularRenderer } from 'ngx-tiptap';
