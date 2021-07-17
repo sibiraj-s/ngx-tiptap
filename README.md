@@ -200,25 +200,7 @@ export class AppComponent implements OnInit {
 
 ### Access/Update Attributes
 
-Refer https://www.tiptap.dev/guide/node-views/react/#all-available-props for the list of all available attributes. You can access them via `Input`, like
-
-```ts
-import { Input } from '@angular/core';
-import { NodeViewProps } from '@tiptap/core';
-
-class NodeviewCounterComponent {
-  @Input() editor!: NodeViewProps['editor'];
-  @Input() node!: NodeViewProps['node'];
-  @Input() decorations!: NodeViewProps['decorations'];
-  @Input() selected!: NodeViewProps['selected'];
-  @Input() extension!: NodeViewProps['extension'];
-  @Input() getPos!: NodeViewProps['getPos'];
-  @Input() updateAttributes!: NodeViewProps['updateAttributes'];
-  @Input() deleteNode!: NodeViewProps['deleteNode'];
-}
-```
-
-or by extending the `AngularNodeViewComponent`
+Refer https://www.tiptap.dev/guide/node-views/react/#all-available-props for the list of all available attributes. You can access them by extending the `AngularNodeViewComponent`
 
 ```ts
 import { AngularNodeViewComponent } from 'ngx-tiptap';
@@ -230,14 +212,6 @@ export class NodeviewCounterComponent extends AngularNodeViewComponent {
     });
   }
 }
-```
-
-To update the attributes
-
-```ts
-this.updateAttributes({
-  count: this.node.attrs.count + 1,
-});
 ```
 
 ### Adding a content editable
