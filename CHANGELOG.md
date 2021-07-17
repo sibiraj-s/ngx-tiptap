@@ -13,6 +13,26 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v3.0.0 (2021-07-17)
+
+#### Breaking Changes
+
+- update `Input` decorators for `AngularNodeViewComponent` component ([8b9bed1](https://github.com/sibiraj-s/ngx-tiptap/commit/8b9bed1))
+
+Before
+
+```ts
+this.props.selected;
+this.props.updatedAttributes;
+```
+
+After
+
+```ts
+this.selected;
+this.updateAttributes;
+```
+
 ## v2.1.2 (2021-07-14)
 
 #### Bug Fixes
