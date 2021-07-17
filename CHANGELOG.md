@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v3.0.1 (2021-07-18)
+
+#### Bug Fixes
+
+- make `AngularRenderer` more generic ([34d5c70](https://github.com/sibiraj-s/ngx-tiptap/commit/34d5c70))
+
 ## v3.0.0 (2021-07-17)
 
 #### Breaking Changes
