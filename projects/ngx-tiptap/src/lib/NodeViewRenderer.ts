@@ -1,6 +1,6 @@
 import { Injector, Type } from '@angular/core';
 import { Editor, NodeView, NodeViewProps, NodeViewRenderer, NodeViewRendererProps } from '@tiptap/core';
-import type { Decoration, NodeView as ProseMirrorNodeView } from 'prosemirror-view';
+import type { Decoration } from 'prosemirror-view';
 import type { Node as ProseMirrorNode } from 'prosemirror-model';
 
 import { AngularRenderer, AngularNodeViewComponent } from './AngularRenderer';
@@ -11,7 +11,7 @@ interface AngularNodeViewRendererOptions {
   injector: Injector
 }
 
-class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> implements ProseMirrorNodeView {
+class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> {
   renderer!: AngularRenderer<AngularNodeViewComponent>
   contentDOMElement!: HTMLElement | null
 
@@ -111,6 +111,6 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
 
 export const AngularNodeViewRenderer = (component: Type<AngularNodeViewComponent>, options: AngularNodeViewRendererOptions): NodeViewRenderer => {
   return (props: NodeViewRendererProps) => {
-    return new AngularNodeView(component, props, options) as ProseMirrorNodeView;
+    return new AngularNodeView(component, props, options);
   };
 };
