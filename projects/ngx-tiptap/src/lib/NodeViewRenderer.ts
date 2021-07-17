@@ -57,11 +57,6 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> i
 
       this.renderer.detectChanges();
     }
-
-    // attach stopEvent
-    if (this.options.stopEvent) {
-      this.stopEvent = this.options.stopEvent;
-    }
   }
 
   private updateProps(props: Partial<NodeViewProps>) {
