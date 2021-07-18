@@ -15,7 +15,9 @@ import { CounterComponentExtension, EditableComponentExtension } from './extensi
 export class AppComponent {
   constructor(private injector: Injector) { }
 
-  value = '<p>Hello, Tiptap!</p>'
+  value = `Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    Lorem Ipsum has been the <strong>industry's standard dummy text</strong> ever since the 1500s,
+    when an unknown printer took a galley of type and scrambled it to make a type specimen book`
 
   editor = new Editor({
     extensions: [
@@ -24,7 +26,8 @@ export class AppComponent {
     ],
     editorProps: {
       attributes: {
-        class: 'p-2 border-black focus:border-blue-700 border-2 rounded-md outline-none'
+        class: 'p-2 border-black focus:border-blue-700 border-2 rounded-md outline-none',
+        spellCheck: 'false'
       }
     }
   })
@@ -33,7 +36,8 @@ export class AppComponent {
     extensions: [StarterKit],
     editorProps: {
       attributes: {
-        class: 'p-2 border-black focus:border-blue-700 border-2 rounded-md outline-none'
+        class: 'p-2 border-black focus:border-blue-700 border-2 rounded-md outline-none',
+        spellCheck: 'false'
       }
     }
   })
@@ -45,12 +49,13 @@ export class AppComponent {
     ],
     editorProps: {
       attributes: {
-        class: 'p-2 border-black focus:border-blue-700 border-2 rounded-md outline-none'
+        class: 'p-2 border-black focus:border-blue-700 border-2 rounded-md outline-none',
+        spellCheck: 'false'
       }
     }
   })
 
-  editorA = new Editor({
+  editorN = new Editor({
     editable: true,
     content: `
       <p>This is still the text editor you’re used to, but enriched with node views.</p>
@@ -58,7 +63,7 @@ export class AppComponent {
       <p>The below is another counter component with different scope, The count is preset to "1"</p>
       <angular-component-counter count="1"></angular-component-counter>
       <p>You can also create an editable component item inside the component</p>
-      <angular-component-editable><p>This is editable</p></angular-component-editable>
+      <angular-component-editable><p>This text is editable</p></angular-component-editable>
       <p>Did you see that? These are Angular components. We are really living in the future.</p>
     `,
     extensions: [
