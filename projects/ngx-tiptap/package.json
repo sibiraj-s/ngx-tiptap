@@ -26,6 +26,6 @@
     "@types/prosemirror-state": "^1.2.7"
   },
   "dependencies": {
-    "tslib": "^2.1.0"
+    "tslib": "^2.2.0"
   }
 }
