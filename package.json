@@ -9,7 +9,8 @@
     "test:demo": "ng test demo --browsers ChromeHeadless --watch false",
     "test": "npm run test:lib && npm run test:demo",
     "lint": "ng lint",
-    "prepare": "is-ci || husky install"
+    "prepare": "is-ci || husky install",
+    "prepublishOnly": "is-ci || npm run build"
   },
   "private": true,
   "dependencies": {
