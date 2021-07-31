@@ -1,5 +1,8 @@
 import { Component, Injector, Input, Type } from '@angular/core';
-import { Editor, NodeView, NodeViewProps, NodeViewRenderer, NodeViewRendererProps } from '@tiptap/core';
+import {
+  Editor, NodeView, NodeViewProps,
+  NodeViewRenderer, NodeViewRendererProps, NodeViewRendererOptions
+} from '@tiptap/core';
 import type { Decoration } from 'prosemirror-view';
 import type { Node as ProseMirrorNode } from 'prosemirror-model';
 
@@ -17,18 +20,17 @@ export class AngularNodeViewComponent implements NodeViewProps {
   @Input() deleteNode!: NodeViewProps['deleteNode'];
 }
 
-interface AngularNodeViewRendererOptions {
-  stopEvent?: ((event: Event) => boolean) | null,
-  update?: ((node: ProseMirrorNode, decorations: Decoration[]) => boolean) | null,
-  injector: Injector
+interface AngularNodeViewRendererOptions extends NodeViewRendererOptions {
+  update?: ((node: ProseMirrorNode, decorations: Decoration[]) => boolean) | null;
+  injector: Injector;
 }
 
-class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> {
+class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, AngularNodeViewRendererOptions> {
   renderer!: AngularRenderer<AngularNodeViewComponent, NodeViewProps>
   contentDOMElement!: HTMLElement | null
 
   mount() {
-    const injector = (this.options as AngularNodeViewRendererOptions).injector as Injector;
+    const injector = this.options.injector as Injector;
 
     const props: NodeViewProps = {
       editor: this.editor,
@@ -121,7 +123,10 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor> {
   }
 }
 
-export const AngularNodeViewRenderer = (component: Type<AngularNodeViewComponent>, options: AngularNodeViewRendererOptions): NodeViewRenderer => {
+export const AngularNodeViewRenderer = (
+  component: Type<AngularNodeViewComponent>,
+  options: Partial<AngularNodeViewRendererOptions>
+): NodeViewRenderer => {
   return (props: NodeViewRendererProps) => {
     return new AngularNodeView(component, props, options);
   };
