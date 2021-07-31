@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v3.0.2 (2021-07-31)
+
+#### Dependency Updates
+
+- update tiptap dependencies ([94f02da](https://github.com/sibiraj-s/ngx-tiptap/commit/94f02da))
+
 ## v3.0.1 (2021-07-18)
 
 #### Bug Fixes
