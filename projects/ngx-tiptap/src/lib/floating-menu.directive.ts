@@ -1,14 +1,16 @@
 import { Directive, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
 import { Editor } from '@tiptap/core';
-import { FloatingMenuPlugin, FloatingMenuPluginKey, FloatingMenuPluginProps } from '@tiptap/extension-floating-menu';
+import { FloatingMenuPlugin, FloatingMenuPluginProps } from '@tiptap/extension-floating-menu';
 
 @Directive({
   selector: 'tiptap-floating-menu[editor], [tiptapFloatingMenu][editor]'
 })
 
 export class FloatingMenuDirective implements OnInit, OnDestroy {
+  @Input() pluginKey: FloatingMenuPluginProps['pluginKey'] = 'NgxTiptapFloatingMenu';
   @Input() editor!: Editor;
   @Input() tippyOptions: FloatingMenuPluginProps['tippyOptions'] = {};
+  @Input() shouldShow: FloatingMenuPluginProps['shouldShow'] = null;
 
   constructor(private _el: ElementRef<HTMLElement>) { }
 
@@ -18,13 +20,15 @@ export class FloatingMenuDirective implements OnInit, OnDestroy {
     }
 
     this.editor.registerPlugin(FloatingMenuPlugin({
+      pluginKey: this.pluginKey,
       editor: this.editor,
       element: this._el.nativeElement,
-      tippyOptions: this.tippyOptions
+      tippyOptions: this.tippyOptions,
+      shouldShow: this.shouldShow
     }));
   }
 
   ngOnDestroy(): void {
-    this.editor.unregisterPlugin(FloatingMenuPluginKey);
+    this.editor.unregisterPlugin(this.pluginKey);
   }
 }
