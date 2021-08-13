@@ -37,7 +37,7 @@
     "@angular/compiler-cli": "~12.2.1",
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
-    "@tiptap/core": "^2.0.0-beta.96",
+    "@tiptap/core": "^2.0.0-beta.97",
     "@tiptap/extension-bubble-menu": "^2.0.0-beta.28",
     "@tiptap/extension-floating-menu": "^2.0.0-beta.22",
     "@tiptap/extension-placeholder": "^2.0.0-beta.26",
