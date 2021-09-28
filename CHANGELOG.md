@@ -13,6 +13,16 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v3.0.4 (2021-09-28)
+
+#### Bug Fixes
+
+- destory component when nodeview is removed ([8ed4db8](https://github.com/sibiraj-s/ngx-tiptap/commit/8ed4db8))
+
+#### Dependency Updates
+
+- update peerDependencies ([bdc9db7](https://github.com/sibiraj-s/ngx-tiptap/commit/bdc9db7))
+
 ## v3.0.3 (2021-08-13)
 
 #### Dependency Updates
