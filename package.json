@@ -8,6 +8,7 @@
     "test:lib": "ng test ngx-tiptap --browsers ChromeHeadless --watch false",
     "test:demo": "ng test demo --browsers ChromeHeadless --watch false",
     "test": "npm run test:lib && npm run test:demo",
+    "e2e": "cypress open --project e2e",
     "lint": "ng lint",
     "prepare": "is-ci || husky install",
     "prepublishOnly": "is-ci || npm run build"
@@ -50,6 +51,7 @@
     "@typescript-eslint/eslint-plugin": "^4.32.0",
     "@typescript-eslint/parser": "^4.32.0",
     "chalk": "^4.1.2",
+    "cypress": "^8.5.0",
     "eslint": "^7.32.0",
     "husky": "^7.0.2",
     "is-ci": "^3.0.0",
