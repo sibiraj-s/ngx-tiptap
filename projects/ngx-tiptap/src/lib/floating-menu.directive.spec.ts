@@ -49,22 +49,4 @@ describe('FloatingMenuDirective', () => {
     const directive = new FloatingMenuDirective(hostEl);
     expect(directive).toBeTruthy();
   });
-
-  it('should render the floating menu', async() => {
-    const directiveEl = fixture.debugElement.query(By.directive(EditorDirective));
-    expect(directiveEl.query(By.css('[data-tippy-root]'))).toBeFalsy();
-
-    await fixture.whenStable();
-
-    component.editor.chain().clearContent().focus().run();
-    directiveEl.query(By.css('.ProseMirror')).nativeElement.dispatchEvent(new Event('focus'));
-    fixture.detectChanges();
-
-    await fixture.whenStable();
-
-    // fixture.whenStable().then(() => {
-    //   expect(directiveEl.query(By.css('[data-tippy-root]'))).toBeTruthy();
-    //   expect(directiveEl.query(By.css('[data-tippy-root]')).nativeElement.innerHTML).toContain('Floater');
-    // });
-  });
 });

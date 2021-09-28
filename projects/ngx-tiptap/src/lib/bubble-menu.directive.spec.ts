@@ -49,16 +49,4 @@ describe('BubbleMenuDirective', () => {
     const directive = new BubbleMenuDirective(hostEl);
     expect(directive).toBeTruthy();
   });
-
-  it('should create bubble menu', async () => {
-    expect(fixture.debugElement.query(By.css('[data-tippy-root]'))).toBeFalsy();
-    await fixture.whenStable();
-
-    component.editor.chain().setContent('Hello world').focus().selectAll().run();
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    // expect(fixture.debugElement.query(By.css('[data-tippy-root]'))).toBeTruthy();
-    // expect(directiveEl.query(By.css('[data-tippy-root]')).nativeElement.innerHTML).toContain('BubbleMenu');
-  });
 });
