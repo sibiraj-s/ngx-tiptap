@@ -29,7 +29,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
   renderer!: AngularRenderer<AngularNodeViewComponent, NodeViewProps>
   contentDOMElement!: HTMLElement | null
 
-  mount() {
+  override mount() {
     const injector = this.options.injector as Injector;
 
     const props: NodeViewProps = {
@@ -64,11 +64,11 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
     }
   }
 
-  get dom() {
+  override get dom() {
     return this.renderer.dom;
   }
 
-  get contentDOM() {
+  override get contentDOM() {
     if (this.node.isLeaf) {
       return null;
     }
