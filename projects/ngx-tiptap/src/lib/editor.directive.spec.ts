@@ -124,4 +124,14 @@ describe('NgxTiptapDirective FormsModule', () => {
 
     expect(directiveEl.query(By.css('.ProseMirror[contenteditable=false]'))).toBeTruthy();
   });
+
+  it('should set empty string as value', async () => {
+    component.value = ''
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const editorEl: HTMLElement = directiveEl.query(By.css('.ProseMirror')).nativeElement
+    expect(editorEl.textContent).toBe('');
+  });
 });

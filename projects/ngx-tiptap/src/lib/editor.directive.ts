@@ -24,7 +24,7 @@ export class EditorDirective implements OnInit, ControlValueAccessor, OnDestroy 
   // Writes a new value to the element.
   // This methods is called when programmatic changes from model to view are requested.
   writeValue(value: Content): void {
-    if (!value) {
+    if (typeof value !== 'string') {
       return;
     }
 
