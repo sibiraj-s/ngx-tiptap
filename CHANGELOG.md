@@ -13,6 +13,20 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 
+## v4.0.1 (2021-12-08)
+
+#### Bug Fixes
+
+- allow setting empty string to ngModel ([89c510e](https://github.com/sibiraj-s/ngx-tiptap/commit/89c510e))
+
+#### Dependency Updates
+
+- update peerDependencies ([1489f44](https://github.com/sibiraj-s/ngx-tiptap/commit/1489f44))
+
+#### Internal
+
+- cleanup tests ([eefdfe4](https://github.com/sibiraj-s/ngx-tiptap/commit/eefdfe4))
+
 ## v4.0.0 (2021-11-24)
 
 #### Breaking Changes
