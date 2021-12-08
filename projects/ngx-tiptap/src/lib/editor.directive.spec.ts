@@ -11,7 +11,7 @@ import { EditorDirective } from './editor.directive';
   template: '<div tiptap [editor]="editor"></div>'
 })
 class TestComponent {
-  @Input() editor!: Editor
+  editor!: Editor
 }
 
 describe('NgxTiptapDirective', () => {
@@ -52,7 +52,7 @@ describe('NgxTiptapDirective', () => {
   template: '<div tiptap [editor]="editor" [(ngModel)]="value"></div>'
 })
 class TestFormComponent {
-  @Input() editor!: Editor
+  editor!: Editor
   value = 'Default Text'
 }
 
@@ -104,9 +104,10 @@ describe('NgxTiptapDirective FormsModule', () => {
   });
 
   it('should bind to the model correctly', async () => {
-    directiveInstance.writeValue('Hi.');
-    await fixture.whenStable();
+    component.value = 'Hi.';
+
     fixture.detectChanges();
+    await fixture.whenStable();
 
     expect(component.value).toContain('Hi.');
   });
@@ -119,8 +120,9 @@ describe('NgxTiptapDirective FormsModule', () => {
 
   it('should disable the editor correctly', async () => {
     directiveInstance.setDisabledState(true);
-    await fixture.whenStable();
+
     fixture.detectChanges();
+    await fixture.whenStable();
 
     expect(directiveEl.query(By.css('.ProseMirror[contenteditable=false]'))).toBeTruthy();
   });
