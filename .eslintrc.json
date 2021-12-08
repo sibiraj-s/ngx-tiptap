@@ -47,6 +47,16 @@
         "plugin:@angular-eslint/template/recommended"
       ],
       "rules": {}
+    },
+    {
+      "files": "scripts/**/*.js",
+      "extends": [
+        "pegasus",
+        "pegasus/node"
+      ],
+      "rules": {
+        "no-console": "off"
+      }
     }
   ]
 }
