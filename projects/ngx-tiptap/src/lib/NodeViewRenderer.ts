@@ -60,6 +60,9 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
       // With this fix it seems to work fine
       // See: https://github.com/ueberdosis/tiptap/issues/1197
       this.contentDOMElement.style.whiteSpace = 'inherit';
+
+      // Required for editable node views
+      // The content won't be rendered if `editable` is set to `false`
       this.renderer.detectChanges()
     }
   }
