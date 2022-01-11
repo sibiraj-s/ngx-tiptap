@@ -12,6 +12,23 @@ All notable changes to this project will be documented in this file.
 > - Enhancements
 > - Documentation
 > - Internal
+> - Refactor
+
+## v4.0.2 (2022-01-11)
+
+#### Refactor
+
+- use viewContainerRef instead of applicationRef to create components ([454be3e](https://github.com/sibiraj-s/ngx-tiptap/commit/454be3e))
+
+#### Dependency Updates
+
+- update peerDependencies ([f759fb2](https://github.com/sibiraj-s/ngx-tiptap/commit/f759fb2))
+- update devDependencies ([dd265dc](https://github.com/sibiraj-s/ngx-tiptap/commit/dd265dc))
+
+#### Internal
+
+- replace chalk with picocolors ([be8b0f8](https://github.com/sibiraj-s/ngx-tiptap/commit/be8b0f8))
+- remove unused imports ([b73aa97](https://github.com/sibiraj-s/ngx-tiptap/commit/b73aa97))
 
 ## v4.0.1 (2021-12-08)
 
