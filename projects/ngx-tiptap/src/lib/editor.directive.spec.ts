@@ -1,4 +1,4 @@
-import { Component, DebugElement, Input, Renderer2 } from '@angular/core';
+import { Component, DebugElement, Renderer2 } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
