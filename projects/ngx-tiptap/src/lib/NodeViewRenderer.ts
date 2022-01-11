@@ -124,10 +124,10 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
 }
 
 export const AngularNodeViewRenderer = (
-  component: Type<AngularNodeViewComponent>,
+  ViewComponent: Type<AngularNodeViewComponent>,
   options: Partial<AngularNodeViewRendererOptions>
 ): NodeViewRenderer => {
   return (props: NodeViewRendererProps) => {
-    return new AngularNodeView(component, props, options);
+    return new AngularNodeView(ViewComponent, props, options);
   };
 };
