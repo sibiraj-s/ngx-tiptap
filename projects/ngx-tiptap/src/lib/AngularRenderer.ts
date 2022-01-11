@@ -1,25 +1,16 @@
-import {
-  ApplicationRef, ComponentFactoryResolver, ComponentRef,
-  ElementRef, Injector, Type
-} from '@angular/core';
+import { ComponentRef, ElementRef, Injector, Type, ViewContainerRef } from '@angular/core';
 
 export class AngularRenderer<C, P> {
-  private applicationRef: ApplicationRef
   private componentRef: ComponentRef<C>
 
-  constructor(component: Type<C>, injector: Injector, props: Partial<P>) {
-    this.applicationRef = injector.get(ApplicationRef);
+  constructor(ViewComponent: Type<C>, injector: Injector, props: Partial<P>) {
+    const viewContainerRef = injector.get(ViewContainerRef);
 
-    const componentFactoryResolver = injector.get(ComponentFactoryResolver);
-    const factory = componentFactoryResolver.resolveComponentFactory(component);
-
-    this.componentRef = factory.create(injector, []);
+    // create component
+    this.componentRef = viewContainerRef.createComponent(ViewComponent, { injector })
 
     // set input props to the component
     this.updateProps(props)
-
-    // Attach to the view so that the change detector knows to run
-    this.applicationRef.attachView(this.componentRef.hostView);
   }
 
   get instance(): C {
@@ -46,6 +37,5 @@ export class AngularRenderer<C, P> {
 
   destroy(): void {
     this.componentRef.destroy()
-    this.applicationRef.detachView(this.componentRef.hostView);
   }
 }
