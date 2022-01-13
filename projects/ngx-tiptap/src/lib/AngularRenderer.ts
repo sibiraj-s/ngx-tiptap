@@ -1,16 +1,29 @@
-import { ComponentRef, ElementRef, Injector, Type, ViewContainerRef } from '@angular/core';
+import {
+  ApplicationRef, ComponentFactoryResolver, ComponentRef,
+  ElementRef, Injector, Type
+} from '@angular/core';
 
 export class AngularRenderer<C, P> {
+  private applicationRef: ApplicationRef
   private componentRef: ComponentRef<C>
 
   constructor(ViewComponent: Type<C>, injector: Injector, props: Partial<P>) {
-    const viewContainerRef = injector.get(ViewContainerRef);
+    this.applicationRef = injector.get(ApplicationRef)
 
-    // create component
-    this.componentRef = viewContainerRef.createComponent(ViewComponent, { injector })
+    const componentFactoryResolver = injector.get(ComponentFactoryResolver);
+    const factory = componentFactoryResolver.resolveComponentFactory(ViewComponent);
+
+    this.componentRef = factory.create(injector, []);
+
+    // TODO: ViewContainerRef will not be injected into services
+    // https://github.com/sibiraj-s/ngx-tiptap/issues/20
+    // const viewContainerRef = injector.get(ViewContainerRef);
+    // this.componentRef = viewContainerRef.createComponent(ViewComponent, { injector })
 
     // set input props to the component
     this.updateProps(props)
+
+    this.applicationRef.attachView(this.componentRef.hostView);
   }
 
   get instance(): C {
@@ -37,5 +50,6 @@ export class AngularRenderer<C, P> {
 
   destroy(): void {
     this.componentRef.destroy()
+    this.applicationRef.detachView(this.componentRef.hostView)
   }
 }
