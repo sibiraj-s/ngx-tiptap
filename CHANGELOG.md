@@ -14,6 +14,17 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Refactor
 
+## v4.0.3 (2022-01-13)
+
+#### Bug Fixes
+
+- revert using viewContainerRef instead of applicationRef to create components ([bb34ce7](https://github.com/sibiraj-s/ngx-tiptap/commit/bb34ce7))
+
+#### Dependency Updates
+
+- update peerDependencies ([01bf7ff](https://github.com/sibiraj-s/ngx-tiptap/commit/01bf7ff))
+- update devDependencies ([02e1184](https://github.com/sibiraj-s/ngx-tiptap/commit/02e1184))
+
 ## v4.0.2 (2022-01-11)
 
 #### Refactor
