@@ -2,7 +2,7 @@ import { Component, DebugElement, Renderer2 } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { Editor } from '@tiptap/core';
+import { Content, Editor } from '@tiptap/core';
 import StarterKit from '@tiptap/starter-kit';
 
 import { EditorDirective } from './editor.directive';
@@ -53,7 +53,7 @@ describe('NgxTiptapDirective', () => {
 })
 class TestFormComponent {
   editor!: Editor
-  value = 'Default Text'
+  value: Content = 'Default Text'
 }
 
 describe('NgxTiptapDirective FormsModule', () => {
@@ -135,5 +135,26 @@ describe('NgxTiptapDirective FormsModule', () => {
 
     const editorEl: HTMLElement = directiveEl.query(By.css('.ProseMirror')).nativeElement
     expect(editorEl.textContent).toBe('');
+  });
+
+  it('should render json value correctly', async () => {
+    component.value = {
+      type: 'doc',
+      content: [
+        {
+          type: 'paragraph',
+          content: [{
+            type: 'text',
+            text: 'Hello world!'
+          }]
+        },
+      ],
+    };
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    const editorEl: HTMLElement = directiveEl.query(By.css('.ProseMirror')).nativeElement
+    expect(editorEl.textContent).toBe('Hello world!');
   });
 });
