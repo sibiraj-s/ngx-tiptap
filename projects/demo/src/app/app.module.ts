@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxTiptapModule } from 'ngx-tiptap';
 
@@ -16,6 +16,7 @@ import { NodeviewEditableComponent } from './nodeviews/editable/editable.compone
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     NgxTiptapModule
   ],
   providers: [],

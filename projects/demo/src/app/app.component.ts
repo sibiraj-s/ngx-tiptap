@@ -1,4 +1,5 @@
 import { Component, Injector, ViewEncapsulation } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { Editor } from '@tiptap/core';
 import StarterKit from '@tiptap/starter-kit';
 import Placeholder from '@tiptap/extension-placeholder';
@@ -17,6 +18,10 @@ export class AppComponent {
   value = `Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     Lorem Ipsum has been the <strong>industry's standard dummy text</strong> ever since the 1500s,
     when an unknown printer took a galley of type and scrambled it to make a type specimen book`
+
+  reactiveForm = new FormGroup({
+    content: new FormControl(this.value),
+  });
 
   editor = new Editor({
     extensions: [

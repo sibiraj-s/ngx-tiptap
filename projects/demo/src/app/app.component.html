@@ -1,41 +1,45 @@
 <div class="grid grid-cols-2 gap-4">
 
   <div class="p-6">
-    <!-- Simple Editor -->
-    <div class="text-xl mb-2">Simple Editor with placeholder</div>
-    <tiptap-editor [editor]="editor" [(ngModel)]="value"></tiptap-editor>
+    <form [formGroup]="reactiveForm">
 
-    <!-- Editor with floating menu -->
-    <div class="text-xl mb-2 mt-6">Floating Menu</div>
-    <tiptap-editor [editor]="editorF" [(ngModel)]="value" id="editor-with-floating-menu"></tiptap-editor>
-    <tiptap-floating-menu [editor]="editorF">
-      <div class="border border-black rounded bg-gray-300" data-test-id="floating-menu">
-        <button type="button" class="px-1" (click)="editorF.chain().focus().toggleHeading({ level: 1 }).run()"
-          [ngClass]="{'bg-gray-900 text-white': editorF.isActive('heading', { level: 1 })}">h1</button>
-        <button type="button" class="px-1 boder border-0 border-l border-black"
-          (click)="editorF.chain().focus().toggleHeading({ level: 2 }).run()"
-          [ngClass]="{'bg-gray-900 text-white': editorF.isActive('heading', { level: 2 })}">h2</button>
-        <button type="button" class="px-1 boder border-0 border-l border-black"
-          (click)="editorF.chain().focus().toggleBulletList().run()"
-          [ngClass]="{'bg-gray-900 text-white': editorF.isActive('bulletList')}">bullet list</button>
-      </div>
-    </tiptap-floating-menu>
+      <!-- Simple Editor -->
+      <div class="text-xl mb-2">Simple Editor with placeholder</div>
+      <tiptap-editor [editor]="editor" formControlName="content"></tiptap-editor>
 
-    <!-- Editor with bubble menu -->
-    <div class="text-xl mb-2 mt-6">Bubble Menu</div>
-    <tiptap-editor [editor]="editorB" [(ngModel)]="value" id="editor-with-bubble-menu"></tiptap-editor>
-    <tiptap-bubble-menu [editor]="editorB">
-      <div class="border border-black rounded bg-gray-300" data-test-id="bubble-menu">
-        <button type="button" class="px-1" (click)="editorB.chain().focus().toggleBold().run()"
-          [ngClass]="{'bg-gray-900 text-white': editorB.isActive('bold')}">bold</button>
-        <button type="button" class="px-1 boder border-0 border-l border-black"
-          (click)="editorB.chain().focus().toggleItalic().run()"
-          [ngClass]="{'bg-gray-900 text-white': editorB.isActive('italic')}">italic</button>
-        <button type="button" class="px-1 boder border-0 border-l border-black"
-          (click)="editorB.chain().focus().toggleStrike().run()"
-          [ngClass]="{'bg-gray-900 text-white': editorB.isActive('strike')}">strike</button>
-      </div>
-    </tiptap-bubble-menu>
+      <!-- Editor with floating menu -->
+      <div class="text-xl mb-2 mt-6">Floating Menu</div>
+      <tiptap-editor [editor]="editorF" formControlName="content" id="editor-with-floating-menu"></tiptap-editor>
+      <tiptap-floating-menu [editor]="editorF">
+        <div class="border border-black rounded bg-gray-300" data-test-id="floating-menu">
+          <button type="button" class="px-1" (click)="editorF.chain().focus().toggleHeading({ level: 1 }).run()"
+            [ngClass]="{'bg-gray-900 text-white': editorF.isActive('heading', { level: 1 })}">h1</button>
+          <button type="button" class="px-1 boder border-0 border-l border-black"
+            (click)="editorF.chain().focus().toggleHeading({ level: 2 }).run()"
+            [ngClass]="{'bg-gray-900 text-white': editorF.isActive('heading', { level: 2 })}">h2</button>
+          <button type="button" class="px-1 boder border-0 border-l border-black"
+            (click)="editorF.chain().focus().toggleBulletList().run()"
+            [ngClass]="{'bg-gray-900 text-white': editorF.isActive('bulletList')}">bullet list</button>
+        </div>
+      </tiptap-floating-menu>
+
+      <!-- Editor with bubble menu -->
+      <div class="text-xl mb-2 mt-6">Bubble Menu</div>
+      <tiptap-editor [editor]="editorB" formControlName="content" id="editor-with-bubble-menu"></tiptap-editor>
+      <tiptap-bubble-menu [editor]="editorB">
+        <div class="border border-black rounded bg-gray-300" data-test-id="bubble-menu">
+          <button type="button" class="px-1" (click)="editorB.chain().focus().toggleBold().run()"
+            [ngClass]="{'bg-gray-900 text-white': editorB.isActive('bold')}">bold</button>
+          <button type="button" class="px-1 boder border-0 border-l border-black"
+            (click)="editorB.chain().focus().toggleItalic().run()"
+            [ngClass]="{'bg-gray-900 text-white': editorB.isActive('italic')}">italic</button>
+          <button type="button" class="px-1 boder border-0 border-l border-black"
+            (click)="editorB.chain().focus().toggleStrike().run()"
+            [ngClass]="{'bg-gray-900 text-white': editorB.isActive('strike')}">strike</button>
+        </div>
+      </tiptap-bubble-menu>
+
+    </form>
   </div>
 
   <div class="p-6">
