@@ -11,7 +11,6 @@ import { CounterComponentExtension, EditableComponentExtension } from './extensi
   styleUrls: ['./app.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-
 export class AppComponent {
   constructor(private injector: Injector) { }
 
@@ -58,7 +57,7 @@ export class AppComponent {
   editorN = new Editor({
     editable: true,
     content: `
-      <p>This is still the text editor you’re used to, but enriched with node views.</p>
+      <p>This is still the text editor you're used to, but enriched with node views.</p>
       <angular-component-counter count="0"></angular-component-counter>
       <p>The below is another counter component with different scope, The count is preset to "1"</p>
       <angular-component-counter count="1"></angular-component-counter>
