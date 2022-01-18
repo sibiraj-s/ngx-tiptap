@@ -14,6 +14,16 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Refactor
 
+## v4.0.4 (2022-01-18)
+
+#### Bug Fixes
+
+- render json inputs correctly ([3848f59](https://github.com/sibiraj-s/ngx-tiptap/commit/3848f59))
+
+#### Dependency Updates
+
+- update devDependencies ([4d51ff4](https://github.com/sibiraj-s/ngx-tiptap/commit/4d51ff4))
+
 ## v4.0.3 (2022-01-13)
 
 #### Bug Fixes
