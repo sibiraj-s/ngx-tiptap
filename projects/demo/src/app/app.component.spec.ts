@@ -1,12 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 import { Editor } from '@tiptap/core';
 import StarterKit from '@tiptap/starter-kit';
-import { By } from '@angular/platform-browser';
 
 import { NgxTiptapModule } from 'ngx-tiptap';
-import { CommonModule } from '@angular/common';
+
+import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
