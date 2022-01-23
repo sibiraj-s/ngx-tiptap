@@ -2,7 +2,7 @@
 
 describe('ngx-tiptap: bubble-menu', () => {
   beforeEach(() => {
-    cy.visit('/bubble');
+    cy.visit('/bubble-menu');
   });
 
   it('should render the editor', () => {

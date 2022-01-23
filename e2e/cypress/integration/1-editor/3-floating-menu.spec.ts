@@ -2,7 +2,7 @@
 
 describe('ngx-tiptap: floating-menu', () => {
   beforeEach(() => {
-    cy.visit('/floating');
+    cy.visit('/floating-menu');
   });
 
   it('should render the editor', () => {
