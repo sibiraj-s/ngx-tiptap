@@ -12,6 +12,9 @@ jobs:
     name: Build and Deploy to Github Pages
     runs-on: ubuntu-latest
 
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -30,10 +33,11 @@ jobs:
         env:
           CYPRESS_INSTALL_BINARY: 0
 
-      - name: Build
+      - name: Build Package
+        run: npm run build
+
+      - name: Build Pages
         run: npm run build:pages
-        env:
-          NODE_ENV: production
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
