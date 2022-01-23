@@ -4,6 +4,7 @@
     "demo": "ng serve",
     "dev": "ng build ngx-tiptap --watch --configuration development",
     "build": "ng build",
+    "build:pages": "ng build demo --base-href=/ngx-tiptap/",
     "postbuild": "node scripts/postbuild.js",
     "test:lib": "ng test ngx-tiptap --browsers ChromeHeadless --watch false",
     "test:demo": "ng test demo --browsers ChromeHeadless --watch false",
