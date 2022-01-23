@@ -1,50 +1,12 @@
-<div class="grid grid-cols-2 gap-4">
-
-  <div class="p-6">
-    <form [formGroup]="reactiveForm">
-
-      <!-- Simple Editor -->
-      <div class="text-xl mb-2">Simple Editor with placeholder</div>
-      <tiptap-editor [editor]="editor" formControlName="content"></tiptap-editor>
-
-      <!-- Editor with floating menu -->
-      <div class="text-xl mb-2 mt-6">Floating Menu</div>
-      <tiptap-editor [editor]="editorF" formControlName="content" id="editor-with-floating-menu"></tiptap-editor>
-      <tiptap-floating-menu [editor]="editorF">
-        <div class="border border-black rounded bg-gray-300" data-test-id="floating-menu">
-          <button type="button" class="px-1" (click)="editorF.chain().focus().toggleHeading({ level: 1 }).run()"
-            [ngClass]="{'bg-gray-900 text-white': editorF.isActive('heading', { level: 1 })}">h1</button>
-          <button type="button" class="px-1 boder border-0 border-l border-black"
-            (click)="editorF.chain().focus().toggleHeading({ level: 2 }).run()"
-            [ngClass]="{'bg-gray-900 text-white': editorF.isActive('heading', { level: 2 })}">h2</button>
-          <button type="button" class="px-1 boder border-0 border-l border-black"
-            (click)="editorF.chain().focus().toggleBulletList().run()"
-            [ngClass]="{'bg-gray-900 text-white': editorF.isActive('bulletList')}">bullet list</button>
-        </div>
-      </tiptap-floating-menu>
-
-      <!-- Editor with bubble menu -->
-      <div class="text-xl mb-2 mt-6">Bubble Menu</div>
-      <tiptap-editor [editor]="editorB" formControlName="content" id="editor-with-bubble-menu"></tiptap-editor>
-      <tiptap-bubble-menu [editor]="editorB">
-        <div class="border border-black rounded bg-gray-300" data-test-id="bubble-menu">
-          <button type="button" class="px-1" (click)="editorB.chain().focus().toggleBold().run()"
-            [ngClass]="{'bg-gray-900 text-white': editorB.isActive('bold')}">bold</button>
-          <button type="button" class="px-1 boder border-0 border-l border-black"
-            (click)="editorB.chain().focus().toggleItalic().run()"
-            [ngClass]="{'bg-gray-900 text-white': editorB.isActive('italic')}">italic</button>
-          <button type="button" class="px-1 boder border-0 border-l border-black"
-            (click)="editorB.chain().focus().toggleStrike().run()"
-            [ngClass]="{'bg-gray-900 text-white': editorB.isActive('strike')}">strike</button>
-        </div>
-      </tiptap-bubble-menu>
-
-    </form>
-  </div>
-
-  <div class="p-6">
-    <!-- Angular Renderer -->
-    <div class="text-xl mb-2">AngularNodeViewRenderer</div>
-    <tiptap-editor [editor]="editorN"></tiptap-editor>
-  </div>
+<div class="h-screen container container mx-auto py-20 px-10 sm:px-15 md:px-30">
+  <nav class="mb-5">
+    <a routerLink="" class="text-blue-600 hover:underline visited:text-purple-600">Simple Editor</a>
+    <a routerLink="floating" class="text-blue-600 hover:underline visited:text-purple-600 ml-4">Floating Menu</a>
+    <a routerLink="bubble" class="text-blue-600 hover:underline visited:text-purple-600 ml-4">Bubble Menu</a>
+    <a routerLink="nodeview-renderer" class="text-blue-600 hover:underline visited:text-purple-600 ml-4">
+      Nodeview
+      Renderer
+    </a>
+  </nav>
+  <router-outlet></router-outlet>
 </div>
