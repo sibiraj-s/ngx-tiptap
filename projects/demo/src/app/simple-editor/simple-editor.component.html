@@ -5,7 +5,7 @@
     <div class="border-black border-2 border-b-0 rounded-t-md p-1 flex">
       <button class="rounded h-7 w-7 flex justify-center items-center"
         [ngClass]="{'bg-black text-white': editor.isActive('bold')}"
-        (click)="editor.chain().focus().toggleBold().focus().run()">
+        (click)="editor.chain().focus().toggleBold().run()">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
           <path fill="none" d="M0 0h24v24H0z" />
           <path
@@ -14,7 +14,7 @@
       </button>
       <button class="rounded h-7 w-7 flex justify-center items-center ml-1"
         [ngClass]="{'bg-black text-white': editor.isActive('italic')}"
-        (click)="editor.chain().focus().toggleItalic().focus().run()">
+        (click)="editor.chain().focus().toggleItalic().run()">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
           <path fill="none" d="M0 0h24v24H0z" />
           <path d="M15 20H7v-2h2.927l2.116-12H9V4h8v2h-2.927l-2.116 12H15z" />
@@ -22,7 +22,7 @@
       </button>
       <button class="rounded h-7 w-7 flex justify-center items-center ml-1"
         [ngClass]="{'bg-black text-white': editor.isActive('heading')}"
-        (click)="editor.chain().focus().toggleHeading({ level: 1 }).focus().run()">
+        (click)="editor.chain().focus().toggleHeading({ level: 1 }).run()">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
           <path fill="none" d="M0 0h24v24H0z" />
           <path d="M17 11V4h2v17h-2v-8H7v8H5V4h2v7z" />

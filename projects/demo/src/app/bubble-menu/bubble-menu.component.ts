@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Editor } from '@tiptap/core';
 import Placeholder from '@tiptap/extension-placeholder';
 import StarterKit from '@tiptap/starter-kit';
@@ -8,10 +8,10 @@ import StarterKit from '@tiptap/starter-kit';
   templateUrl: './bubble-menu.component.html',
   styleUrls: ['./bubble-menu.component.css']
 })
-export class BubbleMenuComponent {
-  value = `Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-  Lorem Ipsum has been the <strong>industry's standard dummy text</strong> ever since the 1500s,
-  when an unknown printer took a galley of type and scrambled it to make a type specimen book`
+export class BubbleMenuComponent implements OnDestroy {
+  value = `<p>Hey, try to select some text here.
+  There will popup a menu for selecting some inline styles.</p>
+  <p>Remember: you have full control about content and styling of this menu.</p>`
 
   editor = new Editor({
     extensions: [
@@ -25,4 +25,8 @@ export class BubbleMenuComponent {
       }
     }
   })
+
+  ngOnDestroy(): void {
+    this.editor.destroy()
+  }
 }

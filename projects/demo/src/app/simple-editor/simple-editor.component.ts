@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Editor } from '@tiptap/core';
 import StarterKit from '@tiptap/starter-kit';
@@ -9,7 +9,7 @@ import Placeholder from '@tiptap/extension-placeholder';
   templateUrl: './simple-editor.component.html',
   styleUrls: ['./simple-editor.component.css']
 })
-export class SimpleEditorComponent implements OnInit {
+export class SimpleEditorComponent implements OnDestroy {
   value = `Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     Lorem Ipsum has been the <strong>industry's standard dummy text ever since the 1500s</strong>,
     when an unknown printer took a galley of type and scrambled it to make a type specimen book.
@@ -35,7 +35,7 @@ export class SimpleEditorComponent implements OnInit {
     }
   })
 
-  ngOnInit(): void {
-    this.editor.commands.focus()
+  ngOnDestroy(): void {
+    this.editor.destroy()
   }
 }

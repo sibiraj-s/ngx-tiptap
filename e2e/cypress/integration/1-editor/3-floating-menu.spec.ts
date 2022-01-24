@@ -8,7 +8,7 @@ describe('ngx-tiptap: floating-menu', () => {
   it('should render the editor', () => {
     cy.get('.ProseMirror').should('have.length', 1);
     cy.get('.ProseMirror').should('have.attr', 'contenteditable');
-    cy.get('.ProseMirror').should('contain.text', 'Lorem Ipsum');
+    cy.get('.ProseMirror').should('contain.text', 'Medium-like editor');
   });
 
   it('should render floating menu', () => {

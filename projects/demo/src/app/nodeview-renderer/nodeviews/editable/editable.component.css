@@ -1,28 +1,19 @@
 .angular-component-with-content {
-  background: #faf594;
-  border: 3px solid #0d0d0d;
-  border-radius: 0.5rem;
-  margin: 1rem 0;
-  position: relative;
+  @apply flex flex-col;
+  @apply px-4 my-4;
+  @apply bg-yellow-200/70;
+  @apply border-[3px] border-black rounded-md;
 }
 
 .angular-component-with-content .label {
-  margin-left: 1rem;
-  background-color: #0d0d0d;
-  font-size: 0.6rem;
-  letter-spacing: 1px;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #fff;
-  position: absolute;
-  top: 0;
-  padding: 0.25rem 0.75rem;
-  border-radius: 0 0 0.5rem 0.5rem;
+  @apply bg-black;
+  @apply rounded-b-md;
+  @apply w-max;
+  @apply text-white;
+  @apply py-1 px-3;
+  @apply text-[0.6rem] uppercase tracking-widest font-bold;
 }
-
 .angular-component-with-content .content {
-  margin: 2.5rem 1rem 1rem;
-  padding: 0.5rem;
-  border: 2px dashed #0d0d0d20;
-  border-radius: 0.5rem;
+  @apply my-4 p-2;
+  @apply border-2 border-gray-900/20 border-dashed rounded-md;
 }
