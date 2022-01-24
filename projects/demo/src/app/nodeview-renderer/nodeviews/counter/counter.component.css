@@ -6,7 +6,7 @@
 }
 
 .angular-component.selected {
-  @apply border-green-500;
+  @apply border-emerald-500;
 }
 
 .angular-component .label {
