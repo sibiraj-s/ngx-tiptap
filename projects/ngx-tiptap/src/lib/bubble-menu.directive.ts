@@ -3,7 +3,7 @@ import { Editor } from '@tiptap/core';
 import { BubbleMenuPlugin, BubbleMenuPluginProps } from '@tiptap/extension-bubble-menu';
 
 @Directive({
-  selector: 'tiptap-bubble-menu[editor], [tiptapBubbleMenu][editor]'
+  selector: 'tiptap-bubble-menu[editor], [tiptapBubbleMenu][editor]',
 })
 export class BubbleMenuDirective implements OnInit, OnDestroy {
   @Input() pluginKey: BubbleMenuPluginProps['pluginKey'] = 'NgxTiptapBubbleMenu';
@@ -11,7 +11,7 @@ export class BubbleMenuDirective implements OnInit, OnDestroy {
   @Input() tippyOptions: BubbleMenuPluginProps['tippyOptions'] = {};
   @Input() shouldShow: BubbleMenuPluginProps['shouldShow'] = null;
 
-  constructor(private _el: ElementRef<HTMLElement>) { }
+  constructor(private elRef: ElementRef<HTMLElement>) { }
 
   ngOnInit(): void {
     if (!this.editor) {
@@ -21,9 +21,9 @@ export class BubbleMenuDirective implements OnInit, OnDestroy {
     this.editor.registerPlugin(BubbleMenuPlugin({
       pluginKey: this.pluginKey,
       editor: this.editor,
-      element: this._el.nativeElement,
+      element: this.elRef.nativeElement,
       tippyOptions: this.tippyOptions,
-      shouldShow: this.shouldShow
+      shouldShow: this.shouldShow,
     }));
   }
 

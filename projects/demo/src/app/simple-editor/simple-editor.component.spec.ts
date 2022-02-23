@@ -13,13 +13,13 @@ describe('SimpleEditorComponent', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [
-        SimpleEditorComponent
+        SimpleEditorComponent,
       ],
       imports: [
         ReactiveFormsModule,
-        NgxTiptapModule
-      ]
-    })
+        NgxTiptapModule,
+      ],
+    });
 
     await TestBed.compileComponents();
   });

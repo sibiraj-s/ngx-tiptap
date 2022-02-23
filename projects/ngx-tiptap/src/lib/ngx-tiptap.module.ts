@@ -19,7 +19,7 @@ import { NodeViewContentDirective } from './node-view-content.directive';
     FloatingMenuDirective,
     BubbleMenuDirective,
     DraggableDirective,
-    NodeViewContentDirective
-  ]
+    NodeViewContentDirective,
+  ],
 })
 export class NgxTiptapModule { }

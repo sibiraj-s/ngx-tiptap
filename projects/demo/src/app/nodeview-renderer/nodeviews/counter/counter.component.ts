@@ -4,13 +4,13 @@ import { AngularNodeViewComponent } from 'ngx-tiptap';
 @Component({
   selector: 'app-nodeview-counter',
   templateUrl: './counter.component.html',
-  styleUrls: ['./counter.component.css']
+  styleUrls: ['./counter.component.css'],
 })
 
 export class NodeviewCounterComponent extends AngularNodeViewComponent {
   increment(): void {
     this.updateAttributes({
-      count: this.node.attrs['count'] + 1
+      count: this.node.attrs['count'] + 1,
     });
   }
 }

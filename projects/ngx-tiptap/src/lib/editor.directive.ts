@@ -1,4 +1,6 @@
-import { Directive, ElementRef, forwardRef, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import {
+  Directive, ElementRef, forwardRef, Input, OnDestroy, OnInit, Renderer2,
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Content, Editor, JSONContent } from '@tiptap/core';
 import type { Transaction } from 'prosemirror-state';
@@ -8,17 +10,17 @@ import type { Transaction } from 'prosemirror-state';
   providers: [{
     provide: NG_VALUE_ACCESSOR,
     useExisting: forwardRef(() => EditorDirective),
-    multi: true
-  }]
+    multi: true,
+  }],
 })
 
 export class EditorDirective implements OnInit, ControlValueAccessor, OnDestroy {
   @Input() editor!: Editor;
   @Input() outputFormat: 'json' | 'html' = 'html';
 
-  constructor(private el: ElementRef<HTMLElement>, private _renderer: Renderer2) { }
+  constructor(private elRef: ElementRef<HTMLElement>, private renderer: Renderer2) { }
 
-  private onChange: (value: Content) => void = () => {/** */ };
+  private onChange: (value: Content) => void = () => { /** */ };
   private onTouched: () => void = () => { /** */ };
 
   // Writes a new value to the element.
@@ -44,7 +46,7 @@ export class EditorDirective implements OnInit, ControlValueAccessor, OnDestroy 
   // Called by the forms api to enable or disable the element
   setDisabledState(isDisabled: boolean): void {
     this.editor.setEditable(!isDisabled);
-    this._renderer.setProperty(this.el.nativeElement, 'disabled', isDisabled);
+    this.renderer.setProperty(this.elRef.nativeElement, 'disabled', isDisabled);
   }
 
   private handleChange = ({ transaction }: { transaction: Transaction }): void => {
@@ -58,7 +60,7 @@ export class EditorDirective implements OnInit, ControlValueAccessor, OnDestroy 
     }
 
     this.onChange(this.editor.getJSON() as JSONContent);
-  }
+  };
 
   ngOnInit(): void {
     if (!this.editor) {
@@ -66,14 +68,14 @@ export class EditorDirective implements OnInit, ControlValueAccessor, OnDestroy 
     }
 
     // take the inner contents and clear the block
-    const innerHTML = this.el.nativeElement.innerHTML;
-    this.el.nativeElement.innerHTML = '';
+    const { innerHTML } = this.elRef.nativeElement;
+    this.elRef.nativeElement.innerHTML = '';
 
     // insert the editor in the dom
-    this.el.nativeElement.append(...Array.from(this.editor.options.element.childNodes));
+    this.elRef.nativeElement.append(...Array.from(this.editor.options.element.childNodes));
 
     // update the options for the editor
-    this.editor.setOptions({ element: this.el.nativeElement });
+    this.editor.setOptions({ element: this.elRef.nativeElement });
 
     // update content to the editor
     if (innerHTML) {

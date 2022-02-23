@@ -11,10 +11,10 @@ import { EditorDirective } from './editor.directive';
   template: `
     <tiptap-editor [editor]="editor"></tiptap-editor>
     <tiptap-bubble-menu [editor]="editor">BubbleMenu</tiptap-bubble-menu>
-  `
+  `,
 })
 class TestComponent {
-  @Input() editor!: Editor
+  @Input() editor!: Editor;
 }
 
 describe('BubbleMenuDirective', () => {
@@ -26,8 +26,8 @@ describe('BubbleMenuDirective', () => {
       declarations: [
         TestComponent,
         EditorDirective,
-        BubbleMenuDirective
-      ]
+        BubbleMenuDirective,
+      ],
     });
 
     await TestBed.compileComponents();
@@ -36,7 +36,7 @@ describe('BubbleMenuDirective', () => {
     component = fixture.componentInstance;
 
     const editor = new Editor({
-      extensions: [StarterKit]
+      extensions: [StarterKit],
     });
 
     component.editor = editor;

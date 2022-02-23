@@ -11,7 +11,7 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-      ]
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);

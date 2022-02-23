@@ -13,13 +13,13 @@ describe('NodeviewRendererComponent', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [
-        NodeviewRendererComponent
+        NodeviewRendererComponent,
       ],
       imports: [
         FormsModule,
-        NgxTiptapModule
-      ]
-    })
+        NgxTiptapModule,
+      ],
+    });
 
     await TestBed.compileComponents();
   });

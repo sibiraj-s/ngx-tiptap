@@ -11,10 +11,10 @@ import { FloatingMenuDirective } from './floating-menu.directive';
   template: `
       <tiptap-editor [editor]="editor"></tiptap-editor>
       <tiptap-floating-menu [editor]="editor">Floater</tiptap-floating-menu>
-    `
+    `,
 })
 class TestComponent {
-  @Input() editor!: Editor
+  @Input() editor!: Editor;
 }
 
 describe('FloatingMenuDirective', () => {
@@ -26,8 +26,8 @@ describe('FloatingMenuDirective', () => {
       declarations: [
         TestComponent,
         EditorDirective,
-        FloatingMenuDirective
-      ]
+        FloatingMenuDirective,
+      ],
     });
 
     await TestBed.compileComponents();
@@ -36,7 +36,7 @@ describe('FloatingMenuDirective', () => {
     component = fixture.componentInstance;
 
     const editor = new Editor({
-      extensions: [StarterKit]
+      extensions: [StarterKit],
     });
 
     component.editor = editor;

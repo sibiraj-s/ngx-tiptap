@@ -13,13 +13,13 @@ describe('FloatingMenuComponent', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [
-        FloatingMenuComponent
+        FloatingMenuComponent,
       ],
       imports: [
         FormsModule,
-        NgxTiptapModule
-      ]
-    })
+        NgxTiptapModule,
+      ],
+    });
 
     await TestBed.compileComponents();
   });

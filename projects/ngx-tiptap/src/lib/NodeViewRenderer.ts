@@ -1,24 +1,13 @@
-import { Component, Injector, Input, Type } from '@angular/core';
+import { Injector, Type } from '@angular/core';
 import {
   Editor, NodeView, NodeViewProps,
-  NodeViewRenderer, NodeViewRendererProps, NodeViewRendererOptions
+  NodeViewRenderer, NodeViewRendererProps, NodeViewRendererOptions,
 } from '@tiptap/core';
 import type { Decoration } from 'prosemirror-view';
 import type { Node as ProseMirrorNode } from 'prosemirror-model';
 
 import { AngularRenderer } from './AngularRenderer';
-
-@Component({ template: '' })
-export class AngularNodeViewComponent implements NodeViewProps {
-  @Input() editor!: NodeViewProps['editor'];
-  @Input() node!: NodeViewProps['node'];
-  @Input() decorations!: NodeViewProps['decorations'];
-  @Input() selected!: NodeViewProps['selected'];
-  @Input() extension!: NodeViewProps['extension'];
-  @Input() getPos!: NodeViewProps['getPos'];
-  @Input() updateAttributes!: NodeViewProps['updateAttributes'];
-  @Input() deleteNode!: NodeViewProps['deleteNode'];
-}
+import { AngularNodeViewComponent } from './node-view.component';
 
 interface AngularNodeViewRendererOptions extends NodeViewRendererOptions {
   update?: ((node: ProseMirrorNode, decorations: Decoration[]) => boolean) | null;
@@ -26,8 +15,8 @@ interface AngularNodeViewRendererOptions extends NodeViewRendererOptions {
 }
 
 class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, AngularNodeViewRendererOptions> {
-  renderer!: AngularRenderer<AngularNodeViewComponent, NodeViewProps>
-  contentDOMElement!: HTMLElement | null
+  renderer!: AngularRenderer<AngularNodeViewComponent, NodeViewProps>;
+  contentDOMElement!: HTMLElement | null;
 
   override mount() {
     const injector = this.options.injector as Injector;
@@ -40,7 +29,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
       extension: this.extension,
       getPos: () => this.getPos(),
       updateAttributes: (attributes = {}) => this.updateAttributes(attributes),
-      deleteNode: () => this.deleteNode()
+      deleteNode: () => this.deleteNode(),
     };
 
     // create renderer
@@ -63,7 +52,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
 
       // Required for editable node views
       // The content won't be rendered if `editable` is set to `false`
-      this.renderer.detectChanges()
+      this.renderer.detectChanges();
     }
   }
 
@@ -128,7 +117,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
 
 export const AngularNodeViewRenderer = (
   ViewComponent: Type<AngularNodeViewComponent>,
-  options: Partial<AngularNodeViewRendererOptions>
+  options: Partial<AngularNodeViewRendererOptions>,
 ): NodeViewRenderer => {
   return (props: NodeViewRendererProps) => {
     return new AngularNodeView(ViewComponent, props, options);

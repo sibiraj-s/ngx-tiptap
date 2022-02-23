@@ -9,10 +9,10 @@ import { EditorDirective } from './editor.directive';
 
 describe('NgxTiptapDirective', () => {
   @Component({
-    template: '<div tiptap [editor]="editor"></div>'
+    template: '<div tiptap [editor]="editor"></div>',
   })
   class TestComponent {
-    editor!: Editor
+    editor!: Editor;
   }
 
   let component: TestComponent;
@@ -22,8 +22,8 @@ describe('NgxTiptapDirective', () => {
     TestBed.configureTestingModule({
       declarations: [
         TestComponent,
-        EditorDirective
-      ]
+        EditorDirective,
+      ],
     });
 
     await TestBed.compileComponents();
@@ -32,7 +32,7 @@ describe('NgxTiptapDirective', () => {
     component = fixture.componentInstance;
 
     const editor = new Editor({
-      extensions: [StarterKit]
+      extensions: [StarterKit],
     });
 
     component.editor = editor;
@@ -48,15 +48,15 @@ describe('NgxTiptapDirective', () => {
   });
 });
 
-@Component({
-  template: '<div tiptap [editor]="editor" [(ngModel)]="value"></div>'
-})
-class TestFormComponent {
-  editor!: Editor
-  value: Content = 'Default Text'
-}
-
 describe('NgxTiptapDirective: FormsModule', () => {
+  @Component({
+    template: '<div tiptap [editor]="editor" [(ngModel)]="value"></div>',
+  })
+  class TestFormComponent {
+    editor!: Editor;
+    value: Content = 'Default Text';
+  }
+
   let component: TestFormComponent;
   let fixture: ComponentFixture<TestFormComponent>;
   let directiveEl: DebugElement;
@@ -66,7 +66,7 @@ describe('NgxTiptapDirective: FormsModule', () => {
     TestBed.configureTestingModule({
       declarations: [
         TestFormComponent,
-        EditorDirective
+        EditorDirective,
       ],
       imports: [
         FormsModule,
@@ -79,7 +79,7 @@ describe('NgxTiptapDirective: FormsModule', () => {
     component = fixture.componentInstance;
 
     const editor = new Editor({
-      extensions: [StarterKit]
+      extensions: [StarterKit],
     });
 
     component.editor = editor;
@@ -128,12 +128,12 @@ describe('NgxTiptapDirective: FormsModule', () => {
   });
 
   it('should set empty string as value', async () => {
-    component.value = ''
+    component.value = '';
 
     fixture.detectChanges();
     await fixture.whenStable();
 
-    const editorEl: HTMLElement = directiveEl.query(By.css('.ProseMirror')).nativeElement
+    const editorEl: HTMLElement = directiveEl.query(By.css('.ProseMirror')).nativeElement;
     expect(editorEl.textContent).toBe('');
   });
 
@@ -145,8 +145,8 @@ describe('NgxTiptapDirective: FormsModule', () => {
           type: 'paragraph',
           content: [{
             type: 'text',
-            text: 'Hello world!'
-          }]
+            text: 'Hello world!',
+          }],
         },
       ],
     };
@@ -154,11 +154,10 @@ describe('NgxTiptapDirective: FormsModule', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    const editorEl: HTMLElement = directiveEl.query(By.css('.ProseMirror')).nativeElement
+    const editorEl: HTMLElement = directiveEl.query(By.css('.ProseMirror')).nativeElement;
     expect(editorEl.textContent).toBe('Hello world!');
   });
 });
-
 
 describe('NgxTiptapDirective: Reactive FormsModule', () => {
   @Component({
@@ -190,7 +189,7 @@ describe('NgxTiptapDirective: Reactive FormsModule', () => {
       ],
       declarations: [
         EditorDirective,
-        TestComponent
+        TestComponent,
       ],
     });
 
@@ -202,7 +201,7 @@ describe('NgxTiptapDirective: Reactive FormsModule', () => {
     component = fixture.componentInstance;
 
     const editor = new Editor({
-      extensions: [StarterKit]
+      extensions: [StarterKit],
     });
 
     component.editor = editor;

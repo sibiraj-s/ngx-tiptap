@@ -11,38 +11,38 @@ const routes: Routes = [
     path: '',
     component: SimpleEditorComponent,
     data: {
-      title: 'Simple Editor'
-    }
+      title: 'Simple Editor',
+    },
   },
   {
     path: 'floating-menu',
     component: FloatingMenuComponent,
     data: {
-      title: 'Floating Menu'
-    }
+      title: 'Floating Menu',
+    },
   },
   {
     path: 'bubble-menu',
     component: BubbleMenuComponent,
     data: {
-      title: 'Bubble Menu'
-    }
+      title: 'Bubble Menu',
+    },
   },
   {
     path: 'nodeview-renderer',
     component: NodeviewRendererComponent,
     data: {
-      title: 'NodeviewRenderer'
-    }
-  }
+      title: 'NodeviewRenderer',
+    },
+  },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { useHash: true })
+    RouterModule.forRoot(routes, { useHash: true }),
   ],
   exports: [
-    RouterModule
-  ]
+    RouterModule,
+  ],
 })
 export class AppRoutingModule { }

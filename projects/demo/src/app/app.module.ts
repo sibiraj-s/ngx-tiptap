@@ -20,19 +20,19 @@ import { AppRoutingModule } from './app-routing.module';
     NodeviewEditableComponent,
 
     SimpleEditorComponent,
-     FloatingMenuComponent,
-     BubbleMenuComponent,
-     NodeviewRendererComponent
+    FloatingMenuComponent,
+    BubbleMenuComponent,
+    NodeviewRendererComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     NgxTiptapModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 
 export class AppModule { }

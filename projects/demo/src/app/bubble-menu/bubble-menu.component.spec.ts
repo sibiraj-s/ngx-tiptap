@@ -13,13 +13,13 @@ describe('BubbleMenuComponent', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
       declarations: [
-        BubbleMenuComponent
+        BubbleMenuComponent,
       ],
       imports: [
         FormsModule,
-        NgxTiptapModule
-      ]
-    })
+        NgxTiptapModule,
+      ],
+    });
 
     await TestBed.compileComponents();
   });

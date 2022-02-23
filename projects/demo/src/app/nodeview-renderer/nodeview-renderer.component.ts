@@ -8,7 +8,7 @@ import { CounterComponentExtension, EditableComponentExtension } from './extensi
 @Component({
   selector: 'app-nodeview-renderer',
   templateUrl: './nodeview-renderer.component.html',
-  styleUrls: ['./nodeview-renderer.component.css']
+  styleUrls: ['./nodeview-renderer.component.css'],
 })
 export class NodeviewRendererComponent implements OnDestroy {
   constructor(private injector: Injector) { }
@@ -28,16 +28,16 @@ export class NodeviewRendererComponent implements OnDestroy {
       StarterKit,
       Placeholder,
       CounterComponentExtension(this.injector),
-      EditableComponentExtension(this.injector)
+      EditableComponentExtension(this.injector),
     ],
     editorProps: {
       attributes: {
-        class: 'p-2 border-black focus:border-blue-700 border-2 rounded-md outline-none'
-      }
-    }
+        class: 'p-2 border-black focus:border-blue-700 border-2 rounded-md outline-none',
+      },
+    },
   });
 
   ngOnDestroy(): void {
-    this.editor.destroy()
+    this.editor.destroy();
   }
 }
