@@ -1,6 +1,6 @@
 import {
-  Directive, ElementRef, forwardRef,
-  Input, OnInit, Renderer2,
+  AfterViewInit, ChangeDetectorRef, Directive,
+  ElementRef, forwardRef, Input, OnInit, Renderer2,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Content, Editor, JSONContent } from '@tiptap/core';
@@ -15,11 +15,15 @@ import type { Transaction } from 'prosemirror-state';
   }],
 })
 
-export class EditorDirective implements OnInit, ControlValueAccessor {
+export class EditorDirective implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() editor!: Editor;
   @Input() outputFormat: 'json' | 'html' = 'html';
 
-  constructor(private elRef: ElementRef<HTMLElement>, private renderer: Renderer2) { }
+  constructor(
+    private elRef: ElementRef<HTMLElement>,
+    private renderer: Renderer2,
+    private changeDetectorRef: ChangeDetectorRef,
+  ) { }
 
   private onChange: (value: Content) => void = () => { /** */ };
   private onTouched: () => void = () => { /** */ };
@@ -90,5 +94,9 @@ export class EditorDirective implements OnInit, ControlValueAccessor {
 
     // register transaction handler to emit changes on update
     this.editor.on('transaction', this.handleChange);
+  }
+
+  ngAfterViewInit(): void {
+    this.changeDetectorRef.detectChanges();
   }
 }
