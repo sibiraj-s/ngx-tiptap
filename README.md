@@ -48,7 +48,7 @@ export class AppModule {}
 Create an instance of the editor
 
 ```ts
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Editor } from '@tiptap/core';
 import StarterKit from '@tiptap/starter-kit';
 
@@ -56,12 +56,16 @@ import StarterKit from '@tiptap/starter-kit';
   selector: 'app-root',
   template: './app.component.html',
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   editor = new Editor({
     extensions: [StarterKit],
   });
 
   value = '<p>Hello, Tiptap!</p>'; // can be HTML or JSON, see https://www.tiptap.dev/api/editor#content
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
 }
 ```
 
@@ -169,13 +173,17 @@ export class NodeviewCounterComponent extends AngularNodeViewComponent {
 ### Use the extension
 
 ```ts
-import { Component, Injector, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Injector, OnInit, OnDestroy } from '@angular/core';
 import { Editor } from '@tiptap/core';
 import StarterKit from '@tiptap/starter-kit';
 
 import CounterComponentExtension from './CounterComponentExtension';
 
-export class AppComponent implements OnInit {
+@Component({
+  selector: 'app-root',
+  template: './app.component.html',
+})
+export class AppComponent implements OnInit, OnDestroy {
   editor: Editor;
 
   constructor(private injector: Injector) {}
@@ -193,6 +201,10 @@ export class AppComponent implements OnInit {
         },
       },
     });
+  }
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
   }
 }
 ```
