@@ -21,6 +21,26 @@ All notable changes to this project will be documented in this file.
 - don't destroy editor from the directive ([c165cc6](https://github.com/sibiraj-s/ngx-tiptap/commit/c165cc6))
 - run changeDetection manually after view init ([65f5c1e](https://github.com/sibiraj-s/ngx-tiptap/commit/65f5c1e))
 
+#### Breaking Changes
+
+- Editor should be destroyed manually
+
+```ts
+import { Component, OnDestroy } from '@angular/core';
+import { Editor } from '@tiptap/core';
+
+@Component({
+  selector: 'app-root',
+})
+export class AppComponent implements OnDestroy {
+  editor = new Editor();
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+}
+```
+
 ## v4.0.4 (2022-01-18)
 
 #### Bug Fixes
