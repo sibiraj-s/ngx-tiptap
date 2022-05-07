@@ -1,5 +1,6 @@
 import {
-  Directive, ElementRef, forwardRef, Input, OnDestroy, OnInit, Renderer2,
+  Directive, ElementRef, forwardRef,
+  Input, OnInit, Renderer2,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Content, Editor, JSONContent } from '@tiptap/core';
@@ -14,7 +15,7 @@ import type { Transaction } from 'prosemirror-state';
   }],
 })
 
-export class EditorDirective implements OnInit, ControlValueAccessor, OnDestroy {
+export class EditorDirective implements OnInit, ControlValueAccessor {
   @Input() editor!: Editor;
   @Input() outputFormat: 'json' | 'html' = 'html';
 
@@ -89,9 +90,5 @@ export class EditorDirective implements OnInit, ControlValueAccessor, OnDestroy 
 
     // register transaction handler to emit changes on update
     this.editor.on('transaction', this.handleChange);
-  }
-
-  ngOnDestroy(): void {
-    this.editor.destroy();
   }
 }
