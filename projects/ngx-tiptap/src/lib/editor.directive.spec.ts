@@ -1,4 +1,4 @@
-import { Component, DebugElement, Renderer2 } from '@angular/core';
+import { ChangeDetectorRef, Component, DebugElement, Renderer2 } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -42,8 +42,9 @@ describe('NgxTiptapDirective', () => {
   it('should create an instance', () => {
     const hostEl = fixture.debugElement.query(By.css('div'));
     const renderer = fixture.debugElement.injector.get(Renderer2);
+    const changeDetectorRef = fixture.debugElement.injector.get(ChangeDetectorRef);
 
-    const directive = new EditorDirective(hostEl, renderer);
+    const directive = new EditorDirective(hostEl, renderer, changeDetectorRef);
     expect(directive).toBeTruthy();
   });
 });
@@ -93,8 +94,9 @@ describe('NgxTiptapDirective: FormsModule', () => {
   it('should create an instance', () => {
     const hostEl = fixture.debugElement.query(By.css('div'));
     const renderer = fixture.debugElement.injector.get(Renderer2);
+    const changeDetectorRef = fixture.debugElement.injector.get(ChangeDetectorRef);
 
-    const directive = new EditorDirective(hostEl, renderer);
+    const directive = new EditorDirective(hostEl, renderer, changeDetectorRef);
     expect(directive).toBeTruthy();
   });
 
