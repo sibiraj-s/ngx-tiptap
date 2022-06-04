@@ -1,5 +1,3 @@
-/// <reference types="cypress" />
-
 describe('ngx-tiptap', () => {
   beforeEach(() => {
     cy.visit('/');

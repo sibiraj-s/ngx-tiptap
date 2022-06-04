@@ -1,5 +1,3 @@
-/// <reference types="cypress" />
-
 describe('ngx-tiptap: bubble-menu', () => {
   beforeEach(() => {
     cy.visit('/bubble-menu');

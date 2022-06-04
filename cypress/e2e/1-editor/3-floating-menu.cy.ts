@@ -1,5 +1,3 @@
-/// <reference types="cypress" />
-
 describe('ngx-tiptap: floating-menu', () => {
   beforeEach(() => {
     cy.visit('/floating-menu');
