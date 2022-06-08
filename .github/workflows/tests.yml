@@ -64,11 +64,10 @@ jobs:
         run: npm run build
 
       - name: Run Cypress tests
-        uses: cypress-io/github-action@v3
+        uses: cypress-io/github-action@v4
         with:
           start: npm run demo
           wait-on: 'http://localhost:4200'
-          project: ./e2e
           browser: chrome
           quiet: true
           headless: true
