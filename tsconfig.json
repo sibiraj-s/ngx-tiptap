@@ -6,7 +6,6 @@
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "noImplicitAny": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
@@ -14,7 +13,6 @@
     "sourceMap": true,
     "paths": {
       "ngx-tiptap": [
-        "dist/ngx-tiptap/ngx-tiptap",
         "dist/ngx-tiptap"
       ]
     },
@@ -23,7 +21,7 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2017",
+    "target": "es2020",
     "module": "es2020",
     "lib": [
       "es2020",
@@ -35,8 +33,5 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  },
-  "exclude": [
-    "e2e/"
-  ]
+  }
 }
