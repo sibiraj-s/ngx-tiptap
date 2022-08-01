@@ -20,13 +20,13 @@ export class EditorDirective implements OnInit, AfterViewInit, ControlValueAcces
   @Input() outputFormat: 'json' | 'html' = 'html';
 
   constructor(
-    private elRef: ElementRef<HTMLElement>,
-    private renderer: Renderer2,
-    private changeDetectorRef: ChangeDetectorRef,
+    protected elRef: ElementRef<HTMLElement>,
+    protected renderer: Renderer2,
+    protected changeDetectorRef: ChangeDetectorRef,
   ) { }
 
-  private onChange: (value: Content) => void = () => { /** */ };
-  private onTouched: () => void = () => { /** */ };
+  protected onChange: (value: Content) => void = () => { /** */ };
+  protected onTouched: () => void = () => { /** */ };
 
   // Writes a new value to the element.
   // This methods is called when programmatic changes from model to view are requested.
@@ -54,10 +54,13 @@ export class EditorDirective implements OnInit, AfterViewInit, ControlValueAcces
     this.renderer.setProperty(this.elRef.nativeElement, 'disabled', isDisabled);
   }
 
-  private handleChange = ({ transaction }: { transaction: Transaction }): void => {
+  protected handleChange = ({ transaction }: { transaction: Transaction }): void => {
     if (!transaction.docChanged) {
       return;
     }
+
+    // Needed for ChangeDetectionStrategy.OnPush to get notified about changes
+    this.changeDetectorRef.markForCheck();
 
     if (this.outputFormat === 'html') {
       this.onChange(this.editor.getHTML());
