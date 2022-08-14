@@ -1,6 +1,6 @@
 import {
-  ApplicationRef, ComponentFactoryResolver, ComponentRef,
-  ElementRef, Injector, Type,
+  ApplicationRef, ComponentRef, ElementRef,
+  Injector, Type, createComponent,
 } from '@angular/core';
 
 export class AngularRenderer<C, P> {
@@ -10,15 +10,9 @@ export class AngularRenderer<C, P> {
   constructor(ViewComponent: Type<C>, injector: Injector, props: Partial<P>) {
     this.applicationRef = injector.get(ApplicationRef);
 
-    const componentFactoryResolver = injector.get(ComponentFactoryResolver);
-    const factory = componentFactoryResolver.resolveComponentFactory(ViewComponent);
-
-    this.componentRef = factory.create(injector, []);
-
-    // ViewContainerRef will not be injected into services
-    // https://github.com/sibiraj-s/ngx-tiptap/issues/20
-    // const viewContainerRef = injector.get(ViewContainerRef);
-    // this.componentRef = viewContainerRef.createComponent(ViewComponent, { injector })
+    this.componentRef = createComponent(ViewComponent, {
+      environmentInjector: this.applicationRef.injector,
+    });
 
     // set input props to the component
     this.updateProps(props);
