@@ -73,4 +73,3 @@ jobs:
           wait-on: 'http://localhost:4200'
           browser: chrome
           quiet: true
-          headless: true

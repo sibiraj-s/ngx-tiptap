@@ -6,5 +6,6 @@ export default defineConfig({
     setupNodeEvents(on, config) { // eslint-disable-line @typescript-eslint/no-unused-vars
       // implement node event listeners here
     },
+    video: false,
   },
 });
