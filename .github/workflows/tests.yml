@@ -72,4 +72,3 @@ jobs:
           start: npm run demo
           wait-on: 'http://localhost:4200'
           browser: chrome
-          quiet: true
