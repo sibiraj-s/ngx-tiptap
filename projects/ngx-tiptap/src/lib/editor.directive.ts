@@ -14,7 +14,6 @@ import type { Transaction } from 'prosemirror-state';
     multi: true,
   }],
 })
-
 export class EditorDirective implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() editor!: Editor;
   @Input() outputFormat: 'json' | 'html' = 'html';
@@ -33,6 +32,10 @@ export class EditorDirective implements OnInit, AfterViewInit, ControlValueAcces
   writeValue(value: Content): void {
     if (!this.outputFormat && typeof value === 'string') {
       this.outputFormat = 'html';
+    }
+
+    if (value === this.getEditorValue()) {
+      return;
     }
 
     this.editor.chain().setContent(value, false).run();
@@ -62,12 +65,7 @@ export class EditorDirective implements OnInit, AfterViewInit, ControlValueAcces
     // Needed for ChangeDetectionStrategy.OnPush to get notified about changes
     this.changeDetectorRef.markForCheck();
 
-    if (this.outputFormat === 'html') {
-      this.onChange(this.editor.getHTML());
-      return;
-    }
-
-    this.onChange(this.editor.getJSON() as JSONContent);
+    this.onChange(this.getEditorValue());
   };
 
   ngOnInit(): void {
@@ -101,5 +99,13 @@ export class EditorDirective implements OnInit, AfterViewInit, ControlValueAcces
 
   ngAfterViewInit(): void {
     this.changeDetectorRef.detectChanges();
+  }
+
+  protected getEditorValue() {
+    if (this.outputFormat === 'html') {
+      return this.editor.getHTML();
+    }
+
+    return this.editor.getJSON() as JSONContent;
   }
 }
