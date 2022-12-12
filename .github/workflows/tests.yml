@@ -67,7 +67,7 @@ jobs:
         run: npm run build
 
       - name: Run Cypress tests
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v5
         with:
           start: npm run demo
           wait-on: 'http://localhost:4200'
