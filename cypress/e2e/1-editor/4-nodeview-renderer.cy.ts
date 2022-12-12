@@ -10,9 +10,12 @@ describe('ngx-tiptap: nodeview-renderer', () => {
   });
 
   it('should render the counter component', () => {
-    cy.get('button').contains('clicked 0 times').click();
-    cy.get('button').contains('clicked 1 times').click();
-    cy.get('button').should('contain.text', 'clicked 2 times');
+    cy.get('button')
+      .contains('clicked 0 times')
+      .click()
+      .should('contain.text', 'clicked 1 times')
+      .click()
+      .should('contain.text', 'clicked 2 times');
   });
 
   it('should render the editable component', () => {
