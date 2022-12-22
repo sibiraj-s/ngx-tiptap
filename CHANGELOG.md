@@ -14,6 +14,37 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Refactor
 
+## v7.0.0 (2022-12-22)
+
+#### Bug Fixes
+
+- fixes ngModelChange is invoked during render without any changes to the model value ([1fcc867](https://github.com/sibiraj-s/ngx-tiptap/commit/1fcc867))
+
+#### Dependency Updates
+
+- update prosemirror-\* peerDependencies ([733aa55](https://github.com/sibiraj-s/ngx-tiptap/commit/733aa55))
+- update @tiptap/\* peerDependencies ([03d738f](https://github.com/sibiraj-s/ngx-tiptap/commit/03d738f))
+- update devDependencies ([b8b1733](https://github.com/sibiraj-s/ngx-tiptap/commit/b8b1733))
+
+#### Breaking Changes
+
+- requires angular 15 or greater ([ea34042](https://github.com/sibiraj-s/ngx-tiptap/commit/ea34042))
+- titap commands like setContent, clearContent requires emitUpdate flag to be passed ([1fcc867](https://github.com/sibiraj-s/ngx-tiptap/commit/1fcc867))
+
+For Example,
+
+**Before**
+
+```js
+editor.commands.setContent('Hello World!');
+```
+
+**After**
+
+```js
+editor.commands.setContent('Hello World!', true);
+```
+
 ## v6.0.0 (2022-06-27)
 
 #### Breaking Changes
