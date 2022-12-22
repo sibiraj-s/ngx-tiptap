@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
 import { NgxTiptapModule } from 'ngx-tiptap';
@@ -16,7 +16,7 @@ describe('SimpleEditorComponent', () => {
         SimpleEditorComponent,
       ],
       imports: [
-        ReactiveFormsModule,
+        FormsModule,
         NgxTiptapModule,
       ],
     });
@@ -36,5 +36,12 @@ describe('SimpleEditorComponent', () => {
 
   it('should render the editor', () => {
     expect(fixture.debugElement.query(By.css('.ProseMirror'))).toBeTruthy();
+  });
+
+  // https://github.com/sibiraj-s/ngx-tiptap/issues/24
+  it('should not call the handleValueChange function on render without any changes', async () => {
+    spyOn(component, 'handleValueChange').and.callThrough();
+    await fixture.whenStable();
+    expect(component.handleValueChange).not.toHaveBeenCalled();
   });
 });

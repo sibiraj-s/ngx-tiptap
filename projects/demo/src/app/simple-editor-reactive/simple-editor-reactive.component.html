@@ -1,5 +1,5 @@
-<form>
-  <div class="text-xl mb-2">Editor with placeholder</div>
+<form [formGroup]="reactiveForm">
+  <div class="text-xl mb-2">With Reactive Forms</div>
 
   <div>
     <div class="border-black border-2 border-b-0 rounded-t-md p-1 flex">
@@ -37,6 +37,6 @@
         </svg>
       </button>
     </div>
-    <tiptap-editor [editor]="editor" name="simple-editor" [ngModel]="value" (ngModelChange)="handleValueChange($event)"></tiptap-editor>
+    <tiptap-editor [editor]="editor" formControlName="content"></tiptap-editor>
   </div>
 </form>

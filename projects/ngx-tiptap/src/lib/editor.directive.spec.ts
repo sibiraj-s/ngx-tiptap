@@ -114,10 +114,36 @@ describe('NgxTiptapDirective: FormsModule', () => {
     expect(component.value).toContain('Hi.');
   });
 
-  it('should the model when editor is directly updated', () => {
-    component.editor.chain().setContent('Hello World!').run();
+  it('should update the model when directly updated using editor commands', async () => {
+    component.editor.chain().setContent('Hello World!', true).run();
+
     fixture.detectChanges();
+    await fixture.whenStable();
+
     expect(component.value).toContain('Hello World!');
+  });
+
+  it('should not update the model when emitUpdate is set to false', async () => {
+    component.editor.chain().setContent('Hello World!', false).run();
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(component.value).not.toContain('Hello World!');
+  });
+
+  it('should update the model when marks are toggled directly using editor commands', async () => {
+    component.editor
+      .chain()
+      .setContent('Hello World!', true)
+      .selectAll()
+      .setBold()
+      .run();
+
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(component.value).toBe('<p><strong>Hello World!</strong></p>');
   });
 
   it('should disable the editor correctly', async () => {

@@ -3,8 +3,7 @@ import {
   ElementRef, forwardRef, Input, OnInit, Renderer2,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Content, Editor, JSONContent } from '@tiptap/core';
-import type { Transaction } from 'prosemirror-state';
+import { Content, Editor, type EditorEvents } from '@tiptap/core';
 
 @Directive({
   selector: 'tiptap[editor], [tiptap][editor], tiptap-editor[editor], [tiptapEditor][editor]',
@@ -54,7 +53,7 @@ export class EditorDirective implements OnInit, AfterViewInit, ControlValueAcces
     this.renderer.setProperty(this.elRef.nativeElement, 'disabled', isDisabled);
   }
 
-  protected handleChange = ({ transaction }: { transaction: Transaction }): void => {
+  protected handleChange = ({ editor, transaction }: EditorEvents['transaction']): void => {
     if (!transaction.docChanged) {
       return;
     }
@@ -63,11 +62,11 @@ export class EditorDirective implements OnInit, AfterViewInit, ControlValueAcces
     this.changeDetectorRef.markForCheck();
 
     if (this.outputFormat === 'html') {
-      this.onChange(this.editor.getHTML());
+      this.onChange(editor.getHTML());
       return;
     }
 
-    this.onChange(this.editor.getJSON() as JSONContent);
+    this.onChange(editor.getJSON());
   };
 
   ngOnInit(): void {
@@ -95,8 +94,8 @@ export class EditorDirective implements OnInit, AfterViewInit, ControlValueAcces
       this.onTouched();
     });
 
-    // register transaction handler to emit changes on update
-    this.editor.on('transaction', this.handleChange);
+    // register update handler to listen to changes on update
+    this.editor.on('update', this.handleChange);
   }
 
   ngAfterViewInit(): void {

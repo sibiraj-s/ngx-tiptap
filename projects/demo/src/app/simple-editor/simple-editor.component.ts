@@ -1,6 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Editor } from '@tiptap/core';
+import { Content, Editor } from '@tiptap/core';
 import StarterKit from '@tiptap/starter-kit';
 import Placeholder from '@tiptap/extension-placeholder';
 
@@ -10,17 +9,13 @@ import Placeholder from '@tiptap/extension-placeholder';
   styleUrls: ['./simple-editor.component.css'],
 })
 export class SimpleEditorComponent implements OnDestroy {
-  value = `Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+  value: Content = `Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     Lorem Ipsum has been the <strong>industry's standard dummy text ever since the 1500s</strong>,
     when an unknown printer took a galley of type and scrambled it to make a type specimen book.
     It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
     It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
     and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum
     `;
-
-  reactiveForm = new FormGroup({
-    content: new FormControl(this.value),
-  });
 
   editor = new Editor({
     extensions: [
@@ -34,6 +29,10 @@ export class SimpleEditorComponent implements OnDestroy {
       },
     },
   });
+
+  handleValueChange(value: Content): void {
+    this.value = value;
+  }
 
   ngOnDestroy(): void {
     this.editor.destroy();
