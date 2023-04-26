@@ -3,13 +3,22 @@ import {
   Editor, NodeView, NodeViewProps,
   NodeViewRenderer, NodeViewRendererProps, NodeViewRendererOptions, DecorationWithType,
 } from '@tiptap/core';
-import type { Node as ProseMirrorNode } from 'prosemirror-model';
+import type { Decoration } from '@tiptap/pm/view';
+import type { Node as ProseMirrorNode } from '@tiptap/pm/model';
 
 import { AngularRenderer } from './AngularRenderer';
 import { AngularNodeViewComponent } from './node-view.component';
 
+interface RendererUpdateProps {
+  oldNode: ProseMirrorNode;
+  oldDecorations: Decoration[];
+  newNode: ProseMirrorNode;
+  newDecorations: Decoration[];
+  updateProps: () => void;
+}
+
 interface AngularNodeViewRendererOptions extends NodeViewRendererOptions {
-  update?: ((node: ProseMirrorNode, decorations: DecorationWithType[]) => boolean) | null;
+  update?: ((props: RendererUpdateProps) => boolean) | null;
   injector: Injector;
 }
 
@@ -53,6 +62,8 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
       // The content won't be rendered if `editable` is set to `false`
       this.renderer.detectChanges();
     }
+
+    this.appendContendDom();
   }
 
   override get dom() {
@@ -64,11 +75,10 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
       return null;
     }
 
-    this.maybeMoveContentDOM();
     return this.contentDOMElement;
   }
 
-  private maybeMoveContentDOM(): void {
+  private appendContendDom() {
     const contentElement = this.dom.querySelector('[data-node-view-content]');
 
     if (
@@ -81,8 +91,24 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
   }
 
   update(node: ProseMirrorNode, decorations: DecorationWithType[]): boolean {
+    const updateProps = () => {
+      this.renderer.updateProps({ node, decorations });
+    };
+
     if (this.options.update) {
-      return this.options.update(node, decorations);
+      const oldNode = this.node;
+      const oldDecorations = this.decorations;
+
+      this.node = node;
+      this.decorations = decorations;
+
+      return this.options.update({
+        oldNode,
+        oldDecorations,
+        newNode: node,
+        newDecorations: decorations,
+        updateProps: () => updateProps(),
+      });
     }
 
     if (node.type !== this.node.type) {
@@ -95,8 +121,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
 
     this.node = node;
     this.decorations = decorations;
-    this.renderer.updateProps({ node, decorations });
-    this.maybeMoveContentDOM();
+    updateProps();
 
     return true;
   }
