@@ -1,16 +1,15 @@
 import { Injector, Type } from '@angular/core';
 import {
   Editor, NodeView, NodeViewProps,
-  NodeViewRenderer, NodeViewRendererProps, NodeViewRendererOptions,
+  NodeViewRenderer, NodeViewRendererProps, NodeViewRendererOptions, DecorationWithType,
 } from '@tiptap/core';
-import type { Decoration } from 'prosemirror-view';
 import type { Node as ProseMirrorNode } from 'prosemirror-model';
 
 import { AngularRenderer } from './AngularRenderer';
 import { AngularNodeViewComponent } from './node-view.component';
 
 interface AngularNodeViewRendererOptions extends NodeViewRendererOptions {
-  update?: ((node: ProseMirrorNode, decorations: Decoration[]) => boolean) | null;
+  update?: ((node: ProseMirrorNode, decorations: DecorationWithType[]) => boolean) | null;
   injector: Injector;
 }
 
@@ -81,7 +80,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
     }
   }
 
-  update(node: ProseMirrorNode, decorations: Decoration[]): boolean {
+  update(node: ProseMirrorNode, decorations: DecorationWithType[]): boolean {
     if (this.options.update) {
       return this.options.update(node, decorations);
     }
