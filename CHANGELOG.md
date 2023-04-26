@@ -14,6 +14,12 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Refactor
 
+## v8.0.0 (2023-04-26)
+
+#### Features
+
+- update to tiptap v2 stable ([432f4d2](https://github.com/sibiraj-s/ngx-tiptap/commit/432f4d2))
+
 ## v7.0.0 (2022-12-22)
 
 #### Bug Fixes
