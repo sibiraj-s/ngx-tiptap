@@ -14,10 +14,11 @@
     "wysiwyg-editor",
     "rich-text-editor"
   ],
+  "sideEffects": false,
   "peerDependencies": {
-    "@angular/common": ">=15.0.0",
-    "@angular/core": ">=15.0.0",
-    "@angular/forms": ">=15.0.0",
+    "@angular/common": ">=16.0.0",
+    "@angular/core": ">=16.0.0",
+    "@angular/forms": ">=16.0.0",
     "@tiptap/core": "^2.0.0",
     "@tiptap/extension-bubble-menu": "^2.0.0",
     "@tiptap/extension-floating-menu": "^2.0.0",
