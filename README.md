@@ -136,7 +136,7 @@ import { NodeviewCounterComponent } from './nodeview-counter/nodeview-counter.co
 
 const CounterComponentExtension = (injector: Injector): Node => {
   return Node.create({
-    // ...configuration
+    // ...other configuration hidden for brevity
     parseHTML() {
       return [{ tag: 'angular-component-counter' }];
     },
@@ -151,6 +151,8 @@ const CounterComponentExtension = (injector: Injector): Node => {
 
 export default CounterComponentExtension;
 ```
+
+Refer: https://tiptap.dev/guide/custom-extensions
 
 ### Create a Component
 
