@@ -46,9 +46,9 @@
     "@tiptap/pm": "^2.0.3",
     "@tiptap/starter-kit": "^2.0.3",
     "@types/jasmine": "~4.3.0",
-    "cypress": "^12.16.0",
-    "eslint": "^8.44.0",
-    "eslint-config-pegasus": "^3.5.0",
+    "cypress": "^12.17.1",
+    "eslint": "^8.45.0",
+    "eslint-config-pegasus": "^5.0.0",
     "husky": "^8.0.3",
     "is-ci": "^3.0.1",
     "jasmine-core": "~4.6.0",
@@ -60,8 +60,8 @@
     "lint-staged": "^13.2.3",
     "ng-packagr": "^16.0.0",
     "picocolors": "^1.0.0",
-    "prettier": "^2.8.8",
-    "tailwindcss": "^3.3.2",
+    "prettier": "^3.0.0",
+    "tailwindcss": "^3.3.3",
     "typescript": "~5.1.3"
   }
 }
