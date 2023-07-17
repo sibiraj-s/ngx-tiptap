@@ -14,7 +14,15 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Refactor
 
+## v9.0.1 (2023-07-17)
+
+#### Bug Fixes
+
+- fix trigger ChangeDetection in custom Nodeviews using `updateProps` ([4213560](https://github.com/sibiraj-s/ngx-tiptap/commit/4213560))
+
 ## v9.0.0 (2023-07-01)
+
+#### Breaking Changes
 
 - requires angular 16 or greater ([4ea180b](https://github.com/sibiraj-s/ngx-tiptap/commit/4ea180b)), ([cfe57a3](https://github.com/sibiraj-s/ngx-tiptap/commit/cfe57a3))
 
