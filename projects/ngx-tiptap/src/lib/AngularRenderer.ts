@@ -34,7 +34,7 @@ export class AngularRenderer<C, P> {
 
   updateProps<T extends P>(props: Partial<T>): void {
     Object.entries(props).forEach(([key, value]) => {
-      this.instance[key as keyof C] = value as C[keyof C];
+      this.componentRef.setInput(key, value);
     });
   }
 
