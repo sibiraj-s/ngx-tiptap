@@ -77,7 +77,7 @@ and in HTML
 
 **Note**: No styling is provided by default. You are in full control of how your editor looks. Refer [tiptaps's styling guide](https://www.tiptap.dev/guide/styling) for more information.
 
-And, Since the editor is dynamically created, You may need to set [ViewEncapsulation](https://angular.io/guide/view-encapsulation) to `None` to apply the styles.
+Tip: Since the editor is dynamically created, You may need to set [ViewEncapsulation](https://angular.io/guide/view-encapsulation) to `None` or target the class/element via [::ng-deep](https://angular.io/guide/component-styles#deprecated-deep--and-ng-deep) to apply the styles. See [Component Styles docs](https://angular.io/guide/component-styles#component-styles) for more info.
 
 ## Options
 
