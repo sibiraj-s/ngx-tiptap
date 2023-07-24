@@ -40,6 +40,9 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
       deleteNode: () => this.deleteNode(),
     };
 
+    this.handleSelectionUpdate = this.handleSelectionUpdate.bind(this);
+    this.editor.on('selectionUpdate', this.handleSelectionUpdate);
+
     // create renderer
     this.renderer = new AngularRenderer(this.component, injector, props);
 
@@ -90,6 +93,16 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
     }
   }
 
+  handleSelectionUpdate() {
+    const { from, to } = this.editor.state.selection;
+
+    if (from <= this.getPos() && to >= this.getPos() + this.node.nodeSize) {
+      this.selectNode();
+    } else {
+      this.deselectNode();
+    }
+  }
+
   update(node: ProseMirrorNode, decorations: DecorationWithType[]): boolean {
     const updateProps = () => {
       this.renderer.updateProps({ node, decorations });
@@ -136,6 +149,8 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
 
   destroy() {
     this.renderer.destroy();
+    this.editor.off('selectionUpdate', this.handleSelectionUpdate);
+    this.contentDOMElement = null;
   }
 }
 
