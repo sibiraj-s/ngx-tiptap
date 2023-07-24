@@ -5,6 +5,10 @@
   @apply border-[3px] border-black rounded-md;
 }
 
+.angular-component-with-content.selected {
+  @apply border-emerald-500;
+}
+
 .angular-component-with-content .label {
   @apply bg-black;
   @apply rounded-b-md;
@@ -13,6 +17,7 @@
   @apply py-1 px-3;
   @apply text-[0.6rem] uppercase tracking-widest font-bold;
 }
+
 .angular-component-with-content .content {
   @apply my-4 p-2;
   @apply border-2 border-gray-900/20 border-dashed rounded-md;

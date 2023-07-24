@@ -43,6 +43,7 @@ export const EditableComponentExtension = (injector: Injector): Node => {
     name: 'angularEditableComponent',
     group: 'block',
     content: 'inline*',
+    draggable: true,
 
     parseHTML() {
       return [{ tag: 'angular-component-editable' }];
