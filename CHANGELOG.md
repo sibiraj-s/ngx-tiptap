@@ -14,6 +14,12 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Refactor
 
+## v9.0.2 (2023-07-24)
+
+#### Bug Fixes
+
+- update selected input in nodeview with text selection ([0ec762d](https://github.com/sibiraj-s/ngx-tiptap/commit/0ec762d))
+
 ## v9.0.1 (2023-07-17)
 
 #### Bug Fixes
