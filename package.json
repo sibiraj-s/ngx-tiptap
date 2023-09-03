@@ -46,7 +46,7 @@
     "@tiptap/pm": "^2.1.2",
     "@tiptap/starter-kit": "^2.1.2",
     "@types/jasmine": "~4.3.0",
-    "cypress": "^12.17.4",
+    "cypress": "^13.1.0",
     "eslint": "^8.47.0",
     "eslint-config-pegasus": "^5.0.0",
     "husky": "^8.0.3",
