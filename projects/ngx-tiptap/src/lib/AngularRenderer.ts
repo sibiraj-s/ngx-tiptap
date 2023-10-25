@@ -12,6 +12,7 @@ export class AngularRenderer<C, P> {
 
     this.componentRef = createComponent(ViewComponent, {
       environmentInjector: this.applicationRef.injector,
+      elementInjector: injector,
     });
 
     // set input props to the component
