@@ -14,6 +14,12 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Refactor
 
+## v9.1.0 (2023-11-03)
+
+#### Features
+
+- enable hierarchical injectors in AngularRenderer ([93ec574](https://github.com/sibiraj-s/ngx-tiptap/commit/93ec574))
+
 ## v9.0.2 (2023-07-24)
 
 #### Bug Fixes
