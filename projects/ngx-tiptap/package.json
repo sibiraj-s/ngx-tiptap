@@ -6,6 +6,12 @@
   "repository": "https://github.com/sibiraj-s/ngx-tiptap.git",
   "bugs": "https://github.com/sibiraj-s/ngx-tiptap/issues",
   "homepage": "https://github.com/sibiraj-s/ngx-tiptap#readme",
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/sibiraj-s"
+    }
+  ],
   "keywords": [
     "tiptap",
     "angular-tiptap",
