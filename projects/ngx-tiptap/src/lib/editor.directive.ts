@@ -96,6 +96,9 @@ export class EditorDirective implements OnInit, AfterViewInit, ControlValueAcces
 
     // register update handler to listen to changes on update
     this.editor.on('update', this.handleChange);
+
+    // Needed for ChangeDetectionStrategy.OnPush to get notified
+    this.editor.on('selectionUpdate', () => this.changeDetectorRef.markForCheck())
   }
 
   ngAfterViewInit(): void {
