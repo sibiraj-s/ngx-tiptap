@@ -14,6 +14,12 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Refactor
 
+## v9.1.1 (2023-12-11)
+
+#### Bug Fixes
+
+- fix view not updated on selection with ChangeDetectionStrategy#OnPush ([681dc85](https://github.com/sibiraj-s/ngx-tiptap/commit/681dc85))
+
 ## v9.1.0 (2023-11-03)
 
 #### Features
