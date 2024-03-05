@@ -3,40 +3,54 @@
 
   <div>
     <div class="border-black border-2 border-b-0 rounded-t-md p-1 flex">
-      <button class="rounded h-7 w-7 flex justify-center items-center"
-        [ngClass]="{'bg-black text-white': editor.isActive('heading')}"
-        (click)="editor.chain().focus().toggleHeading({ level: 1 }).run()">
+      <button
+        class="rounded h-7 w-7 flex justify-center items-center"
+        [ngClass]="{ 'bg-black text-white': editor.isActive('heading') }"
+        (click)="editor.chain().focus().toggleHeading({ level: 1 }).run()"
+      >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
           <path fill="none" d="M0 0H24V24H0z" />
           <path d="M13 20h-2v-7H4v7H2V4h2v7h7V4h2v16zm8-12v12h-2v-9.796l-2 .536V8.67L19.5 8H21z" />
         </svg>
       </button>
-      <button class="rounded h-7 w-7 flex justify-center items-center ml-1"
-        [ngClass]="{'bg-black text-white': editor.isActive('bold')}"
-        (click)="editor.chain().focus().toggleBold().run()">
+      <button
+        class="rounded h-7 w-7 flex justify-center items-center ml-1"
+        [ngClass]="{ 'bg-black text-white': editor.isActive('bold') }"
+        (click)="editor.chain().focus().toggleBold().run()"
+      >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
           <path fill="none" d="M0 0h24v24H0z" />
           <path
-            d="M8 11h4.5a2.5 2.5 0 1 0 0-5H8v5zm10 4.5a4.5 4.5 0 0 1-4.5 4.5H6V4h6.5a4.5 4.5 0 0 1 3.256 7.606A4.498 4.498 0 0 1 18 15.5zM8 13v5h5.5a2.5 2.5 0 1 0 0-5H8z" />
+            d="M8 11h4.5a2.5 2.5 0 1 0 0-5H8v5zm10 4.5a4.5 4.5 0 0 1-4.5 4.5H6V4h6.5a4.5 4.5 0 0 1 3.256 7.606A4.498 4.498 0 0 1 18 15.5zM8 13v5h5.5a2.5 2.5 0 1 0 0-5H8z"
+          />
         </svg>
       </button>
-      <button class="rounded h-7 w-7 flex justify-center items-center ml-1"
-        [ngClass]="{'bg-black text-white': editor.isActive('italic')}"
-        (click)="editor.chain().focus().toggleItalic().run()">
+      <button
+        class="rounded h-7 w-7 flex justify-center items-center ml-1"
+        [ngClass]="{ 'bg-black text-white': editor.isActive('italic') }"
+        (click)="editor.chain().focus().toggleItalic().run()"
+      >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
           <path fill="none" d="M0 0h24v24H0z" />
           <path d="M15 20H7v-2h2.927l2.116-12H9V4h8v2h-2.927l-2.116 12H15z" />
         </svg>
       </button>
-      <button class="rounded h-7 w-7 flex justify-center items-center ml-1"
-        [ngClass]="{'bg-black text-white': editor.isActive('paragraph')}"
-        (click)="editor.chain().focus().setParagraph().run()">
+      <button
+        class="rounded h-7 w-7 flex justify-center items-center ml-1"
+        [ngClass]="{ 'bg-black text-white': editor.isActive('paragraph') }"
+        (click)="editor.chain().focus().setParagraph().run()"
+      >
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
           <path fill="none" d="M0 0h24v24H0z" />
           <path d="M12 6v15h-2v-5a6 6 0 1 1 0-12h10v2h-3v15h-2V6h-3zm-2 0a4 4 0 1 0 0 8V6z" />
         </svg>
       </button>
     </div>
-    <tiptap-editor [editor]="editor" name="simple-editor" [ngModel]="value" (ngModelChange)="handleValueChange($event)"></tiptap-editor>
+    <tiptap-editor
+      [editor]="editor"
+      name="simple-editor"
+      [ngModel]="value"
+      (ngModelChange)="handleValueChange($event)"
+    ></tiptap-editor>
   </div>
 </form>

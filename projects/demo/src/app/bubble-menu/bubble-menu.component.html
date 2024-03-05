@@ -2,13 +2,29 @@
 <tiptap-editor [editor]="editor" [(ngModel)]="value" id="editor-with-bubble-menu"></tiptap-editor>
 <tiptap-bubble-menu [editor]="editor">
   <div class="border border-black rounded bg-black text-gray-300 divide-x" data-test-id="bubble-menu">
-    <button type="button" class="px-1 hover:text-white" (click)="editor.chain().focus().toggleBold().run()"
-      [ngClass]="{'bg-gray-900 text-white': editor.isActive('bold')}">bold</button>
-    <button type="button" class="px-1 hover:text-white"
+    <button
+      type="button"
+      class="px-1 hover:text-white"
+      (click)="editor.chain().focus().toggleBold().run()"
+      [ngClass]="{ 'bg-gray-900 text-white': editor.isActive('bold') }"
+    >
+      bold
+    </button>
+    <button
+      type="button"
+      class="px-1 hover:text-white"
       (click)="editor.chain().focus().toggleItalic().run()"
-      [ngClass]="{'bg-gray-900 text-white': editor.isActive('italic')}">italic</button>
-    <button type="button" class="px-1 hover:text-white"
+      [ngClass]="{ 'bg-gray-900 text-white': editor.isActive('italic') }"
+    >
+      italic
+    </button>
+    <button
+      type="button"
+      class="px-1 hover:text-white"
       (click)="editor.chain().focus().toggleStrike().run()"
-      [ngClass]="{'bg-gray-900 text-white': editor.isActive('strike')}">strike</button>
+      [ngClass]="{ 'bg-gray-900 text-white': editor.isActive('strike') }"
+    >
+      strike
+    </button>
   </div>
 </tiptap-bubble-menu>
