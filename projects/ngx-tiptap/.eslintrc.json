@@ -9,11 +9,7 @@
         "*.ts"
       ],
       "parserOptions": {
-        "project": [
-          "projects/ngx-tiptap/tsconfig.lib.json",
-          "projects/ngx-tiptap/tsconfig.spec.json"
-        ],
-        "createDefaultProgram": true
+        "project": ["projects/ngx-tiptap/tsconfig.(app|lib|spec).json"]
       },
       "rules": {
         "@angular-eslint/directive-selector": [

@@ -4,9 +4,13 @@ import Placeholder from '@tiptap/extension-placeholder';
 import StarterKit from '@tiptap/starter-kit';
 
 import { CounterComponentExtension, EditableComponentExtension } from './extensions';
+import { NgxTiptapModule } from 'ngx-tiptap';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-nodeview-renderer',
+  standalone: true,
+  imports: [CommonModule, NgxTiptapModule],
   templateUrl: './nodeview-renderer.component.html',
   styleUrls: ['./nodeview-renderer.component.css'],
 })

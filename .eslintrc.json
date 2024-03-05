@@ -8,12 +8,6 @@
       "files": [
         "*.ts"
       ],
-      "parserOptions": {
-        "project": [
-          "tsconfig.json"
-        ],
-        "createDefaultProgram": true
-      },
       "extends": [
         "pegasus",
         "pegasus/typescript",
@@ -21,30 +15,22 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
-        "@angular-eslint/component-selector": [
-          "error",
-          {
-            "prefix": "app",
-            "style": "kebab-case",
-            "type": "element"
-          }
-        ],
         "@angular-eslint/directive-selector": [
           "error",
           {
-            "prefix": "app",
-            "style": "camelCase",
-            "type": "attribute"
+            "type": "attribute",
+            "prefix": "tiptap",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "tiptap",
+            "style": "kebab-case"
           }
         ]
-      }
-    },
-    {
-      "files": [
-        "*.spec.ts"
-      ],
-      "rules": {
-        "max-classes-per-file": "off"
       }
     },
     {
@@ -52,7 +38,8 @@
         "*.html"
       ],
       "extends": [
-        "plugin:@angular-eslint/template/recommended"
+        "plugin:@angular-eslint/template/recommended",
+        "plugin:@angular-eslint/template/accessibility"
       ],
       "rules": {}
     },
@@ -64,6 +51,14 @@
       ],
       "rules": {
         "no-console": "off"
+      }
+    },
+    {
+      "files": [
+        "*.spec.ts"
+      ],
+      "rules": {
+        "max-classes-per-file": "off"
       }
     }
   ]

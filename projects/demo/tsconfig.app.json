@@ -6,7 +6,8 @@
     "types": []
   },
   "files": [
-    "src/main.ts"
+    "src/main.ts",
+    "tailwind.config.ts"
   ],
   "include": [
     "src/**/*.d.ts"

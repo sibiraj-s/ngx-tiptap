@@ -1,11 +1,16 @@
 import { Component, OnDestroy } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+
 import { Content, Editor } from '@tiptap/core';
 import StarterKit from '@tiptap/starter-kit';
 import Placeholder from '@tiptap/extension-placeholder';
+import { NgxTiptapModule } from 'ngx-tiptap';
 
 @Component({
   selector: 'app-simple-editor-reactive',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, NgxTiptapModule],
   templateUrl: './simple-editor-reactive.component.html',
   styleUrls: ['./simple-editor-reactive.component.css'],
 })

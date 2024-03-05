@@ -1,8 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-
-import { NgxTiptapModule } from 'ngx-tiptap';
 
 import { NodeviewRendererComponent } from './nodeview-renderer.component';
 
@@ -12,12 +9,8 @@ describe('NodeviewRendererComponent', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [
-        NodeviewRendererComponent,
-      ],
       imports: [
-        FormsModule,
-        NgxTiptapModule,
+        NodeviewRendererComponent,
       ],
     });
 

@@ -1,8 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-
-import { NgxTiptapModule } from 'ngx-tiptap';
 
 import { SimpleEditorComponent } from './simple-editor.component';
 
@@ -12,12 +9,8 @@ describe('SimpleEditorComponent', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [
-        SimpleEditorComponent,
-      ],
       imports: [
-        FormsModule,
-        NgxTiptapModule,
+        SimpleEditorComponent,
       ],
     });
 

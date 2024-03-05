@@ -1,10 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 import { Editor } from '@tiptap/core';
 import Placeholder from '@tiptap/extension-placeholder';
 import StarterKit from '@tiptap/starter-kit';
+import { NgxTiptapModule } from 'ngx-tiptap';
 
 @Component({
   selector: 'app-bubble-menu',
+  standalone: true,
+  imports: [CommonModule, FormsModule, NgxTiptapModule],
   templateUrl: './bubble-menu.component.html',
   styleUrls: ['./bubble-menu.component.css'],
 })

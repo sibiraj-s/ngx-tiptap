@@ -1,8 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-
-import { NgxTiptapModule } from 'ngx-tiptap';
 
 import { FloatingMenuComponent } from './floating-menu.component';
 
@@ -12,12 +9,8 @@ describe('FloatingMenuComponent', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [
-        FloatingMenuComponent,
-      ],
       imports: [
-        FormsModule,
-        NgxTiptapModule,
+        FloatingMenuComponent,
       ],
     });
 

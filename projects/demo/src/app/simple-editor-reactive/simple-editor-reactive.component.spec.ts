@@ -1,8 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-
-import { NgxTiptapModule } from 'ngx-tiptap';
 
 import { SimpleEditorReactiveComponent } from './simple-editor-reactive.component';
 
@@ -12,12 +9,8 @@ describe('SimpleEditorReactiveComponent', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [
-        SimpleEditorReactiveComponent,
-      ],
       imports: [
-        ReactiveFormsModule,
-        NgxTiptapModule,
+        SimpleEditorReactiveComponent,
       ],
     });
 
