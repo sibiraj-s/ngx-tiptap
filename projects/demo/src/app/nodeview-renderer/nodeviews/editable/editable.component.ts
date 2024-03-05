@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
-import { AngularNodeViewComponent } from 'ngx-tiptap';
+import { AngularNodeViewComponent, NgxTiptapModule } from 'ngx-tiptap';
 
 @Component({
   selector: 'app-nodeview-editable',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgxTiptapModule],
   templateUrl: './editable.component.html',
   styleUrls: ['./editable.component.css'],
 })
