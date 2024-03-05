@@ -14,6 +14,12 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Refactor
 
+## v10.0.0 (2024-03-05)
+
+#### Breaking Changes
+
+- requires angular 17 or greater ([4ea180b](https://github.com/sibiraj-s/ngx-tiptap/commit/4ea180b)), ([cfe57a3](https://github.com/sibiraj-s/ngx-tiptap/commit/cfe57a3))
+
 ## v9.1.1 (2023-12-11)
 
 #### Bug Fixes
