@@ -41,7 +41,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./dist/demo
+          path: ./dist/demo/browser
 
   deploy:
     needs: build
