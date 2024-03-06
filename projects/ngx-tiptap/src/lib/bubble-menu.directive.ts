@@ -10,6 +10,7 @@ export class BubbleMenuDirective implements OnInit, OnDestroy {
   @Input() editor!: Editor;
   @Input() tippyOptions: BubbleMenuPluginProps['tippyOptions'] = {};
   @Input() shouldShow: BubbleMenuPluginProps['shouldShow'] = null;
+  @Input() updateDelay: BubbleMenuPluginProps['updateDelay'];
 
   constructor(private elRef: ElementRef<HTMLElement>) { }
 
@@ -24,6 +25,7 @@ export class BubbleMenuDirective implements OnInit, OnDestroy {
       element: this.elRef.nativeElement,
       tippyOptions: this.tippyOptions,
       shouldShow: this.shouldShow,
+      updateDelay: this.updateDelay,
     }));
   }
 
