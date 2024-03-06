@@ -11,7 +11,7 @@
     "test": "npm run test:lib && npm run test:demo",
     "e2e": "cypress open --e2e",
     "lint": "ng lint",
-    "prepare": "is-ci || husky install",
+    "prepare": "is-ci || husky",
     "prepublishOnly": "is-ci || npm run build"
   },
   "private": true,
