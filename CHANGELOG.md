@@ -14,6 +14,12 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Refactor
 
+## v10.1.0 (2024-03-06)
+
+#### Breaking Changes
+
+- add support for updateDelay prop in bubble menu ([0680e39](https://github.com/sibiraj-s/ngx-tiptap/commit/0680e39))
+
 ## v10.0.0 (2024-03-05)
 
 #### Breaking Changes
