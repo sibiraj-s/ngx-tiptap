@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 .ProseMirror > * + * {
   margin-top: 0.75rem;
