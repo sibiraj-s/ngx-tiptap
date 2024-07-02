@@ -2,6 +2,7 @@ import { Directive, HostBinding } from '@angular/core';
 
 @Directive({
   selector: '[tiptapDraggable]',
+  standalone: true,
 })
 export class DraggableDirective {
   @HostBinding('attr.draggable') draggable = true;

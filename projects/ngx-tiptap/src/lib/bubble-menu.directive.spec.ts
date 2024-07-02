@@ -12,6 +12,8 @@ import { EditorDirective } from './editor.directive';
     <tiptap-editor [editor]="editor"></tiptap-editor>
     <tiptap-bubble-menu [editor]="editor">BubbleMenu</tiptap-bubble-menu>
   `,
+  imports: [EditorDirective, BubbleMenuDirective],
+  standalone: true,
 })
 class TestComponent {
   @Input() editor!: Editor;
@@ -23,11 +25,9 @@ describe('BubbleMenuDirective', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [
-        TestComponent,
+      imports: [TestComponent,
         EditorDirective,
-        BubbleMenuDirective,
-      ],
+        BubbleMenuDirective],
     });
 
     await TestBed.compileComponents();

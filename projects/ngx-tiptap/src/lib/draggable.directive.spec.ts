@@ -6,6 +6,8 @@ import { DraggableDirective } from './draggable.directive';
 
 @Component({
   template: '<div tiptapDraggable>Hello Tiptap!</div>',
+  imports: [DraggableDirective],
+  standalone: true,
 })
 class TestComponent { }
 
@@ -14,10 +16,8 @@ describe('DraggableDirective', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [
-        TestComponent,
-        DraggableDirective,
-      ],
+      imports: [TestComponent,
+        DraggableDirective],
     });
 
     await TestBed.compileComponents();
