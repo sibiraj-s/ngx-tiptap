@@ -14,6 +14,17 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Refactor
 
+## v11.1.0 (2024-09-17)
+
+#### Features
+
+- add support for attrs in AngularNodeViewRenderer ([476081e](https://github.com/sibiraj-s/ngx-tiptap/commit/476081e))
+- improve selection behaviour in custom nodes ([476081e](https://github.com/sibiraj-s/ngx-tiptap/commit/476081e))
+
+#### Bug Fixes
+
+- fix types mismatch with tiptap v2.7 ([476081e](https://github.com/sibiraj-s/ngx-tiptap/commit/476081e))
+
 ## v11.0.0 (2024-06-19)
 
 #### Breaking Changes
