@@ -39,6 +39,12 @@ export class AngularRenderer<C, P> {
     });
   }
 
+  updateAttributes(attributes: Record<string, string>): void {
+    Object.keys(attributes).forEach((key) => {
+      this.dom.setAttribute(key, attributes[key]);
+    });
+  }
+
   detectChanges(): void {
     this.componentRef.changeDetectorRef.detectChanges();
   }
