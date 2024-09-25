@@ -9,9 +9,11 @@ import { FloatingMenuDirective } from './floating-menu.directive';
 
 @Component({
   template: `
-      <tiptap-editor [editor]="editor"></tiptap-editor>
-      <tiptap-floating-menu [editor]="editor">Floater</tiptap-floating-menu>
-    `,
+    <tiptap-editor [editor]="editor"></tiptap-editor>
+    <tiptap-floating-menu [editor]="editor">Floater</tiptap-floating-menu>
+  `,
+  imports: [EditorDirective, FloatingMenuDirective],
+  standalone: true,
 })
 class TestComponent {
   @Input() editor!: Editor;
@@ -23,11 +25,9 @@ describe('FloatingMenuDirective', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [
-        TestComponent,
+      imports: [TestComponent,
         EditorDirective,
-        FloatingMenuDirective,
-      ],
+        FloatingMenuDirective],
     });
 
     await TestBed.compileComponents();

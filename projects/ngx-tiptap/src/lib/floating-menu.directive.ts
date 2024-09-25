@@ -4,6 +4,7 @@ import { FloatingMenuPlugin, FloatingMenuPluginProps } from '@tiptap/extension-f
 
 @Directive({
   selector: 'tiptap-floating-menu[editor], [tiptapFloatingMenu][editor]',
+  standalone: true,
 })
 
 export class FloatingMenuDirective implements OnInit, OnDestroy {
