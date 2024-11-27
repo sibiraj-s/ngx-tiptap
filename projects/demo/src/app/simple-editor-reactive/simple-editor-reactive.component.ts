@@ -9,7 +9,6 @@ import { TiptapEditorDirective } from 'ngx-tiptap';
 
 @Component({
   selector: 'app-simple-editor-reactive',
-  standalone: true,
   imports: [CommonModule, ReactiveFormsModule, TiptapEditorDirective],
   templateUrl: './simple-editor-reactive.component.html',
   styleUrls: ['./simple-editor-reactive.component.css'],

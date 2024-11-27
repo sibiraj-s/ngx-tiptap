@@ -1,4 +1,6 @@
-import { Directive, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Directive, ElementRef, Input, OnDestroy, OnInit, inject,
+} from '@angular/core';
 import { Editor } from '@tiptap/core';
 import { FloatingMenuPlugin, FloatingMenuPluginProps } from '@tiptap/extension-floating-menu';
 
@@ -8,12 +10,12 @@ import { FloatingMenuPlugin, FloatingMenuPluginProps } from '@tiptap/extension-f
 })
 
 export class TiptapFloatingMenuDirective implements OnInit, OnDestroy {
+  private elRef = inject<ElementRef<HTMLElement>>(ElementRef);
+
   @Input() pluginKey: FloatingMenuPluginProps['pluginKey'] = 'NgxTiptapFloatingMenu';
   @Input() editor!: Editor;
   @Input() tippyOptions: FloatingMenuPluginProps['tippyOptions'] = {};
   @Input() shouldShow: FloatingMenuPluginProps['shouldShow'] = null;
-
-  constructor(private elRef: ElementRef<HTMLElement>) { }
 
   ngOnInit(): void {
     if (!this.editor) {

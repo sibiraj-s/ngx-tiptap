@@ -8,7 +8,6 @@ import { TiptapEditorDirective, TiptapFloatingMenuDirective } from 'ngx-tiptap';
 
 @Component({
   selector: 'app-floating-menu',
-  standalone: true,
   imports: [CommonModule, FormsModule, TiptapEditorDirective, TiptapFloatingMenuDirective],
   templateUrl: './floating-menu.component.html',
   styleUrls: ['./floating-menu.component.css'],

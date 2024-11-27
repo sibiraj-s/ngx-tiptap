@@ -9,25 +9,20 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
     "paths": {
       "ngx-tiptap": [
         "./dist/ngx-tiptap"
       ]
     },
+    "skipLibCheck": true,
+    "isolatedModules": true,
     "esModuleInterop": true,
-    "sourceMap": true,
-    "declaration": false,
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
-    "useDefineForClassFields": false,
-    "lib": [
-      "ES2022",
-      "dom"
-    ]
+    "useDefineForClassFields": false, // @fixme: fix this, removing breaks node-views
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

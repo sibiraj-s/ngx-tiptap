@@ -13,7 +13,6 @@ import { TiptapFloatingMenuDirective } from './floating-menu.directive';
     <tiptap-floating-menu [editor]="editor">Floater</tiptap-floating-menu>
   `,
   imports: [TiptapEditorDirective, TiptapFloatingMenuDirective],
-  standalone: true,
 })
 class TestComponent {
   @Input() editor!: Editor;

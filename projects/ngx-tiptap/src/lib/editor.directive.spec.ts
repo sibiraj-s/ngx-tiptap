@@ -11,7 +11,6 @@ describe('NgxTiptapDirective', () => {
   @Component({
     template: '<div tiptap [editor]="editor"></div>',
     imports: [FormsModule, TiptapEditorDirective],
-    standalone: true,
   })
   class TestComponent {
     editor!: Editor;
@@ -52,7 +51,6 @@ describe('NgxTiptapDirective', () => {
 describe('NgxTiptapDirective: FormsModule', () => {
   @Component({
     template: '<div tiptap [editor]="editor" [(ngModel)]="value"></div>',
-    standalone: true,
     imports: [FormsModule, TiptapEditorDirective],
   })
   class TestFormComponent {
@@ -194,7 +192,6 @@ describe('NgxTiptapDirective: Reactive FormsModule', () => {
         <div tiptap [editor]="editor" formControlName="content"></div>
       </form>
       `,
-    standalone: true,
     imports: [ReactiveFormsModule, FormsModule, TiptapEditorDirective],
   })
   class TestComponent {

@@ -9,7 +9,6 @@ import { TiptapEditorDirective } from 'ngx-tiptap';
 
 @Component({
   selector: 'app-simple-editor',
-  standalone: true,
   imports: [CommonModule, FormsModule, TiptapEditorDirective],
   templateUrl: './simple-editor.component.html',
   styleUrls: ['./simple-editor.component.css'],

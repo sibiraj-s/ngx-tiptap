@@ -13,7 +13,6 @@ import { TiptapEditorDirective } from './editor.directive';
     <tiptap-bubble-menu [editor]="editor">BubbleMenu</tiptap-bubble-menu>
   `,
   imports: [TiptapEditorDirective, TiptapBubbleMenuDirective],
-  standalone: true,
 })
 class TestComponent {
   @Input() editor!: Editor;

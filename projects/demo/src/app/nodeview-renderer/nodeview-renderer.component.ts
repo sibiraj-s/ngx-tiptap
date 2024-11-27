@@ -1,5 +1,5 @@
-import { Component, Injector, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Injector, OnDestroy, inject } from '@angular/core';
+
 import { Editor } from '@tiptap/core';
 import Placeholder from '@tiptap/extension-placeholder';
 import StarterKit from '@tiptap/starter-kit';
@@ -10,13 +10,12 @@ import { CounterComponentExtension, EditableComponentExtension } from './extensi
 
 @Component({
   selector: 'app-nodeview-renderer',
-  standalone: true,
-  imports: [CommonModule, TiptapEditorDirective],
+  imports: [TiptapEditorDirective],
   templateUrl: './nodeview-renderer.component.html',
   styleUrls: ['./nodeview-renderer.component.css'],
 })
 export class NodeviewRendererComponent implements OnDestroy {
-  constructor(private injector: Injector) { }
+  private injector = inject(Injector);
 
   editor = new Editor({
     editable: true,

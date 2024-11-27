@@ -5,7 +5,6 @@ import { AngularNodeViewComponent, TiptapDraggableDirective } from 'ngx-tiptap';
 
 @Component({
   selector: 'app-nodeview-counter',
-  standalone: true,
   imports: [CommonModule, TiptapDraggableDirective],
   templateUrl: './counter.component.html',
   styleUrls: ['./counter.component.css'],

@@ -1,4 +1,6 @@
-import { Directive, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Directive, ElementRef, Input, OnDestroy, OnInit, inject,
+} from '@angular/core';
 import { Editor } from '@tiptap/core';
 import { BubbleMenuPlugin, BubbleMenuPluginProps } from '@tiptap/extension-bubble-menu';
 
@@ -7,13 +9,13 @@ import { BubbleMenuPlugin, BubbleMenuPluginProps } from '@tiptap/extension-bubbl
   standalone: true,
 })
 export class TiptapBubbleMenuDirective implements OnInit, OnDestroy {
+  private elRef = inject<ElementRef<HTMLElement>>(ElementRef);
+
   @Input() pluginKey: BubbleMenuPluginProps['pluginKey'] = 'NgxTiptapBubbleMenu';
   @Input() editor!: Editor;
   @Input() tippyOptions: BubbleMenuPluginProps['tippyOptions'] = {};
   @Input() shouldShow: BubbleMenuPluginProps['shouldShow'] = null;
   @Input() updateDelay: BubbleMenuPluginProps['updateDelay'];
-
-  constructor(private elRef: ElementRef<HTMLElement>) { }
 
   ngOnInit(): void {
     if (!this.editor) {

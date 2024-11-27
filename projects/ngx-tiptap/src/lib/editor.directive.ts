@@ -1,6 +1,5 @@
 import {
-  AfterViewInit, ChangeDetectorRef, Directive,
-  ElementRef, forwardRef, Input, OnInit, Renderer2,
+  AfterViewInit, ChangeDetectorRef, Directive, ElementRef, forwardRef, Input, OnInit, Renderer2, inject,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Content, Editor, type EditorEvents } from '@tiptap/core';
@@ -16,14 +15,12 @@ import { Content, Editor, type EditorEvents } from '@tiptap/core';
 })
 
 export class TiptapEditorDirective implements OnInit, AfterViewInit, ControlValueAccessor {
+  protected elRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  protected renderer = inject(Renderer2);
+  protected changeDetectorRef = inject(ChangeDetectorRef);
+
   @Input() editor!: Editor;
   @Input() outputFormat: 'json' | 'html' = 'html';
-
-  constructor(
-    protected elRef: ElementRef<HTMLElement>,
-    protected renderer: Renderer2,
-    protected changeDetectorRef: ChangeDetectorRef,
-  ) { }
 
   protected onChange: (value: Content) => void = () => { /** */ };
   protected onTouched: () => void = () => { /** */ };

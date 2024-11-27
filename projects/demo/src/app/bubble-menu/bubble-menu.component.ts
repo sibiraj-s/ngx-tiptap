@@ -9,7 +9,6 @@ import { TiptapBubbleMenuDirective, TiptapEditorDirective } from 'ngx-tiptap';
 
 @Component({
   selector: 'app-bubble-menu',
-  standalone: true,
   imports: [CommonModule, FormsModule, TiptapEditorDirective, TiptapBubbleMenuDirective],
   templateUrl: './bubble-menu.component.html',
   styleUrls: ['./bubble-menu.component.css'],
