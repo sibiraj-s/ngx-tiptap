@@ -4,15 +4,15 @@ import { By } from '@angular/platform-browser';
 import { Editor } from '@tiptap/core';
 import StarterKit from '@tiptap/starter-kit';
 
-import { BubbleMenuDirective } from './bubble-menu.directive';
-import { EditorDirective } from './editor.directive';
+import { TiptapBubbleMenuDirective } from './bubble-menu.directive';
+import { TiptapEditorDirective } from './editor.directive';
 
 @Component({
   template: `
     <tiptap-editor [editor]="editor"></tiptap-editor>
     <tiptap-bubble-menu [editor]="editor">BubbleMenu</tiptap-bubble-menu>
   `,
-  imports: [EditorDirective, BubbleMenuDirective],
+  imports: [TiptapEditorDirective, TiptapBubbleMenuDirective],
   standalone: true,
 })
 class TestComponent {
@@ -26,8 +26,8 @@ describe('BubbleMenuDirective', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [TestComponent,
-        EditorDirective,
-        BubbleMenuDirective],
+        TiptapEditorDirective,
+        TiptapBubbleMenuDirective],
     });
 
     await TestBed.compileComponents();
@@ -46,7 +46,7 @@ describe('BubbleMenuDirective', () => {
   it('should create an instance', async () => {
     const hostEl = fixture.debugElement.query(By.css('tiptap-bubble-menu'));
     await fixture.whenStable();
-    const directive = new BubbleMenuDirective(hostEl);
+    const directive = new TiptapBubbleMenuDirective(hostEl);
     expect(directive).toBeTruthy();
   });
 });

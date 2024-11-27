@@ -4,15 +4,15 @@ import { By } from '@angular/platform-browser';
 import { Editor } from '@tiptap/core';
 import StarterKit from '@tiptap/starter-kit';
 
-import { EditorDirective } from './editor.directive';
-import { FloatingMenuDirective } from './floating-menu.directive';
+import { TiptapEditorDirective } from './editor.directive';
+import { TiptapFloatingMenuDirective } from './floating-menu.directive';
 
 @Component({
   template: `
     <tiptap-editor [editor]="editor"></tiptap-editor>
     <tiptap-floating-menu [editor]="editor">Floater</tiptap-floating-menu>
   `,
-  imports: [EditorDirective, FloatingMenuDirective],
+  imports: [TiptapEditorDirective, TiptapFloatingMenuDirective],
   standalone: true,
 })
 class TestComponent {
@@ -26,8 +26,8 @@ describe('FloatingMenuDirective', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [TestComponent,
-        EditorDirective,
-        FloatingMenuDirective],
+        TiptapEditorDirective,
+        TiptapFloatingMenuDirective],
     });
 
     await TestBed.compileComponents();
@@ -46,7 +46,7 @@ describe('FloatingMenuDirective', () => {
   it('should create an instance', async () => {
     const hostEl = fixture.debugElement.query(By.css('tiptap-floating-menu'));
     await fixture.whenStable();
-    const directive = new FloatingMenuDirective(hostEl);
+    const directive = new TiptapFloatingMenuDirective(hostEl);
     expect(directive).toBeTruthy();
   });
 });

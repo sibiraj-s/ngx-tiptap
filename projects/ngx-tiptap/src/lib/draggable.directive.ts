@@ -4,7 +4,7 @@ import { Directive, HostBinding } from '@angular/core';
   selector: '[tiptapDraggable]',
   standalone: true,
 })
-export class DraggableDirective {
+export class TiptapDraggableDirective {
   @HostBinding('attr.draggable') draggable = true;
   @HostBinding('attr.data-drag-handle') handle = '';
 }

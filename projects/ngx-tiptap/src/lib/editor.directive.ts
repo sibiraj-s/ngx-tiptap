@@ -9,13 +9,13 @@ import { Content, Editor, type EditorEvents } from '@tiptap/core';
   selector: 'tiptap[editor], [tiptap][editor], tiptap-editor[editor], [tiptapEditor][editor]',
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => EditorDirective),
+    useExisting: forwardRef(() => TiptapEditorDirective),
     multi: true,
   }],
   standalone: true,
 })
 
-export class EditorDirective implements OnInit, AfterViewInit, ControlValueAccessor {
+export class TiptapEditorDirective implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() editor!: Editor;
   @Input() outputFormat: 'json' | 'html' = 'html';
 

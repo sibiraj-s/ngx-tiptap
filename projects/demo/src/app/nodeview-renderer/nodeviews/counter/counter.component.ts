@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
-import { AngularNodeViewComponent, DraggableDirective } from 'ngx-tiptap';
+import { AngularNodeViewComponent, TiptapDraggableDirective } from 'ngx-tiptap';
 
 @Component({
   selector: 'app-nodeview-counter',
   standalone: true,
-  imports: [CommonModule, DraggableDirective],
+  imports: [CommonModule, TiptapDraggableDirective],
   templateUrl: './counter.component.html',
   styleUrls: ['./counter.component.css'],
 })

@@ -5,12 +5,12 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Content, Editor } from '@tiptap/core';
 import StarterKit from '@tiptap/starter-kit';
 import Placeholder from '@tiptap/extension-placeholder';
-import { EditorDirective } from 'ngx-tiptap';
+import { TiptapEditorDirective } from 'ngx-tiptap';
 
 @Component({
   selector: 'app-simple-editor-reactive',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, EditorDirective],
+  imports: [CommonModule, ReactiveFormsModule, TiptapEditorDirective],
   templateUrl: './simple-editor-reactive.component.html',
   styleUrls: ['./simple-editor-reactive.component.css'],
 })

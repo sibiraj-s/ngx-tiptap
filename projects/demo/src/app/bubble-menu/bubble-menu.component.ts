@@ -5,12 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { Editor } from '@tiptap/core';
 import Placeholder from '@tiptap/extension-placeholder';
 import StarterKit from '@tiptap/starter-kit';
-import { BubbleMenuDirective, EditorDirective } from 'ngx-tiptap';
+import { TiptapBubbleMenuDirective, TiptapEditorDirective } from 'ngx-tiptap';
 
 @Component({
   selector: 'app-bubble-menu',
   standalone: true,
-  imports: [CommonModule, FormsModule, EditorDirective, BubbleMenuDirective],
+  imports: [CommonModule, FormsModule, TiptapEditorDirective, TiptapBubbleMenuDirective],
   templateUrl: './bubble-menu.component.html',
   styleUrls: ['./bubble-menu.component.css'],
 })

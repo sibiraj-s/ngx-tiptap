@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { DraggableDirective } from './draggable.directive';
+import { TiptapDraggableDirective } from './draggable.directive';
 
 @Component({
   template: '<div tiptapDraggable>Hello Tiptap!</div>',
-  imports: [DraggableDirective],
+  imports: [TiptapDraggableDirective],
   standalone: true,
 })
 class TestComponent { }
@@ -17,7 +17,7 @@ describe('DraggableDirective', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [TestComponent,
-        DraggableDirective],
+        TiptapDraggableDirective],
     });
 
     await TestBed.compileComponents();
@@ -28,7 +28,7 @@ describe('DraggableDirective', () => {
   });
 
   it('should create an instance', () => {
-    const directive = new DraggableDirective();
+    const directive = new TiptapDraggableDirective();
     expect(directive).toBeTruthy();
   });
 

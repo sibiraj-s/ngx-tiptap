@@ -6,7 +6,7 @@ import { BubbleMenuPlugin, BubbleMenuPluginProps } from '@tiptap/extension-bubbl
   selector: 'tiptap-bubble-menu[editor], [tiptapBubbleMenu][editor]',
   standalone: true,
 })
-export class BubbleMenuDirective implements OnInit, OnDestroy {
+export class TiptapBubbleMenuDirective implements OnInit, OnDestroy {
   @Input() pluginKey: BubbleMenuPluginProps['pluginKey'] = 'NgxTiptapBubbleMenu';
   @Input() editor!: Editor;
   @Input() tippyOptions: BubbleMenuPluginProps['tippyOptions'] = {};

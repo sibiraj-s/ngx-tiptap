@@ -1,16 +1,17 @@
 import { Component, Injector, OnDestroy } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Editor } from '@tiptap/core';
 import Placeholder from '@tiptap/extension-placeholder';
 import StarterKit from '@tiptap/starter-kit';
 
+import { TiptapEditorDirective } from 'ngx-tiptap';
+
 import { CounterComponentExtension, EditableComponentExtension } from './extensions';
-import { EditorDirective } from 'ngx-tiptap';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-nodeview-renderer',
   standalone: true,
-  imports: [CommonModule, EditorDirective],
+  imports: [CommonModule, TiptapEditorDirective],
   templateUrl: './nodeview-renderer.component.html',
   styleUrls: ['./nodeview-renderer.component.css'],
 })

@@ -10,6 +10,8 @@
 
 [demo on stackblitz](https://ngx-tiptap.stackblitz.io/) | [edit stackblitz](https://stackblitz.com/edit/ngx-tiptap)
 
+Find a example on how to use the editor [here at project/demo directory](./projects/demo).
+
 ## Installation
 
 ```bash
@@ -27,24 +29,7 @@ For any issues with the editor. You may need to open the issue on [tiptap's repo
 
 ## Usage
 
-Import the module
-
-```ts
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { NgxTiptapModule } from 'ngx-tiptap';
-
-import { AppComponent } from './app.component';
-
-@NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, FormsModule, NgxTiptapModule],
-  bootstrap: [AppComponent],
-})
-export class AppModule {}
-```
+All components are now standalone. Import the component you need.
 
 Create an instance of the editor
 
@@ -52,10 +37,13 @@ Create an instance of the editor
 import { Component, OnDestroy } from '@angular/core';
 import { Editor } from '@tiptap/core';
 import StarterKit from '@tiptap/starter-kit';
+import { TiptapEditorDirective } from 'ngx-tiptap';
 
 @Component({
   selector: 'app-root',
   template: './app.component.html',
+  imports: [CommonModule, FormsModule, TiptapEditorDirective],
+  standalone: true,
 })
 export class AppComponent implements OnDestroy {
   editor = new Editor({
@@ -96,9 +84,9 @@ Refer: https://www.tiptap.dev/api/extensions
 
 ### Floating Menu
 
-This will make a contextual menu appear near a selection of text.
+This will make a contextual menu appear near a selection of text. The markup and styling are totally up to you.
 
-The markup and styling are totally up to you.
+Import the `TiptapFloatingMenuDirective` to your component and use it. For example:
 
 ```html
 <tiptap-editor [editor]="editor"></tiptap-editor>
@@ -111,9 +99,9 @@ Refer: https://www.tiptap.dev/api/extensions/floating-menu
 
 ### Bubble Menu
 
-This will make a contextual menu appear near a selection of text. Use it to let users apply marks to their text selection.
+This will make a contextual menu appear near a selection of text. Use it to let users apply marks to their text selection. The markup and styling are totally up to you.
 
-The markup and styling are totally up to you.
+Import the `TiptapBubbleMenuDirective` to your component and use it. For example:
 
 ```html
 <tiptap-editor [editor]="editor"></tiptap-editor>
@@ -232,7 +220,9 @@ export class NodeviewCounterComponent extends AngularNodeViewComponent {
 
 ### Adding a content editable
 
-There is another directive called `tiptapNodeViewContent` which helps you adding editable content to your node view. Here is an example.
+There is another directive called `tiptapNodeViewContent` which helps you adding editable content to your node view. Make sure to import the `NodeViewContentDirective` to your component.
+
+Here is an example.
 
 ```html
 <!-- editable.component.html -->
@@ -245,7 +235,7 @@ Refer: https://www.tiptap.dev/guide/node-views/react/#adding-a-content-editable
 
 ### Dragging
 
-To make your node views draggable, set `draggable: true` in the extension and add `tiptapDraggable` directive to the DOM element inside the component that should function as the drag handle.
+To make your node views draggable, import the `TiptapDraggableDirective` to your component and set `draggable: true` in the tiptap extension. Add `tiptapDraggable` directive to the DOM element inside the component that should function as the drag handle.
 
 ### AngularRenderer
 

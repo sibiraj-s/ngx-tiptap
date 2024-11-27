@@ -5,12 +5,12 @@ import { CommonModule } from '@angular/common';
 import { Content, Editor } from '@tiptap/core';
 import StarterKit from '@tiptap/starter-kit';
 import Placeholder from '@tiptap/extension-placeholder';
-import { EditorDirective } from 'ngx-tiptap';
+import { TiptapEditorDirective } from 'ngx-tiptap';
 
 @Component({
   selector: 'app-simple-editor',
   standalone: true,
-  imports: [CommonModule, FormsModule, EditorDirective],
+  imports: [CommonModule, FormsModule, TiptapEditorDirective],
   templateUrl: './simple-editor.component.html',
   styleUrls: ['./simple-editor.component.css'],
 })

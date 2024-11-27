@@ -7,7 +7,7 @@ import { FloatingMenuPlugin, FloatingMenuPluginProps } from '@tiptap/extension-f
   standalone: true,
 })
 
-export class FloatingMenuDirective implements OnInit, OnDestroy {
+export class TiptapFloatingMenuDirective implements OnInit, OnDestroy {
   @Input() pluginKey: FloatingMenuPluginProps['pluginKey'] = 'NgxTiptapFloatingMenu';
   @Input() editor!: Editor;
   @Input() tippyOptions: FloatingMenuPluginProps['tippyOptions'] = {};
