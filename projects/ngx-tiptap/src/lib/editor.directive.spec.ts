@@ -10,6 +10,8 @@ import { EditorDirective } from './editor.directive';
 describe('NgxTiptapDirective', () => {
   @Component({
     template: '<div tiptap [editor]="editor"></div>',
+    imports: [FormsModule, EditorDirective],
+    standalone: true,
   })
   class TestComponent {
     editor!: Editor;
@@ -20,10 +22,8 @@ describe('NgxTiptapDirective', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [
-        TestComponent,
-        EditorDirective,
-      ],
+      imports: [TestComponent,
+        EditorDirective],
     });
 
     await TestBed.compileComponents();
@@ -52,6 +52,8 @@ describe('NgxTiptapDirective', () => {
 describe('NgxTiptapDirective: FormsModule', () => {
   @Component({
     template: '<div tiptap [editor]="editor" [(ngModel)]="value"></div>',
+    standalone: true,
+    imports: [FormsModule, EditorDirective],
   })
   class TestFormComponent {
     editor!: Editor;
@@ -65,12 +67,10 @@ describe('NgxTiptapDirective: FormsModule', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [
-        TestFormComponent,
-        EditorDirective,
-      ],
       imports: [
         FormsModule,
+        TestFormComponent,
+        EditorDirective,
       ],
     });
 
@@ -194,6 +194,8 @@ describe('NgxTiptapDirective: Reactive FormsModule', () => {
         <div tiptap [editor]="editor" formControlName="content"></div>
       </form>
       `,
+    standalone: true,
+    imports: [ReactiveFormsModule, FormsModule, EditorDirective],
   })
   class TestComponent {
     editor!: Editor;
@@ -214,8 +216,6 @@ describe('NgxTiptapDirective: Reactive FormsModule', () => {
     TestBed.configureTestingModule({
       imports: [
         ReactiveFormsModule,
-      ],
-      declarations: [
         EditorDirective,
         TestComponent,
       ],

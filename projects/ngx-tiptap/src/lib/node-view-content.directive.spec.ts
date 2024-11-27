@@ -6,6 +6,8 @@ import { NodeViewContentDirective } from './node-view-content.directive';
 
 @Component({
   template: '<div tiptapNodeViewContent>Hello Tiptap!</div>',
+  imports: [NodeViewContentDirective],
+  standalone: true,
 })
 
 class TestComponent { }
@@ -15,10 +17,8 @@ describe('NodeViewContentDirective', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [
-        TestComponent,
-        NodeViewContentDirective,
-      ],
+      imports: [TestComponent,
+        NodeViewContentDirective],
     });
 
     await TestBed.compileComponents();
