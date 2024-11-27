@@ -220,7 +220,7 @@ export class NodeviewCounterComponent extends AngularNodeViewComponent {
 
 ### Adding a content editable
 
-There is another directive called `tiptapNodeViewContent` which helps you adding editable content to your node view. Make sure to import the `NodeViewContentDirective` to your component.
+There is another directive called `tiptapNodeViewContent` which helps you adding editable content to your node view. Make sure to import the `TiptapNodeViewContentDirective` to your component.
 
 Here is an example.
 

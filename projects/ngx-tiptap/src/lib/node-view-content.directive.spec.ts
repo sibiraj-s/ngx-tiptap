@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { NodeViewContentDirective } from './node-view-content.directive';
+import { TiptapNodeViewContentDirective } from './node-view-content.directive';
 
 @Component({
   template: '<div tiptapNodeViewContent>Hello Tiptap!</div>',
-  imports: [NodeViewContentDirective],
+  imports: [TiptapNodeViewContentDirective],
   standalone: true,
 })
 
@@ -18,7 +18,7 @@ describe('NodeViewContentDirective', () => {
   beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [TestComponent,
-        NodeViewContentDirective],
+        TiptapNodeViewContentDirective],
     });
 
     await TestBed.compileComponents();

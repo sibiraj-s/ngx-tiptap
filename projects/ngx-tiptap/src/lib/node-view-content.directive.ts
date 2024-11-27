@@ -4,7 +4,7 @@ import { Directive, HostBinding } from '@angular/core';
   selector: '[tiptapNodeViewContent]',
   standalone: true,
 })
-export class NodeViewContentDirective {
+export class TiptapNodeViewContentDirective {
   @HostBinding('attr.data-node-view-content') handle = '';
   @HostBinding('style.white-space') whiteSpace = 'pre-wrap';
 }
