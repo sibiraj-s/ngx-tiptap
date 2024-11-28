@@ -116,13 +116,13 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
     }
 
     if (from <= pos && to >= pos + this.node.nodeSize) {
-      if (this.renderer.instance.selected) {
+      if (this.renderer.instance.selected()) {
         return;
       }
 
       this.selectNode();
     } else {
-      if (!this.renderer.instance.selected) {
+      if (!this.renderer.instance.selected()) {
         return;
       }
 

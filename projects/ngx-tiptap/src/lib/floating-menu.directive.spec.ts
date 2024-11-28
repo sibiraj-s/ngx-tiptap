@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Editor } from '@tiptap/core';
@@ -9,43 +9,53 @@ import { TiptapFloatingMenuDirective } from './floating-menu.directive';
 
 @Component({
   template: `
-    <tiptap-editor [editor]="editor"></tiptap-editor>
-    <tiptap-floating-menu [editor]="editor">Floater</tiptap-floating-menu>
+    <tiptap-editor [editor]="editor()"></tiptap-editor>
+    <tiptap-floating-menu [editor]="editor()">Floater</tiptap-floating-menu>
   `,
   imports: [TiptapEditorDirective, TiptapFloatingMenuDirective],
 })
 class TestComponent {
-  @Input() editor!: Editor;
+  readonly editor = input.required<Editor>();
 }
 
 describe('FloatingMenuDirective', () => {
-  let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [TestComponent,
+      imports: [
+        TestComponent,
         TiptapEditorDirective,
-        TiptapFloatingMenuDirective],
+        TiptapFloatingMenuDirective,
+      ],
+      providers: [
+        {
+          provide: ElementRef,
+          useValue: new ElementRef(document.createElement('div')),
+        },
+      ],
     });
 
     await TestBed.compileComponents();
 
     fixture = TestBed.createComponent(TestComponent);
-    component = fixture.componentInstance;
 
     const editor = new Editor({
       extensions: [StarterKit],
     });
 
-    component.editor = editor;
+    fixture.componentRef.setInput('editor', editor);
+
     fixture.detectChanges();
   });
 
   it('should create an instance', async () => {
-    const hostEl = fixture.debugElement.query(By.css('tiptap-floating-menu'));
     await fixture.whenStable();
-    const directive = new TiptapFloatingMenuDirective(hostEl);
-    expect(directive).toBeTruthy();
+
+    const floatingMenuElement = fixture.debugElement.query(By.directive(TiptapFloatingMenuDirective));
+    const directiveInstance = floatingMenuElement.injector.get(TiptapFloatingMenuDirective);
+
+    expect(floatingMenuElement.nativeElement.textContent).toBe('Floater');
+    expect(directiveInstance).toBeTruthy();
   });
 });

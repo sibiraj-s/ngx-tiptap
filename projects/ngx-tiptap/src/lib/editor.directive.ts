@@ -1,5 +1,6 @@
 import {
-  AfterViewInit, ChangeDetectorRef, Directive, ElementRef, forwardRef, Input, OnInit, Renderer2, inject,
+  AfterViewInit, ChangeDetectorRef, Directive, ElementRef, forwardRef, OnInit, Renderer2, inject,
+  input,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Content, Editor, type EditorEvents } from '@tiptap/core';
@@ -19,8 +20,8 @@ export class TiptapEditorDirective implements OnInit, AfterViewInit, ControlValu
   protected renderer = inject(Renderer2);
   protected changeDetectorRef = inject(ChangeDetectorRef);
 
-  @Input() editor!: Editor;
-  @Input() outputFormat: 'json' | 'html' = 'html';
+  readonly editor = input.required<Editor>();
+  readonly outputFormat = input<'json' | 'html'>('html');
 
   protected onChange: (value: Content) => void = () => { /** */ };
   protected onTouched: () => void = () => { /** */ };
@@ -28,11 +29,7 @@ export class TiptapEditorDirective implements OnInit, AfterViewInit, ControlValu
   // Writes a new value to the element.
   // This methods is called when programmatic changes from model to view are requested.
   writeValue(value: Content): void {
-    if (!this.outputFormat && typeof value === 'string') {
-      this.outputFormat = 'html';
-    }
-
-    this.editor.chain().setContent(value, false).run();
+    this.editor().chain().setContent(value, false).run();
   }
 
   // Registers a callback function that is called when the control's value changes in the UI.
@@ -47,7 +44,7 @@ export class TiptapEditorDirective implements OnInit, AfterViewInit, ControlValu
 
   // Called by the forms api to enable or disable the element
   setDisabledState(isDisabled: boolean): void {
-    this.editor.setEditable(!isDisabled);
+    this.editor().setEditable(!isDisabled);
     this.renderer.setProperty(this.elRef.nativeElement, 'disabled', isDisabled);
   }
 
@@ -59,7 +56,7 @@ export class TiptapEditorDirective implements OnInit, AfterViewInit, ControlValu
     // Needed for ChangeDetectionStrategy.OnPush to get notified about changes
     this.changeDetectorRef.markForCheck();
 
-    if (this.outputFormat === 'html') {
+    if (this.outputFormat() === 'html') {
       this.onChange(editor.getHTML());
       return;
     }
@@ -68,35 +65,33 @@ export class TiptapEditorDirective implements OnInit, AfterViewInit, ControlValu
   };
 
   ngOnInit(): void {
-    if (!this.editor) {
-      throw new Error('Required: Input `editor`');
-    }
+    const editor = this.editor();
 
     // take the inner contents and clear the block
     const { innerHTML } = this.elRef.nativeElement;
     this.elRef.nativeElement.innerHTML = '';
 
     // insert the editor in the dom
-    this.elRef.nativeElement.append(...Array.from(this.editor.options.element.childNodes));
+    this.elRef.nativeElement.append(...Array.from(editor.options.element.childNodes));
 
     // update the options for the editor
-    this.editor.setOptions({ element: this.elRef.nativeElement });
+    editor.setOptions({ element: this.elRef.nativeElement });
 
     // update content to the editor
     if (innerHTML) {
-      this.editor.chain().setContent(innerHTML, false).run();
+      editor.chain().setContent(innerHTML, false).run();
     }
 
     // register blur handler to update `touched` property
-    this.editor.on('blur', () => {
+    editor.on('blur', () => {
       this.onTouched();
     });
 
     // register update handler to listen to changes on update
-    this.editor.on('update', this.handleChange);
+    editor.on('update', this.handleChange);
 
     // Needed for ChangeDetectionStrategy.OnPush to get notified
-    this.editor.on('selectionUpdate', () => this.changeDetectorRef.markForCheck());
+    editor.on('selectionUpdate', () => this.changeDetectorRef.markForCheck());
   }
 
   ngAfterViewInit(): void {

@@ -12,8 +12,10 @@ import { AngularNodeViewComponent, TiptapDraggableDirective } from 'ngx-tiptap';
 
 export class NodeviewCounterComponent extends AngularNodeViewComponent {
   increment(): void {
-    this.updateAttributes({
-      count: this.node.attrs['count'] + 1,
+    const updateAttributes = this.updateAttributes();
+
+    updateAttributes({
+      count: this.node().attrs['count'] + 1,
     });
   }
 }

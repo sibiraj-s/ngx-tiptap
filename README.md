@@ -156,7 +156,9 @@ import { AngularNodeViewComponent } from 'ngx-tiptap';
 })
 export class NodeviewCounterComponent extends AngularNodeViewComponent {
   increment(): void {
-    this.updateAttributes({
+    const updateAttributes = this.updateAttributes();
+
+    updateAttributes({
       count: this.node.attrs.count + 1,
     });
   }
@@ -211,7 +213,9 @@ import { AngularNodeViewComponent } from 'ngx-tiptap';
 
 export class NodeviewCounterComponent extends AngularNodeViewComponent {
   increment(): void {
-    this.updateAttributes({
+    const updateAttributes = this.updateAttributes();
+
+    updateAttributes({
       count: this.node.attrs.count + 1,
     });
   }

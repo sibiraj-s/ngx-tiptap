@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+
 import { Editor } from '@tiptap/core';
 import StarterKit from '@tiptap/starter-kit';
 
@@ -9,43 +10,51 @@ import { TiptapEditorDirective } from './editor.directive';
 
 @Component({
   template: `
-    <tiptap-editor [editor]="editor"></tiptap-editor>
-    <tiptap-bubble-menu [editor]="editor">BubbleMenu</tiptap-bubble-menu>
+    <tiptap-editor [editor]="editor()"></tiptap-editor>
+    <tiptap-bubble-menu [editor]="editor()">BubbleMenu</tiptap-bubble-menu>
   `,
   imports: [TiptapEditorDirective, TiptapBubbleMenuDirective],
 })
 class TestComponent {
-  @Input() editor!: Editor;
+  readonly editor = input.required<Editor>();
 }
 
 describe('BubbleMenuDirective', () => {
-  let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [TestComponent,
+      imports: [
+        TestComponent,
         TiptapEditorDirective,
-        TiptapBubbleMenuDirective],
+        TiptapBubbleMenuDirective,
+      ],
+      providers: [
+        {
+          provide: ElementRef,
+          useValue: new ElementRef(document.createElement('div')),
+        },
+      ],
     });
 
     await TestBed.compileComponents();
-
-    fixture = TestBed.createComponent(TestComponent);
-    component = fixture.componentInstance;
 
     const editor = new Editor({
       extensions: [StarterKit],
     });
 
-    component.editor = editor;
+    fixture = TestBed.createComponent(TestComponent);
+    fixture.componentRef.setInput('editor', editor);
     fixture.detectChanges();
   });
 
   it('should create an instance', async () => {
-    const hostEl = fixture.debugElement.query(By.css('tiptap-bubble-menu'));
     await fixture.whenStable();
-    const directive = new TiptapBubbleMenuDirective(hostEl);
-    expect(directive).toBeTruthy();
+
+    const bubbleMenuElement = fixture.debugElement.query(By.directive(TiptapBubbleMenuDirective));
+    const directiveInstance = bubbleMenuElement.injector.get(TiptapBubbleMenuDirective);
+
+    expect(bubbleMenuElement.nativeElement.textContent).toBe('BubbleMenu');
+    expect(directiveInstance).toBeTruthy();
   });
 });
