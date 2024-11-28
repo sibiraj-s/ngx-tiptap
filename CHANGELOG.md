@@ -14,6 +14,47 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Refactor
 
+## v12.0.0 (2024-11-28)
+
+#### Breaking Changes
+
+- requires angular 19 or greater ([64193b0](https://github.com/sibiraj-s/ngx-tiptap/commit/64193b0))
+- internal: refactor inputs and outputs to be signals ([8bc30cb](https://github.com/sibiraj-s/ngx-tiptap/commit/8bc30cb))
+
+#### Migration
+
+- Everything is now standalone, and `NgxTiptapModule` is no longer needed and has been removed.
+  Manually import the following components wherever required:
+
+  - TiptapEditorDirective
+  - TiptapFloatingMenuDirective
+  - TiptapBubbleMenuDirective
+  - TiptapDraggableDirective
+  - TiptapNodeViewContentDirective
+
+- AngularNodeViewComponent methods are now signals.
+
+  An example of updating attributes in a custom node view:
+
+  **Before**
+
+  ```ts
+  this.updateAttributes({
+    count: this.node.attrs['count'] + 1,
+  });
+  ```
+
+  **After**
+
+  ```ts
+  const updateAttributes = this.updateAttributes();
+  updateAttributes({
+    count: this.node().attrs['count'] + 1,
+  });
+  ```
+
+For more details, refer to the README.
+
 ## v11.1.0 (2024-09-17)
 
 #### Features
