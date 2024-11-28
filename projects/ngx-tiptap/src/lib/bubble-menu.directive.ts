@@ -7,7 +7,6 @@ import { BubbleMenuPlugin, BubbleMenuPluginProps } from '@tiptap/extension-bubbl
 
 @Directive({
   selector: 'tiptap-bubble-menu[editor], [tiptapBubbleMenu][editor]',
-  standalone: true,
 })
 export class TiptapBubbleMenuDirective implements OnInit, OnDestroy {
   private elRef = inject<ElementRef<HTMLElement>>(ElementRef);
