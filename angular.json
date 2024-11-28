@@ -71,7 +71,12 @@
             "styles": [
               "projects/demo/src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "server": "projects/demo/src/main.server.ts",
+            "outputMode": "server",
+            "ssr": {
+              "entry": "projects/demo/src/server.ts"
+            }
           },
           "configurations": {
             "production": {

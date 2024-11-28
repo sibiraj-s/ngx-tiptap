@@ -8,6 +8,8 @@
   },
   "files": [
     "src/main.ts",
+    "src/main.server.ts",
+    "src/server.ts",
     "tailwind.config.ts"
   ],
   "include": [
