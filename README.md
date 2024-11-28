@@ -43,7 +43,6 @@ import { TiptapEditorDirective } from 'ngx-tiptap';
   selector: 'app-root',
   template: './app.component.html',
   imports: [CommonModule, FormsModule, TiptapEditorDirective],
-  standalone: true,
 })
 export class AppComponent implements OnDestroy {
   editor = new Editor({

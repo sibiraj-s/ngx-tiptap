@@ -12,7 +12,6 @@ import { Content, Editor, type EditorEvents } from '@tiptap/core';
     useExisting: forwardRef(() => TiptapEditorDirective),
     multi: true,
   }],
-  standalone: true,
 })
 
 export class TiptapEditorDirective implements OnInit, AfterViewInit, ControlValueAccessor {

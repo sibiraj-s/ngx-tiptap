@@ -6,7 +6,6 @@ type NodeViewPropsWithoutInputs = Omit<NodeViewProps, Inputs>;
 
 @Component({
   template: '',
-  standalone: false,
 })
 export class AngularNodeViewComponent implements NodeViewPropsWithoutInputs {
   readonly editor = input.required<NodeViewProps['editor']>();
