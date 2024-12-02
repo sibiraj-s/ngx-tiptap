@@ -38,6 +38,9 @@ jobs:
       - name: Build Pages
         run: npm run build:pages
 
+      - name: Rename index.csr.html to index.html
+        run: mv dist/demo/browser/index.csr.html dist/demo/browser/index.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
