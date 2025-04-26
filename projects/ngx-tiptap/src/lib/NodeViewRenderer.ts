@@ -54,7 +54,6 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
     };
 
     this.handleSelectionUpdate = this.handleSelectionUpdate.bind(this);
-    this.editor.on('selectionUpdate', this.handleSelectionUpdate);
 
     // create renderer
     this.renderer = new AngularRenderer(this.component, injector, props);
@@ -66,9 +65,17 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
       };
     }
 
-    this.contentDOMElement = this.node.isLeaf ? null : document.createElement(this.node.isInline ? 'span' : 'div');
+    if (this.node.isLeaf) {
+      this.contentDOMElement = null;
+    } else if (this.options.contentDOMElementTag) {
+      this.contentDOMElement = document.createElement(this.options.contentDOMElementTag);
+    } else {
+      this.contentDOMElement = document.createElement(this.node.isInline ? 'span' : 'div');
+    }
 
     if (this.contentDOMElement) {
+      this.contentDOMElement.dataset['nodeViewContentAngular'] = '';
+
       // For some reason the whiteSpace prop is not inherited properly in Chrome and Safari
       // With this fix it seems to work fine
       // See: https://github.com/ueberdosis/tiptap/issues/1197
@@ -80,6 +87,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
     }
 
     this.appendContendDom();
+    this.editor.on('selectionUpdate', this.handleSelectionUpdate);
     this.updateElementAttributes();
   }
 

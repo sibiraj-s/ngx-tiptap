@@ -25,7 +25,7 @@ export class NodeviewRendererComponent implements OnDestroy {
       <p>The below is another counter component with different scope, The count is preset to "1"</p>
       <angular-component-counter count="1"></angular-component-counter>
       <p>You can also create an editable component item inside the component</p>
-      <angular-component-editable><p>This text is editable</p></angular-component-editable>
+      <angular-component-editable>This text is editable</angular-component-editable>
       <p>Did you see that? These are Angular components. We are really living in the future.</p>
     `,
     extensions: [
