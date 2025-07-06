@@ -1,3 +1,5 @@
+@reference 'tailwindcss';
+
 .angular-component-with-content {
   @apply flex flex-col;
   @apply px-4 my-4;

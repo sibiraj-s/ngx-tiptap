@@ -4,7 +4,7 @@
   <div>
     <div class="border-black border-2 border-b-0 rounded-t-md p-1 flex">
       <button
-        class="rounded h-7 w-7 flex justify-center items-center"
+        class="rounded-sm h-7 w-7 flex justify-center items-center"
         [ngClass]="{ 'bg-black text-white': editor.isActive('heading') }"
         (click)="editor.chain().focus().toggleHeading({ level: 1 }).run()"
       >
@@ -14,7 +14,7 @@
         </svg>
       </button>
       <button
-        class="rounded h-7 w-7 flex justify-center items-center ml-1"
+        class="rounded-sm h-7 w-7 flex justify-center items-center ml-1"
         [ngClass]="{ 'bg-black text-white': editor.isActive('bold') }"
         (click)="editor.chain().focus().toggleBold().run()"
       >
@@ -26,7 +26,7 @@
         </svg>
       </button>
       <button
-        class="rounded h-7 w-7 flex justify-center items-center ml-1"
+        class="rounded-sm h-7 w-7 flex justify-center items-center ml-1"
         [ngClass]="{ 'bg-black text-white': editor.isActive('italic') }"
         (click)="editor.chain().focus().toggleItalic().run()"
       >
@@ -36,7 +36,7 @@
         </svg>
       </button>
       <button
-        class="rounded h-7 w-7 flex justify-center items-center ml-1"
+        class="rounded-sm h-7 w-7 flex justify-center items-center ml-1"
         [ngClass]="{ 'bg-black text-white': editor.isActive('paragraph') }"
         (click)="editor.chain().focus().setParagraph().run()"
       >

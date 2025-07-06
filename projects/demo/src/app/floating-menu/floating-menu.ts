@@ -19,7 +19,7 @@ export class FloatingMenu implements OnDestroy {
     extensions: [StarterKit],
     editorProps: {
       attributes: {
-        class: 'p-2 border-black focus:border-blue-700 border-2 rounded-md outline-none',
+        class: 'p-2 border-black focus:border-blue-700 border-2 rounded-md outline-hidden',
         spellCheck: 'false',
       },
     },

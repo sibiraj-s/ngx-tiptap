@@ -31,7 +31,7 @@ export class SimpleEditorReactive implements OnDestroy {
     ],
     editorProps: {
       attributes: {
-        class: 'p-2 border-black border-2 rounded-b-md outline-none',
+        class: 'p-2 border-black border-2 rounded-b-md outline-hidden',
         spellCheck: 'false',
       },
     },
