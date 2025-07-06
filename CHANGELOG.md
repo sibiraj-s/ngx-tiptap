@@ -14,6 +14,12 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Refactor
 
+## v13.0.0 (2025-07-06)
+
+#### Breaking Changes
+
+- requires angular 20 or greater ([bdbf227](https://github.com/sibiraj-s/ngx-tiptap/commit/bdbf227))
+
 ## v12.0.0 (2024-11-28)
 
 #### Breaking Changes
@@ -25,7 +31,6 @@ All notable changes to this project will be documented in this file.
 
 - Everything is now standalone, and `NgxTiptapModule` is no longer needed and has been removed.
   Manually import the following components wherever required:
-
   - TiptapEditorDirective
   - TiptapFloatingMenuDirective
   - TiptapBubbleMenuDirective

@@ -1,7 +1,7 @@
 {
   "name": "ngx-tiptap",
   "description": "Angular bindings for tiptap v2",
-  "version": "12.0.0",
+  "version": "13.0.0",
   "license": "MIT",
   "repository": "https://github.com/sibiraj-s/ngx-tiptap.git",
   "bugs": "https://github.com/sibiraj-s/ngx-tiptap/issues",
