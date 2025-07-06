@@ -6,11 +6,11 @@ import { AngularNodeViewComponent, TiptapDraggableDirective } from 'ngx-tiptap';
 @Component({
   selector: 'app-nodeview-counter',
   imports: [CommonModule, TiptapDraggableDirective],
-  templateUrl: './counter.component.html',
-  styleUrls: ['./counter.component.css'],
+  templateUrl: './counter.html',
+  styleUrls: ['./counter.css'],
 })
 
-export class NodeviewCounterComponent extends AngularNodeViewComponent {
+export class NodeviewCounter extends AngularNodeViewComponent {
   increment(): void {
     const updateAttributes = this.updateAttributes();
 

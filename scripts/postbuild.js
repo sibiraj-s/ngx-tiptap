@@ -1,13 +1,13 @@
-const fs = require('node:fs');
-const path = require('node:path');
-const color = require('picocolors');
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import color from 'picocolors';
 
 const copyFile = async function (srcFilePath, destFilePath) {
   const fileName = path.basename(srcFilePath);
   try {
     const srcPath = path.resolve(process.cwd(), srcFilePath);
     const destPath = path.resolve(process.cwd(), 'dist/ngx-tiptap', destFilePath);
-    await fs.promises.copyFile(srcPath, destPath);
+    await fs.copyFile(srcPath, destPath);
     console.log(color.green(`- File Copied: ${fileName}`));
   } catch (err) {
     console.log(color.red(`Error while copying ${fileName}`), err);

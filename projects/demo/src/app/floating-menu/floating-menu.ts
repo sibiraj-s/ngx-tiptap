@@ -9,10 +9,10 @@ import { TiptapEditorDirective, TiptapFloatingMenuDirective } from 'ngx-tiptap';
 @Component({
   selector: 'app-floating-menu',
   imports: [CommonModule, FormsModule, TiptapEditorDirective, TiptapFloatingMenuDirective],
-  templateUrl: './floating-menu.component.html',
-  styleUrls: ['./floating-menu.component.css'],
+  templateUrl: './floating-menu.html',
+  styleUrls: ['./floating-menu.css'],
 })
-export class FloatingMenuComponent implements OnDestroy {
+export class FloatingMenu implements OnDestroy {
   value = 'This is an example of a Medium-like editor. Enter a new line and some buttons will appear.';
 
   editor = new Editor({

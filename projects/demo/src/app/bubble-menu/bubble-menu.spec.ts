@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { FloatingMenuComponent } from './floating-menu.component';
+import { BubbleMenu } from './bubble-menu';
 
-describe('FloatingMenuComponent', () => {
-  let component: FloatingMenuComponent;
-  let fixture: ComponentFixture<FloatingMenuComponent>;
+describe('BubbleMenuComponent', () => {
+  let component: BubbleMenu;
+  let fixture: ComponentFixture<BubbleMenu>;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
-        FloatingMenuComponent,
+        BubbleMenu,
       ],
     });
 
@@ -18,7 +18,7 @@ describe('FloatingMenuComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FloatingMenuComponent);
+    fixture = TestBed.createComponent(BubbleMenu);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

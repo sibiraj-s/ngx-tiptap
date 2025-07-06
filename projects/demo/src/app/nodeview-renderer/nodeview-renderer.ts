@@ -11,10 +11,10 @@ import { CounterComponentExtension, EditableComponentExtension } from './extensi
 @Component({
   selector: 'app-nodeview-renderer',
   imports: [TiptapEditorDirective],
-  templateUrl: './nodeview-renderer.component.html',
-  styleUrls: ['./nodeview-renderer.component.css'],
+  templateUrl: './nodeview-renderer.html',
+  styleUrls: ['./nodeview-renderer.css'],
 })
-export class NodeviewRendererComponent implements OnDestroy {
+export class NodeviewRenderer implements OnDestroy {
   private injector = inject(Injector);
 
   editor = new Editor({

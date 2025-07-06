@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { BubbleMenuComponent } from './bubble-menu.component';
+import { NodeviewRenderer } from './nodeview-renderer';
 
-describe('BubbleMenuComponent', () => {
-  let component: BubbleMenuComponent;
-  let fixture: ComponentFixture<BubbleMenuComponent>;
+describe('NodeviewRendererComponent', () => {
+  let component: NodeviewRenderer;
+  let fixture: ComponentFixture<NodeviewRenderer>;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
-        BubbleMenuComponent,
+        NodeviewRenderer,
       ],
     });
 
@@ -18,7 +18,7 @@ describe('BubbleMenuComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BubbleMenuComponent);
+    fixture = TestBed.createComponent(NodeviewRenderer);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

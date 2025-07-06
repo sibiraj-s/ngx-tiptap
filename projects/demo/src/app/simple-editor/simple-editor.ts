@@ -10,10 +10,10 @@ import { TiptapEditorDirective } from 'ngx-tiptap';
 @Component({
   selector: 'app-simple-editor',
   imports: [CommonModule, FormsModule, TiptapEditorDirective],
-  templateUrl: './simple-editor.component.html',
-  styleUrls: ['./simple-editor.component.css'],
+  templateUrl: './simple-editor.html',
+  styleUrls: ['./simple-editor.css'],
 })
-export class SimpleEditorComponent implements OnDestroy {
+export class SimpleEditor implements OnDestroy {
   value: Content = `Lorem Ipsum is simply dummy text of the printing and typesetting industry.
     Lorem Ipsum has been the <strong>industry's standard dummy text ever since the 1500s</strong>,
     when an unknown printer took a galley of type and scrambled it to make a type specimen book.

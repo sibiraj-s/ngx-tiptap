@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { SimpleEditorReactiveComponent } from './simple-editor-reactive.component';
+import { SimpleEditorReactive } from './simple-editor-reactive';
 
 describe('SimpleEditorReactiveComponent', () => {
-  let component: SimpleEditorReactiveComponent;
-  let fixture: ComponentFixture<SimpleEditorReactiveComponent>;
+  let component: SimpleEditorReactive;
+  let fixture: ComponentFixture<SimpleEditorReactive>;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
-        SimpleEditorReactiveComponent,
+        SimpleEditorReactive,
       ],
     });
 
@@ -18,7 +18,7 @@ describe('SimpleEditorReactiveComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SimpleEditorReactiveComponent);
+    fixture = TestBed.createComponent(SimpleEditorReactive);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

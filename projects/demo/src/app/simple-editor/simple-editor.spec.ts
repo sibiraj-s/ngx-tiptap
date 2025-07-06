@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { SimpleEditorComponent } from './simple-editor.component';
+import { SimpleEditor } from './simple-editor';
 
 describe('SimpleEditorComponent', () => {
-  let component: SimpleEditorComponent;
-  let fixture: ComponentFixture<SimpleEditorComponent>;
+  let component: SimpleEditor;
+  let fixture: ComponentFixture<SimpleEditor>;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
-        SimpleEditorComponent,
+        SimpleEditor,
       ],
     });
 
@@ -18,7 +18,7 @@ describe('SimpleEditorComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SimpleEditorComponent);
+    fixture = TestBed.createComponent(SimpleEditor);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

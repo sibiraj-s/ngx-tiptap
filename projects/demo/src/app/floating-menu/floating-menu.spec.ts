@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { NodeviewRendererComponent } from './nodeview-renderer.component';
+import { FloatingMenu } from './floating-menu';
 
-describe('NodeviewRendererComponent', () => {
-  let component: NodeviewRendererComponent;
-  let fixture: ComponentFixture<NodeviewRendererComponent>;
+describe('FloatingMenuComponent', () => {
+  let component: FloatingMenu;
+  let fixture: ComponentFixture<FloatingMenu>;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
-        NodeviewRendererComponent,
+        FloatingMenu,
       ],
     });
 
@@ -18,7 +18,7 @@ describe('NodeviewRendererComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NodeviewRendererComponent);
+    fixture = TestBed.createComponent(FloatingMenu);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

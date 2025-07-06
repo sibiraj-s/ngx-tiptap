@@ -6,8 +6,8 @@ import { AngularNodeViewComponent, TiptapDraggableDirective, TiptapNodeViewConte
 @Component({
   selector: 'app-nodeview-editable',
   imports: [CommonModule, TiptapDraggableDirective, TiptapNodeViewContentDirective],
-  templateUrl: './editable.component.html',
-  styleUrls: ['./editable.component.css'],
+  templateUrl: './editable.html',
+  styleUrls: ['./editable.css'],
 })
 
-export class NodeviewEditableComponent extends AngularNodeViewComponent { }
+export class NodeviewEditable extends AngularNodeViewComponent { }

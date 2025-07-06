@@ -23,7 +23,7 @@ interface RendererUpdateProps {
 type AttrProps = Record<string, string>
 | ((props: {
   node: ProseMirrorNode;
-  HTMLAttributes: Record<string, any>;
+  HTMLAttributes: Record<string, unknown>;
 }) => Record<string, string>);
 
 interface AngularNodeViewRendererOptions extends NodeViewRendererOptions {
@@ -33,8 +33,8 @@ interface AngularNodeViewRendererOptions extends NodeViewRendererOptions {
 }
 
 class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, AngularNodeViewRendererOptions> {
-  renderer!: AngularRenderer<AngularNodeViewComponent, NodeViewProps>;
-  contentDOMElement!: HTMLElement | null;
+  declare renderer: AngularRenderer<AngularNodeViewComponent, NodeViewProps>;
+  declare contentDOMElement: HTMLElement | null;
 
   override mount() {
     const injector = this.options.injector as Injector;

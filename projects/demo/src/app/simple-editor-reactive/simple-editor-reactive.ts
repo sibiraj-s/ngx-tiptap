@@ -10,10 +10,10 @@ import { TiptapEditorDirective } from 'ngx-tiptap';
 @Component({
   selector: 'app-simple-editor-reactive',
   imports: [CommonModule, ReactiveFormsModule, TiptapEditorDirective],
-  templateUrl: './simple-editor-reactive.component.html',
-  styleUrls: ['./simple-editor-reactive.component.css'],
+  templateUrl: './simple-editor-reactive.html',
+  styleUrls: ['./simple-editor-reactive.css'],
 })
-export class SimpleEditorReactiveComponent implements OnDestroy {
+export class SimpleEditorReactive implements OnDestroy {
   value: Content = `amet nisl suscipit adipiscing bibendum est ultricies integer quis auctor elit
    sed vulputate mi sit amet mauris commodo quis imperdiet massa tincidunt nunc pulvinar sapien
    et ligula ullamcorper malesuada proin libero nunc consequat interdum varius sit amet mattis

@@ -2,8 +2,8 @@ import { Injector } from '@angular/core';
 import { Node, mergeAttributes } from '@tiptap/core';
 import { AngularNodeViewRenderer } from 'ngx-tiptap';
 
-import { NodeviewCounterComponent } from './nodeviews/counter/counter.component';
-import { NodeviewEditableComponent } from './nodeviews/editable/editable.component';
+import { NodeviewCounter } from './nodeviews/counter/counter';
+import { NodeviewEditable } from './nodeviews/editable/editable';
 
 export const CounterComponentExtension = (injector: Injector): Node => {
   return Node.create({
@@ -33,7 +33,7 @@ export const CounterComponentExtension = (injector: Injector): Node => {
     },
 
     addNodeView() {
-      return AngularNodeViewRenderer(NodeviewCounterComponent, { injector });
+      return AngularNodeViewRenderer(NodeviewCounter, { injector });
     },
   });
 };
@@ -54,7 +54,7 @@ export const EditableComponentExtension = (injector: Injector): Node => {
     },
 
     addNodeView() {
-      return AngularNodeViewRenderer(NodeviewEditableComponent, { injector });
+      return AngularNodeViewRenderer(NodeviewEditable, { injector });
     },
   });
 };
