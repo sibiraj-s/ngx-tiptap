@@ -14,6 +14,7 @@ concurrency:
 permissions:
   issues: write
   pull-requests: write
+  discussions: write
 
 jobs:
   lock:
