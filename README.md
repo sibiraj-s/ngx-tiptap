@@ -1,6 +1,6 @@
 # NgxTiptap
 
-> Angular bindings for [tiptap v2](https://www.tiptap.dev/)
+> Angular bindings for [Tiptap 3](https://www.tiptap.dev/)
 
 [![Tests](https://github.com/sibiraj-s/ngx-tiptap/actions/workflows/tests.yml/badge.svg)](https://github.com/sibiraj-s/ngx-tiptap/actions/workflows/tests.yml)
 [![NPM Version](https://badgen.net/npm/v/ngx-tiptap)](https://www.npmjs.com/package/ngx-tiptap)
