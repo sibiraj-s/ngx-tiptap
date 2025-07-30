@@ -1,6 +1,6 @@
 {
   "name": "ngx-tiptap",
-  "description": "Angular bindings for tiptap v2",
+  "description": "Angular bindings for Tiptap 3",
   "version": "14.0.0",
   "license": "MIT",
   "repository": "https://github.com/sibiraj-s/ngx-tiptap.git",
@@ -25,10 +25,11 @@
     "@angular/common": ">=20.0.0",
     "@angular/core": ">=20.0.0",
     "@angular/forms": ">=20.0.0",
-    "@tiptap/core": "^2.7.0",
-    "@tiptap/extension-bubble-menu": "^2.7.0",
-    "@tiptap/extension-floating-menu": "^2.7.0",
-    "@tiptap/pm": "^2.7.0"
+    "@floating-ui/dom": "^1.0.0",
+    "@tiptap/core": "^3.0.1",
+    "@tiptap/extension-bubble-menu": "^3.0.1",
+    "@tiptap/extension-floating-menu": "^3.0.1",
+    "@tiptap/pm": "^3.0.1"
   },
   "dependencies": {
     "tslib": "^2.3.0"
