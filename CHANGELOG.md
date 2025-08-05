@@ -14,16 +14,13 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Refactor
 
-## v14.0.0 (2025-07-29)
+## v14.0.0 (2025-08-06)
 
 #### Breaking Changes
 
-- **BREAKING**: Migrated to Tiptap 3
-  - Updated all `@tiptap/*` packages to v3
-  - Replaced `tippyOptions` with `options` in bubble and floating menu directives (now uses Floating UI instead of Tippy.js)
-  - Added `@floating-ui/dom` as a peer dependency
-  - Updated `setContent` API calls to use new options format: `setContent(content, { emitUpdate: false })`
-  - Library description updated from "Angular bindings for tiptap v2" to "Angular bindings for tiptap v3"
+- Minimum required version - Tiptap 3.0.0
+- Replace `tippyOptions` with `options` in bubble and floating menu directives (now uses Floating UI instead of Tippy.js)
+- `@floating-ui/dom` as a new peer dependency
 
 #### Migration Guide
 
