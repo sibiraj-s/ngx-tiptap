@@ -124,7 +124,7 @@ describe('NgxTiptapDirective: FormsModule', () => {
   });
 
   it('should update the model when directly updated using editor commands', async () => {
-    component.editor().chain().setContent('Hello World!', true).run();
+    component.editor().chain().setContent('Hello World!', { emitUpdate: true }).run();
 
     fixture.detectChanges();
     await fixture.whenStable();
@@ -133,7 +133,7 @@ describe('NgxTiptapDirective: FormsModule', () => {
   });
 
   it('should not update the model when emitUpdate is set to false', async () => {
-    component.editor().chain().setContent('Hello World!', false).run();
+    component.editor().chain().setContent('Hello World!', { emitUpdate: false }).run();
 
     fixture.detectChanges();
     await fixture.whenStable();
@@ -144,7 +144,7 @@ describe('NgxTiptapDirective: FormsModule', () => {
   it('should update the model when marks are toggled directly using editor commands', async () => {
     component.editor()
       .chain()
-      .setContent('Hello World!', true)
+      .setContent('Hello World!', { emitUpdate: true })
       .selectAll()
       .setBold()
       .run();

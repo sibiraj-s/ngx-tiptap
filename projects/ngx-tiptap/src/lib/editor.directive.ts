@@ -28,7 +28,7 @@ export class TiptapEditorDirective implements OnInit, AfterViewInit, ControlValu
   // Writes a new value to the element.
   // This methods is called when programmatic changes from model to view are requested.
   writeValue(value: Content): void {
-    this.editor().chain().setContent(value, false).run();
+    this.editor().chain().setContent(value, { emitUpdate: false }).run();
   }
 
   // Registers a callback function that is called when the control's value changes in the UI.
@@ -71,14 +71,14 @@ export class TiptapEditorDirective implements OnInit, AfterViewInit, ControlValu
     this.elRef.nativeElement.innerHTML = '';
 
     // insert the editor in the dom
-    this.elRef.nativeElement.append(...Array.from(editor.options.element.childNodes));
+    this.elRef.nativeElement.append(...Array.from(editor.options.element?.childNodes || []));
 
     // update the options for the editor
     editor.setOptions({ element: this.elRef.nativeElement });
 
     // update content to the editor
     if (innerHTML) {
-      editor.chain().setContent(innerHTML, false).run();
+      editor.chain().setContent(innerHTML, { emitUpdate: false }).run();
     }
 
     // register blur handler to update `touched` property

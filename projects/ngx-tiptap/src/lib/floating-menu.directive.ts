@@ -14,7 +14,7 @@ export class TiptapFloatingMenuDirective implements OnInit, OnDestroy {
 
   readonly pluginKey = input<FloatingMenuPluginProps['pluginKey']>('NgxTiptapFloatingMenu');
   readonly editor = input.required<Editor>();
-  readonly tippyOptions = input<FloatingMenuPluginProps['tippyOptions']>({});
+  readonly options = input<FloatingMenuPluginProps['options']>({});
   readonly shouldShow = input<FloatingMenuPluginProps['shouldShow']>(null);
 
   ngOnInit(): void {
@@ -27,7 +27,7 @@ export class TiptapFloatingMenuDirective implements OnInit, OnDestroy {
       pluginKey: this.pluginKey(),
       editor,
       element: this.elRef.nativeElement,
-      tippyOptions: this.tippyOptions(),
+      options: this.options(),
       shouldShow: this.shouldShow(),
     }));
   }

@@ -13,7 +13,7 @@ export class TiptapBubbleMenuDirective implements OnInit, OnDestroy {
 
   readonly editor = input.required<Editor>();
   readonly pluginKey = input<BubbleMenuPluginProps['pluginKey']>('NgxTiptapBubbleMenu');
-  readonly tippyOptions = input<BubbleMenuPluginProps['tippyOptions']>({});
+  readonly options = input<BubbleMenuPluginProps['options']>({});
   readonly shouldShow = input<BubbleMenuPluginProps['shouldShow']>(null);
   readonly updateDelay = input<BubbleMenuPluginProps['updateDelay']>();
 
@@ -24,7 +24,7 @@ export class TiptapBubbleMenuDirective implements OnInit, OnDestroy {
       pluginKey: this.pluginKey(),
       editor,
       element: this.elRef.nativeElement,
-      tippyOptions: this.tippyOptions(),
+      options: this.options(),
       shouldShow: this.shouldShow(),
       updateDelay: this.updateDelay(),
     }));

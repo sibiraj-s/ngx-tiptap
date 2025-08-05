@@ -14,6 +14,43 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Refactor
 
+## v14.0.0 (2025-07-29)
+
+#### Breaking Changes
+
+- **BREAKING**: Migrated to Tiptap 3
+  - Updated all `@tiptap/*` packages to v3
+  - Replaced `tippyOptions` with `options` in bubble and floating menu directives (now uses Floating UI instead of Tippy.js)
+  - Added `@floating-ui/dom` as a peer dependency
+  - Updated `setContent` API calls to use new options format: `setContent(content, { emitUpdate: false })`
+  - Library description updated from "Angular bindings for tiptap v2" to "Angular bindings for tiptap v3"
+
+#### Migration Guide
+
+To migrate from v13 to v14:
+
+First, update your Tiptap dependencies to v3:
+
+```bash
+# Do this for all @tiptap/* packages you use
+npm install @tiptap/core@^3.0.1
+```
+
+If you use the Bubble Menu or Floating Menu, uninstall Tippy.js and install Floating UI:
+
+```bash
+npm install @floating-ui/dom@^1.0.0
+```
+
+Then, update bubble/floating menu options:
+
+```diff
+- <tiptap-bubble-menu [tippyOptions]="{ duration: 100 }">
++ <tiptap-bubble-menu [options]="{ offset: 6, placement: 'top' }">
+```
+
+For more details, see the [Tiptap v3 migration guide](https://tiptap.dev/docs/guides/upgrade-tiptap-v2).
+
 ## v13.0.0 (2025-07-06)
 
 #### Breaking Changes
