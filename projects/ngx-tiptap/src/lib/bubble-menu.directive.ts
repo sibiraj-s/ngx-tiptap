@@ -19,11 +19,18 @@ export class TiptapBubbleMenuDirective implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const editor = this.editor();
+    if (!editor) {
+      throw new Error('Required: Input `editor`');
+    }
+
+    const bubbleMenuElement = this.elRef.nativeElement;
+    bubbleMenuElement.style.visibility = 'hidden';
+    bubbleMenuElement.style.position = 'absolute';
 
     editor.registerPlugin(BubbleMenuPlugin({
       pluginKey: this.pluginKey(),
       editor,
-      element: this.elRef.nativeElement,
+      element: bubbleMenuElement,
       options: this.options(),
       shouldShow: this.shouldShow(),
       updateDelay: this.updateDelay(),
@@ -32,5 +39,10 @@ export class TiptapBubbleMenuDirective implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.editor().unregisterPlugin(this.pluginKey());
+    window.requestAnimationFrame(() => {
+      if (this.elRef.nativeElement.parentNode) {
+        this.elRef.nativeElement.parentNode.removeChild(this.elRef.nativeElement);
+      }
+    });
   }
 }

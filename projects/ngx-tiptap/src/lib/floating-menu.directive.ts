@@ -23,10 +23,14 @@ export class TiptapFloatingMenuDirective implements OnInit, OnDestroy {
       throw new Error('Required: Input `editor`');
     }
 
+    const floatingMenuElement = this.elRef.nativeElement;
+    floatingMenuElement.style.visibility = 'hidden';
+    floatingMenuElement.style.position = 'absolute';
+
     editor.registerPlugin(FloatingMenuPlugin({
       pluginKey: this.pluginKey(),
       editor,
-      element: this.elRef.nativeElement,
+      element: floatingMenuElement,
       options: this.options(),
       shouldShow: this.shouldShow(),
     }));
@@ -34,5 +38,10 @@ export class TiptapFloatingMenuDirective implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.editor().unregisterPlugin(this.pluginKey());
+    window.requestAnimationFrame(() => {
+      if (this.elRef.nativeElement.parentNode) {
+        this.elRef.nativeElement.parentNode.removeChild(this.elRef.nativeElement);
+      }
+    });
   }
 }
