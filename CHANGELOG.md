@@ -14,11 +14,17 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Refactor
 
+## v14.0.1 (2025-08-16)
+
+#### Bug Fixes
+
+- fix bubble menu and floating menu position ([d42bf6c](https://github.com/sibiraj-s/ngx-tiptap/commit/d42bf6c))
+
 ## v14.0.0 (2025-08-06)
 
 #### Breaking Changes
 
-- Minimum required version - Tiptap 3.0.0
+- Minimum required version - Tiptap 3.0.0 ([2266def](https://github.com/sibiraj-s/ngx-tiptap/commit/2266def))
 - Replace `tippyOptions` with `options` in bubble and floating menu directives (now uses Floating UI instead of Tippy.js)
 - `@floating-ui/dom` as a new peer dependency
 
