@@ -22,9 +22,9 @@
   ],
   "sideEffects": false,
   "peerDependencies": {
-    "@angular/common": ">=20.0.0",
-    "@angular/core": ">=20.0.0",
-    "@angular/forms": ">=20.0.0",
+    "@angular/common": ">=21.0.0",
+    "@angular/core": ">=21.0.0",
+    "@angular/forms": ">=21.0.0",
     "@tiptap/core": "^3.0.1",
     "@floating-ui/dom": "^1.0.0",
     "@tiptap/extension-bubble-menu": "^3.0.1",
