@@ -1,11 +1,15 @@
 import { Injector, Type } from '@angular/core';
 import {
-  Editor, NodeView, NodeViewProps,
-  NodeViewRenderer, NodeViewRendererProps, NodeViewRendererOptions, DecorationWithType,
+  DecorationWithType,
+  Editor,
   getRenderedAttributes,
+  NodeView, NodeViewProps,
+  NodeViewRenderer,
+  NodeViewRendererOptions,
+  NodeViewRendererProps,
 } from '@tiptap/core';
-import type { Decoration, DecorationSource } from '@tiptap/pm/view';
 import type { Node as ProseMirrorNode } from '@tiptap/pm/model';
+import type { Decoration, DecorationSource } from '@tiptap/pm/view';
 
 import { AngularRenderer } from './AngularRenderer';
 import { AngularNodeViewComponent } from './node-view.component';
@@ -213,9 +217,9 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
   }
 
   /**
- * Update the attributes of the top-level element that holds the React component.
- * Applying the attributes defined in the `attrs` option.
- */
+   * Update the attributes of the top-level element that holds the Angular component.
+   * Applying the attributes defined in the `attrs` option.
+   */
   updateElementAttributes() {
     if (this.options.attrs) {
       let attrsObj: Record<string, string> = {};

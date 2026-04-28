@@ -1,6 +1,6 @@
 import {
   Directive, ElementRef, OnDestroy,
-  OnInit, inject, input,
+  OnInit, Renderer2, inject, input,
 } from '@angular/core';
 import { Editor } from '@tiptap/core';
 import { BubbleMenuPlugin, BubbleMenuPluginProps } from '@tiptap/extension-bubble-menu';
@@ -10,6 +10,7 @@ import { BubbleMenuPlugin, BubbleMenuPluginProps } from '@tiptap/extension-bubbl
 })
 export class TiptapBubbleMenuDirective implements OnInit, OnDestroy {
   private elRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private renderer = inject(Renderer2);
 
   readonly editor = input.required<Editor>();
   readonly pluginKey = input<BubbleMenuPluginProps['pluginKey']>('NgxTiptapBubbleMenu');
@@ -19,13 +20,10 @@ export class TiptapBubbleMenuDirective implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const editor = this.editor();
-    if (!editor) {
-      throw new Error('Required: Input `editor`');
-    }
 
     const bubbleMenuElement = this.elRef.nativeElement;
-    bubbleMenuElement.style.visibility = 'hidden';
-    bubbleMenuElement.style.position = 'absolute';
+    this.renderer.setStyle(bubbleMenuElement, 'visibility', 'hidden');
+    this.renderer.setStyle(bubbleMenuElement, 'position', 'absolute');
 
     editor.registerPlugin(BubbleMenuPlugin({
       pluginKey: this.pluginKey(),
@@ -40,9 +38,7 @@ export class TiptapBubbleMenuDirective implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.editor().unregisterPlugin(this.pluginKey());
     window.requestAnimationFrame(() => {
-      if (this.elRef.nativeElement.parentNode) {
-        this.elRef.nativeElement.parentNode.removeChild(this.elRef.nativeElement);
-      }
+      this.elRef.nativeElement.remove();
     });
   }
 }

@@ -1,5 +1,5 @@
 import {
-  Directive, ElementRef, OnDestroy, OnInit, inject,
+  Directive, ElementRef, OnDestroy, OnInit, Renderer2, inject,
   input,
 } from '@angular/core';
 import { Editor } from '@tiptap/core';
@@ -11,6 +11,7 @@ import { FloatingMenuPlugin, FloatingMenuPluginProps } from '@tiptap/extension-f
 
 export class TiptapFloatingMenuDirective implements OnInit, OnDestroy {
   private elRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private renderer = inject(Renderer2);
 
   readonly pluginKey = input<FloatingMenuPluginProps['pluginKey']>('NgxTiptapFloatingMenu');
   readonly editor = input.required<Editor>();
@@ -19,13 +20,10 @@ export class TiptapFloatingMenuDirective implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const editor = this.editor();
-    if (!editor) {
-      throw new Error('Required: Input `editor`');
-    }
 
     const floatingMenuElement = this.elRef.nativeElement;
-    floatingMenuElement.style.visibility = 'hidden';
-    floatingMenuElement.style.position = 'absolute';
+    this.renderer.setStyle(floatingMenuElement, 'visibility', 'hidden');
+    this.renderer.setStyle(floatingMenuElement, 'position', 'absolute');
 
     editor.registerPlugin(FloatingMenuPlugin({
       pluginKey: this.pluginKey(),
@@ -39,9 +37,7 @@ export class TiptapFloatingMenuDirective implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.editor().unregisterPlugin(this.pluginKey());
     window.requestAnimationFrame(() => {
-      if (this.elRef.nativeElement.parentNode) {
-        this.elRef.nativeElement.parentNode.removeChild(this.elRef.nativeElement);
-      }
+      this.elRef.nativeElement.remove();
     });
   }
 }
