@@ -2,12 +2,12 @@
  * Public API Surface of ngx-tiptap
  */
 
-export * from './lib/editor.directive';
-export * from './lib/floating-menu.directive';
-export * from './lib/bubble-menu.directive';
-export * from './lib/draggable.directive';
-export * from './lib/node-view-content.directive';
-export * from './lib/node-view.component';
+export { TiptapEditorDirective } from './lib/editor.directive';
+export { TiptapFloatingMenuDirective } from './lib/floating-menu.directive';
+export { TiptapBubbleMenuDirective } from './lib/bubble-menu.directive';
+export { TiptapDraggableDirective } from './lib/draggable.directive';
+export { TiptapNodeViewContentDirective } from './lib/node-view-content.directive';
+export { AngularNodeViewComponent } from './lib/node-view.component';
 
-export * from './lib/AngularRenderer';
-export * from './lib/NodeViewRenderer';
+export { AngularRenderer } from './lib/AngularRenderer';
+export { AngularNodeViewRenderer } from './lib/NodeViewRenderer';

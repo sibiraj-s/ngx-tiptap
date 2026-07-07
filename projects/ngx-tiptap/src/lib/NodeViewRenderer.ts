@@ -1,8 +1,13 @@
 import { Injector, Type } from '@angular/core';
 import {
-  Editor, NodeView, NodeViewProps,
-  NodeViewRenderer, NodeViewRendererProps, NodeViewRendererOptions, DecorationWithType,
+  DecorationWithType,
+  Editor,
   getRenderedAttributes,
+  NodeView,
+  NodeViewProps,
+  NodeViewRenderer,
+  NodeViewRendererOptions,
+  NodeViewRendererProps
 } from '@tiptap/core';
 import type { Decoration, DecorationSource } from '@tiptap/pm/view';
 import type { Node as ProseMirrorNode } from '@tiptap/pm/model';
@@ -20,11 +25,9 @@ interface RendererUpdateProps {
   updateProps: () => void;
 }
 
-type AttrProps = Record<string, string>
-| ((props: {
-  node: ProseMirrorNode;
-  HTMLAttributes: Record<string, unknown>;
-}) => Record<string, string>);
+type AttrProps =
+  | Record<string, string>
+  | ((props: { node: ProseMirrorNode; HTMLAttributes: Record<string, unknown> }) => Record<string, string>);
 
 interface AngularNodeViewRendererOptions extends NodeViewRendererOptions {
   update?: ((props: RendererUpdateProps) => boolean) | null;
@@ -106,11 +109,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
   private appendContendDom() {
     const contentElement = this.dom.querySelector('[data-node-view-content]');
 
-    if (
-      this.contentDOMElement
-      && contentElement
-      && !contentElement.contains(this.contentDOMElement)
-    ) {
+    if (this.contentDOMElement && contentElement && !contentElement.contains(this.contentDOMElement)) {
       contentElement.appendChild(this.contentDOMElement);
     }
   }
@@ -163,11 +162,12 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
         newNode: node,
         newDecorations: decorations,
         innerDecorations: this.innerDecorations,
-        updateProps: () => updateProps({
-          node,
-          decorations: decorations as DecorationWithType[],
-          innerDecorations,
-        }),
+        updateProps: () =>
+          updateProps({
+            node,
+            decorations: decorations as DecorationWithType[],
+            innerDecorations,
+          }),
       });
     }
 
@@ -175,11 +175,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
       return false;
     }
 
-    if (
-      node === this.node
-      && this.decorations === decorations
-      && this.innerDecorations === innerDecorations
-    ) {
+    if (node === this.node && this.decorations === decorations && this.innerDecorations === innerDecorations) {
       return true;
     }
 
@@ -213,9 +209,9 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
   }
 
   /**
- * Update the attributes of the top-level element that holds the React component.
- * Applying the attributes defined in the `attrs` option.
- */
+   * Update the attributes of the top-level element that holds the React component.
+   * Applying the attributes defined in the `attrs` option.
+   */
   updateElementAttributes() {
     if (this.options.attrs) {
       let attrsObj: Record<string, string> = {};
