@@ -9,6 +9,8 @@ import type { Node as ProseMirrorNode } from '@tiptap/pm/model';
 
 import { AngularRenderer } from './AngularRenderer';
 import { AngularNodeViewComponent } from './node-view.component';
+import { getAngularNodeViewSelectionTracker } from './NodeViewSelectionTracker';
+import { getTextSelectionAncestorPositions } from './utils/getTextSelectionAncestorPositions';
 
 interface RendererUpdateProps {
   oldNode: ProseMirrorNode;
@@ -27,33 +29,43 @@ type AttrProps = Record<string, string>
 }) => Record<string, string>);
 
 interface AngularNodeViewRendererOptions extends NodeViewRendererOptions {
+  /**
+   * @deprecated Read `selectionInside` from the node view inputs instead.
+   */
+  selectedOnTextSelection?: boolean;
   update?: ((props: RendererUpdateProps) => boolean) | null;
   injector: Injector;
   attrs?: AttrProps;
 }
 
+type AngularNodeViewProps = NodeViewProps & {
+  /** Whether a text selection is fully inside the node view. */
+  selectionInside: boolean;
+};
+
 class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, AngularNodeViewRendererOptions> {
-  declare renderer: AngularRenderer<AngularNodeViewComponent, NodeViewProps>;
+  declare renderer: AngularRenderer<AngularNodeViewComponent, AngularNodeViewProps>;
   declare contentDOMElement: HTMLElement | null;
+
+  private nodeSelected = false;
 
   override mount() {
     const injector = this.options.injector as Injector;
 
-    const props: NodeViewProps = {
+    const props: AngularNodeViewProps = {
       editor: this.editor,
       node: this.node,
       decorations: this.decorations as DecorationWithType[],
       innerDecorations: this.innerDecorations,
       view: this.view,
       selected: false,
+      selectionInside: false,
       extension: this.extension,
       HTMLAttributes: this.HTMLAttributes,
       getPos: () => this.getPos(),
       updateAttributes: (attributes = {}) => this.updateAttributes(attributes),
       deleteNode: () => this.deleteNode(),
     };
-
-    this.handleSelectionUpdate = this.handleSelectionUpdate.bind(this);
 
     // create renderer
     this.renderer = new AngularRenderer(this.component, injector, props);
@@ -87,7 +99,7 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
     }
 
     this.appendContendDom();
-    this.editor.on('selectionUpdate', this.handleSelectionUpdate);
+    getAngularNodeViewSelectionTracker(this.editor).register(this);
     this.updateElementAttributes();
   }
 
@@ -112,29 +124,6 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
       && !contentElement.contains(this.contentDOMElement)
     ) {
       contentElement.appendChild(this.contentDOMElement);
-    }
-  }
-
-  handleSelectionUpdate() {
-    const { from, to } = this.editor.state.selection;
-    const pos = this.getPos();
-
-    if (typeof pos !== 'number') {
-      return;
-    }
-
-    if (from <= pos && to >= pos + this.node.nodeSize) {
-      if (this.renderer.instance.selected()) {
-        return;
-      }
-
-      this.selectNode();
-    } else {
-      if (!this.renderer.instance.selected()) {
-        return;
-      }
-
-      this.deselectNode();
     }
   }
 
@@ -196,19 +185,51 @@ class AngularNodeView extends NodeView<Type<AngularNodeViewComponent>, Editor, A
     return true;
   }
 
+  /**
+   * Select the node.
+   * Add the `selected` prop and the `ProseMirror-selectednode` class.
+   */
   selectNode() {
-    this.renderer.updateProps({ selected: true });
-    this.renderer.dom.classList.add('ProseMirror-selectednode');
+    this.nodeSelected = true;
+    this.updateSelectedState(true);
   }
 
+  /**
+   * Deselect the node.
+   * Remove the `selected` prop and the `ProseMirror-selectednode` class.
+   */
   deselectNode() {
-    this.renderer.updateProps({ selected: false });
-    this.renderer.dom.classList.remove('ProseMirror-selectednode');
+    this.nodeSelected = false;
+    this.updateSelectedState(
+      this.options.selectedOnTextSelection === true && this.isTextSelectionInside(),
+    );
+  }
+
+  setSelectionInside(selectionInside: boolean) {
+    const selected = this.nodeSelected || (this.options.selectedOnTextSelection === true && selectionInside);
+
+    this.renderer.updateProps({ selectionInside, selected });
+    this.renderer.dom.classList.toggle('ProseMirror-selectednode', selected);
+  }
+
+  private updateSelectedState(selected: boolean) {
+    this.renderer.updateProps({ selected });
+    this.renderer.dom.classList.toggle('ProseMirror-selectednode', selected);
+  }
+
+  private isTextSelectionInside() {
+    const pos = this.getPos();
+
+    return (
+      typeof pos === 'number'
+      && getTextSelectionAncestorPositions(this.editor.state.selection).includes(pos)
+    );
   }
 
   destroy() {
+    // unregister before destroying, the dom is read from the component
+    getAngularNodeViewSelectionTracker(this.editor).unregister(this);
     this.renderer.destroy();
-    this.editor.off('selectionUpdate', this.handleSelectionUpdate);
     this.contentDOMElement = null;
   }
 

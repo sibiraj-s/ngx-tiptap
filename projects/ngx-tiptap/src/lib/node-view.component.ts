@@ -25,6 +25,8 @@ export class AngularNodeViewComponent implements NodeViewPropsWithoutInputs {
   readonly innerDecorations = input.required<NodeViewProps['innerDecorations']>();
   readonly view = input.required<NodeViewProps['view']>();
   readonly selected = input.required<NodeViewProps['selected']>();
+  /** Whether a text selection is fully inside the node view. */
+  readonly selectionInside = input(false);
   readonly extension = input.required<NodeViewProps['extension']>();
   readonly HTMLAttributes = input.required<NodeViewProps['HTMLAttributes']>();
   readonly getPos = input.required<NodeViewProps['getPos']>();
