@@ -63,6 +63,23 @@ and in HTML
 <tiptap-editor [editor]="editor" [(ngModel)]="value"></tiptap-editor>
 ```
 
+Reactive forms (`formControl`, `formControlName`) and [Signal Forms](https://angular.dev/guide/forms/signals/overview) work the same way
+
+```ts
+import { form, FormField } from '@angular/forms/signals';
+
+@Component({
+  template: '<tiptap-editor [editor]="editor" [formField]="form.content"></tiptap-editor>',
+  imports: [FormField, TiptapEditorDirective],
+})
+export class AppComponent {
+  editor = new Editor({ extensions: [StarterKit] });
+
+  model = signal({ content: '<p>Hello, Tiptap!</p>' });
+  form = form(this.model);
+}
+```
+
 > [!NOTE]
 > No styling is provided by default. You are in full control of how your editor looks. Refer [tiptaps's styling guide](https://www.tiptap.dev/guide/styling) for more information.
 
