@@ -1,5 +1,5 @@
 import {
-  AfterViewInit, ChangeDetectorRef, Directive, ElementRef, forwardRef, OnInit, Renderer2, inject,
+  AfterViewInit, ChangeDetectorRef, Directive, ElementRef, forwardRef, OnDestroy, OnInit, Renderer2, inject,
   input,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -14,7 +14,7 @@ import { Content, Editor, type EditorEvents } from '@tiptap/core';
   }],
 })
 
-export class TiptapEditorDirective implements OnInit, AfterViewInit, ControlValueAccessor {
+export class TiptapEditorDirective implements OnInit, AfterViewInit, OnDestroy, ControlValueAccessor {
   protected elRef = inject<ElementRef<HTMLElement>>(ElementRef);
   protected renderer = inject(Renderer2);
   protected changeDetectorRef = inject(ChangeDetectorRef);
@@ -63,6 +63,15 @@ export class TiptapEditorDirective implements OnInit, AfterViewInit, ControlValu
     this.onChange(editor.getJSON());
   };
 
+  protected handleBlur = (): void => {
+    this.onTouched();
+  };
+
+  // Needed for ChangeDetectionStrategy.OnPush to get notified
+  protected handleSelectionUpdate = (): void => {
+    this.changeDetectorRef.markForCheck();
+  };
+
   ngOnInit(): void {
     const editor = this.editor();
 
@@ -85,18 +94,24 @@ export class TiptapEditorDirective implements OnInit, AfterViewInit, ControlValu
     }
 
     // register blur handler to update `touched` property
-    editor.on('blur', () => {
-      this.onTouched();
-    });
+    editor.on('blur', this.handleBlur);
 
     // register update handler to listen to changes on update
     editor.on('update', this.handleChange);
 
-    // Needed for ChangeDetectionStrategy.OnPush to get notified
-    editor.on('selectionUpdate', () => this.changeDetectorRef.markForCheck());
+    editor.on('selectionUpdate', this.handleSelectionUpdate);
   }
 
   ngAfterViewInit(): void {
     this.changeDetectorRef.detectChanges();
+  }
+
+  // the editor can outlive the directive, so remove the handlers registered on it
+  ngOnDestroy(): void {
+    const editor = this.editor();
+
+    editor.off('blur', this.handleBlur);
+    editor.off('update', this.handleChange);
+    editor.off('selectionUpdate', this.handleSelectionUpdate);
   }
 }
