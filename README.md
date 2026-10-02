@@ -94,6 +94,51 @@ You can get the json or html format from the editor directly as well.
 
 Refer https://www.tiptap.dev/guide/output#export
 
+## Markdown
+
+Add the [Markdown extension](https://tiptap.dev/docs/editor/markdown) to the editor and use the editor directly instead of the forms api.
+
+```bash
+npm i @tiptap/markdown
+```
+
+```ts
+import { Component, OnDestroy, signal } from '@angular/core';
+import { Editor } from '@tiptap/core';
+import { Markdown } from '@tiptap/markdown';
+import StarterKit from '@tiptap/starter-kit';
+import { TiptapEditorDirective } from 'ngx-tiptap';
+
+@Component({
+  selector: 'app-root',
+  template: '<tiptap-editor [editor]="editor"></tiptap-editor>',
+  imports: [TiptapEditorDirective],
+})
+export class AppComponent implements OnDestroy {
+  readonly value = signal('# Hello, Tiptap!');
+
+  editor = new Editor({
+    extensions: [StarterKit, Markdown],
+    content: this.value(),
+    contentType: 'markdown',
+    onUpdate: ({ editor }) => this.value.set(editor.getMarkdown()),
+  });
+
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
+}
+```
+
+To set markdown content later, use `editor.commands.setContent(markdown, { contentType: 'markdown' })`. To get the markdown at any time, use `editor.getMarkdown()`.
+
+With the forms api, use `outputFormat="json"` and convert the value with the markdown manager
+
+```ts
+const markdown = editor.markdown?.serialize(control.value); // json to markdown
+control.setValue(editor.markdown?.parse(markdown)); // markdown to json
+```
+
 ## Extensions
 
 Refer: https://www.tiptap.dev/api/extensions
