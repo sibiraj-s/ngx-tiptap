@@ -1,9 +1,13 @@
 import {
-  AfterViewInit, ChangeDetectorRef, Directive, ElementRef, forwardRef, OnDestroy, OnInit, Renderer2, inject,
-  input,
+  AfterViewInit, ChangeDetectorRef, Directive, ElementRef, forwardRef, OnChanges, OnDestroy, OnInit, Renderer2,
+  SimpleChanges, inject, input,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Content, Editor, type EditorEvents } from '@tiptap/core';
+
+type EditorWithContentComponent = Editor & {
+  isEditorContentInitialized?: boolean;
+};
 
 @Directive({
   selector: 'tiptap[editor], [tiptap][editor], tiptap-editor[editor], [tiptapEditor][editor]',
@@ -14,21 +18,33 @@ import { Content, Editor, type EditorEvents } from '@tiptap/core';
   }],
 })
 
-export class TiptapEditorDirective implements OnInit, AfterViewInit, OnDestroy, ControlValueAccessor {
+export class TiptapEditorDirective implements OnInit, OnChanges, AfterViewInit, OnDestroy, ControlValueAccessor {
   protected elRef = inject<ElementRef<HTMLElement>>(ElementRef);
   protected renderer = inject(Renderer2);
   protected changeDetectorRef = inject(ChangeDetectorRef);
 
-  readonly editor = input.required<Editor>();
+  readonly editor = input.required<Editor | null | undefined>();
   readonly outputFormat = input<'json' | 'html'>('html');
 
   protected onChange: (value: Content) => void = () => { /** */ };
   protected onTouched: () => void = () => { /** */ };
 
+  // inner contents of the element and the value set by the forms api before the editor is initialized
+  private initialContent = '';
+  private value: { content: Content } | null = null;
+  private disabled = false;
+
   // Writes a new value to the element.
   // This methods is called when programmatic changes from model to view are requested.
   writeValue(value: Content): void {
-    this.editor().chain().setContent(value, { emitUpdate: false }).run();
+    const editor = this.editor();
+
+    if (!editor) {
+      this.value = { content: value };
+      return;
+    }
+
+    editor.chain().setContent(value, { emitUpdate: false }).run();
   }
 
   // Registers a callback function that is called when the control's value changes in the UI.
@@ -43,7 +59,8 @@ export class TiptapEditorDirective implements OnInit, AfterViewInit, OnDestroy, 
 
   // Called by the forms api to enable or disable the element
   setDisabledState(isDisabled: boolean): void {
-    this.editor().setEditable(!isDisabled);
+    this.disabled = isDisabled;
+    this.editor()?.setEditable(!isDisabled);
     this.renderer.setProperty(this.elRef.nativeElement, 'disabled', isDisabled);
   }
 
@@ -73,45 +90,104 @@ export class TiptapEditorDirective implements OnInit, AfterViewInit, OnDestroy, 
   };
 
   ngOnInit(): void {
-    const editor = this.editor();
-
     // take the inner contents and clear the block
-    const { innerHTML } = this.elRef.nativeElement;
+    this.initialContent = this.elRef.nativeElement.innerHTML;
     this.elRef.nativeElement.innerHTML = '';
 
-    // insert the editor in the dom
-    const { element } = editor.options;
-    if (element instanceof Element) {
-      this.elRef.nativeElement.append(...Array.from(element.childNodes));
+    this.init();
+  }
+
+  // the editor content should be re-created whenever the editor instance changes
+  ngOnChanges(changes: SimpleChanges): void {
+    const change = changes['editor'];
+
+    if (!change || change.firstChange) {
+      return;
     }
 
-    // update the options for the editor
-    editor.setOptions({ element: this.elRef.nativeElement });
+    this.destroy(change.previousValue);
+    this.init();
+  }
 
-    // update content to the editor
-    if (innerHTML) {
-      editor.chain().setContent(innerHTML, { emitUpdate: false }).run();
+  init(): void {
+    const editor = this.editor() as EditorWithContentComponent | null | undefined;
+
+    if (editor && !editor.isDestroyed && editor.view.dom?.parentNode) {
+      if (editor.isEditorContentInitialized) {
+        return;
+      }
+
+      const element = this.elRef.nativeElement;
+
+      element.append(...Array.from(editor.view.dom.parentNode.childNodes));
+
+      editor.setOptions({
+        element,
+      });
+
+      // update content to the editor
+      if (this.initialContent) {
+        editor.chain().setContent(this.initialContent, { emitUpdate: false }).run();
+        this.initialContent = '';
+      }
+
+      if (this.value) {
+        editor.chain().setContent(this.value.content, { emitUpdate: false }).run();
+        this.value = null;
+      }
+
+      if (this.disabled) {
+        editor.setEditable(false);
+      }
+
+      // register blur handler to update `touched` property
+      editor.on('blur', this.handleBlur);
+
+      // register update handler to listen to changes on update
+      editor.on('update', this.handleChange);
+
+      editor.on('selectionUpdate', this.handleSelectionUpdate);
+
+      editor.isEditorContentInitialized = true;
     }
-
-    // register blur handler to update `touched` property
-    editor.on('blur', this.handleBlur);
-
-    // register update handler to listen to changes on update
-    editor.on('update', this.handleChange);
-
-    editor.on('selectionUpdate', this.handleSelectionUpdate);
   }
 
   ngAfterViewInit(): void {
     this.changeDetectorRef.detectChanges();
   }
 
-  // the editor can outlive the directive, so remove the handlers registered on it
   ngOnDestroy(): void {
-    const editor = this.editor();
+    this.destroy(this.editor());
+  }
 
+  destroy(editor: EditorWithContentComponent | null | undefined): void {
+    if (!editor) {
+      return;
+    }
+
+    editor.isEditorContentInitialized = false;
+
+    // the editor can outlive the directive, so remove the handlers registered on it
     editor.off('blur', this.handleBlur);
     editor.off('update', this.handleChange);
     editor.off('selectionUpdate', this.handleSelectionUpdate);
+
+    // try to reset the editor element
+    // may fail if this editor's view.dom was never initialized/mounted yet
+    try {
+      if (!editor.view.dom?.parentNode) {
+        return;
+      }
+
+      const newElement = document.createElement('div');
+
+      newElement.append(...Array.from(editor.view.dom.parentNode.childNodes));
+
+      editor.setOptions({
+        element: newElement,
+      });
+    } catch {
+      // do nothing, nothing to reset
+    }
   }
 }
