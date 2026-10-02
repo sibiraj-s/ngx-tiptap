@@ -1,0 +1,7 @@
+<button type="button" class="word-count" title="Toggle words/characters" (click)="toggle()">
+  @if (showCharacters()) {
+    {{ characters() }} characters
+  } @else {
+    {{ words() }} words
+  }
+</button>

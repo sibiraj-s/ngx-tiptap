@@ -4,6 +4,11 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Content, Editor, type EditorEvents } from '@tiptap/core';
+import { Plugin, PluginKey } from '@tiptap/pm/state';
+
+import { handleMobileEnter } from './handleMobileEnter';
+
+const mobileEnterPluginKey = new PluginKey('angularMobileEnter');
 
 type EditorWithContentComponent = Editor & {
   isEditorContentInitialized?: boolean;
@@ -148,6 +153,17 @@ export class TiptapEditorDirective implements OnInit, OnChanges, AfterViewInit, 
 
       editor.on('selectionUpdate', this.handleSelectionUpdate);
 
+      editor.registerPlugin(
+        new Plugin({
+          key: mobileEnterPluginKey,
+          props: {
+            handleDOMEvents: {
+              beforeinput: (_view, event) => handleMobileEnter(editor, event),
+            },
+          },
+        }),
+      );
+
       editor.isEditorContentInitialized = true;
     }
   }
@@ -171,6 +187,10 @@ export class TiptapEditorDirective implements OnInit, OnChanges, AfterViewInit, 
     editor.off('blur', this.handleBlur);
     editor.off('update', this.handleChange);
     editor.off('selectionUpdate', this.handleSelectionUpdate);
+
+    if (!editor.isDestroyed) {
+      editor.unregisterPlugin(mobileEnterPluginKey);
+    }
 
     // try to reset the editor element
     // may fail if this editor's view.dom was never initialized/mounted yet

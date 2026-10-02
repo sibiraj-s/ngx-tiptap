@@ -1,0 +1,6 @@
+<span class="highlight" [attr.data-color]="mark().attrs['color']">
+  <span tiptapMarkViewContent></span>
+  <button type="button" contenteditable="false" title="Change color" (click)="nextColor()">
+    {{ mark().attrs['color'] }}
+  </button>
+</span>

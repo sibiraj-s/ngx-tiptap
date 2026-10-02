@@ -45,6 +45,23 @@ describe('NgxTiptapDirective: lifecycle', () => {
     expect(['blur', 'update', 'selectionUpdate'].map((event) => listeners(editor, event))).toEqual(before);
   });
 
+  it('registers the mobile enter plugin once while mounted', () => {
+    const { editor } = fixture.componentInstance;
+    const mobileEnterPlugins = () =>
+      editor.state.plugins.filter((plugin) => (plugin as unknown as { key: string }).key.startsWith('angularMobileEnter'));
+
+    expect(mobileEnterPlugins()).toHaveLength(1);
+
+    toggle();
+
+    expect(mobileEnterPlugins()).toHaveLength(1);
+
+    fixture.componentInstance.show.set(false);
+    fixture.detectChanges();
+
+    expect(mobileEnterPlugins()).toHaveLength(0);
+  });
+
   it('renders the editor again when re-created', () => {
     toggle();
 

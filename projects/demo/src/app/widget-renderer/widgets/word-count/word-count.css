@@ -1,0 +1,7 @@
+@reference 'tailwindcss';
+
+.word-count {
+  @apply ml-2 px-2 align-middle;
+  @apply bg-black text-white rounded-sm;
+  @apply text-[0.6rem] uppercase tracking-widest font-bold;
+}

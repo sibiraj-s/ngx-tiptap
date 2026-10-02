@@ -319,6 +319,52 @@ The rendered element gets a `mark-<name>` class. Use the `className` and `attrs`
 
 Refer: https://tiptap.dev/docs/editor/extensions/custom-extensions/mark-views
 
+## AngularWidgetRenderer
+
+This enables rendering Angular Components as widget decorations, placed between the content without being part of the document.
+
+```ts
+import { Injector } from '@angular/core';
+import { Extension } from '@tiptap/core';
+import { AngularWidgetRenderer } from 'ngx-tiptap';
+
+import { WordCountComponent } from './word-count/word-count.component';
+
+const WordCountExtension = (injector: Injector): Extension => {
+  return Extension.create({
+    name: 'wordCount',
+    addDecorations() {
+      return {
+        create: ({ editor, state }) => [
+          AngularWidgetRenderer(WordCountComponent, {
+            editor,
+            injector,
+            pos: state.doc.content.size - 1,
+            key: 'word-count', // a stable key keeps the component mounted across updates
+            props: { words: state.doc.textContent.split(/\s+/).filter(Boolean).length },
+          }),
+        ],
+      };
+    },
+  });
+};
+```
+
+Extend the `AngularWidgetComponent` to get the `editor` and `getPos` inputs, `props` are set as inputs of the component.
+
+```ts
+import { Component, input } from '@angular/core';
+import { AngularWidgetComponent } from 'ngx-tiptap';
+
+@Component({
+  selector: 'app-word-count',
+  template: '<span>{{ words() }} words</span>',
+})
+export class WordCountComponent extends AngularWidgetComponent {
+  readonly words = input(0);
+}
+```
+
 ## Contributing
 
 All types of contributions are welcome. See [CONTRIBUTING.md](./.github/CONTRIBUTING.md) to get started.

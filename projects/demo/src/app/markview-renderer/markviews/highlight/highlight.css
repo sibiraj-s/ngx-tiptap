@@ -1,0 +1,23 @@
+@reference 'tailwindcss';
+
+.highlight {
+  @apply rounded-sm px-0.5;
+}
+
+.highlight[data-color='yellow'] {
+  @apply bg-yellow-200;
+}
+
+.highlight[data-color='green'] {
+  @apply bg-emerald-200;
+}
+
+.highlight[data-color='pink'] {
+  @apply bg-pink-200;
+}
+
+.highlight button {
+  @apply ml-1 px-1 align-middle;
+  @apply bg-black text-white rounded-sm;
+  @apply text-[0.6rem] uppercase tracking-widest font-bold;
+}

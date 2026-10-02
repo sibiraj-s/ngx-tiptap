@@ -10,7 +10,9 @@ export * from './lib/node-view-content.directive';
 export * from './lib/node-view.component';
 export * from './lib/mark-view-content.directive';
 export * from './lib/mark-view.component';
+export * from './lib/widget.component';
 
 export * from './lib/AngularRenderer';
 export * from './lib/NodeViewRenderer';
 export * from './lib/MarkViewRenderer';
+export * from './lib/WidgetRenderer';

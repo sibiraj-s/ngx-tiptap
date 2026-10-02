@@ -26,4 +26,14 @@ export const routes: Routes = [
     loadComponent: () => import('./nodeview-renderer/nodeview-renderer').then((m) => m.NodeviewRenderer),
     title: 'Interactive NodeViews',
   },
+  {
+    path: 'markview-renderer',
+    loadComponent: () => import('./markview-renderer/markview-renderer').then((m) => m.MarkviewRenderer),
+    title: 'MarkViews',
+  },
+  {
+    path: 'widget-renderer',
+    loadComponent: () => import('./widget-renderer/widget-renderer').then((m) => m.WidgetRenderer),
+    title: 'Widgets',
+  },
 ];
