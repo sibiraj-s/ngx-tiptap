@@ -1,13 +1,22 @@
 import {
-  ApplicationRef, ComponentRef, ElementRef,
+  ApplicationRef, ComponentRef, ElementRef, InputSignalWithTransform, ModelSignal,
   Injector, Type, createComponent,
 } from '@angular/core';
 
-export class AngularRenderer<C, P> {
+/** props for the component, signal inputs are set with the value they accept */
+export type AngularRendererProps<P> = {
+  // the read type is invariant and not needed, only the type the input accepts is used
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [K in keyof P]: P[K] extends InputSignalWithTransform<any, infer T>
+    ? T
+    : P[K] extends ModelSignal<infer T> ? T : P[K];
+};
+
+export class AngularRenderer<C, P = C> {
   private applicationRef: ApplicationRef;
   private componentRef: ComponentRef<C>;
 
-  constructor(ViewComponent: Type<C>, injector: Injector, props: Partial<P>) {
+  constructor(ViewComponent: Type<C>, injector: Injector, props: Partial<AngularRendererProps<P>>) {
     this.applicationRef = injector.get(ApplicationRef);
 
     this.componentRef = createComponent(ViewComponent, {
@@ -33,7 +42,7 @@ export class AngularRenderer<C, P> {
     return this.elementRef.nativeElement;
   }
 
-  updateProps<T extends P>(props: Partial<T>): void {
+  updateProps(props: Partial<AngularRendererProps<P>>): void {
     Object.entries(props).forEach(([key, value]) => {
       this.componentRef.setInput(key, value);
     });
