@@ -14,6 +14,44 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Refactor
 
+## v15.0.0 (2026-10-03)
+
+#### Breaking Changes
+
+- Minimum required version - Angular 22 ([04945d7](https://github.com/sibiraj-s/ngx-tiptap/commit/04945d7))
+- Minimum required version - Tiptap 3.16.0 ([04945d7](https://github.com/sibiraj-s/ngx-tiptap/commit/04945d7))
+- Node views are no longer marked as `selected` when a text selection spans across them, only when the node itself is selected ([e5aa5c8](https://github.com/sibiraj-s/ngx-tiptap/commit/e5aa5c8))
+
+#### Features
+
+- add `AngularMarkViewRenderer` to render angular components as mark views ([756389b](https://github.com/sibiraj-s/ngx-tiptap/commit/756389b))
+- add `AngularWidgetRenderer` to render angular components as widget decorations ([4e54cf0](https://github.com/sibiraj-s/ngx-tiptap/commit/4e54cf0))
+- add `selectionInside` input to node views, `true` when a text selection is inside the node ([e5aa5c8](https://github.com/sibiraj-s/ngx-tiptap/commit/e5aa5c8))
+- support all options for bubble menu and floating menu ([#107](https://github.com/sibiraj-s/ngx-tiptap/pull/107))
+- support [Signal Forms](https://angular.dev/guide/forms/signals/overview) with `[formField]` ([cf6155d](https://github.com/sibiraj-s/ngx-tiptap/commit/cf6155d))
+
+#### Bug Fixes
+
+- handle enter key inside node view content on mobile devices ([4e54cf0](https://github.com/sibiraj-s/ngx-tiptap/commit/4e54cf0))
+- support editor provided after the directive is initialized ([d87e018](https://github.com/sibiraj-s/ngx-tiptap/commit/d87e018))
+- remove editor listeners when the directive is destroyed ([a5cf1a9](https://github.com/sibiraj-s/ngx-tiptap/commit/a5cf1a9))
+- type `AngularRenderer` props with the values the signal inputs accept ([4792083](https://github.com/sibiraj-s/ngx-tiptap/commit/4792083))
+
+#### Documentation
+
+- add markdown usage ([5d368db](https://github.com/sibiraj-s/ngx-tiptap/commit/5d368db))
+
+#### Migration Guide
+
+Update Angular to v22 and Tiptap to v3.16.0 or above.
+
+If a node view relied on `selected` being `true` for a text selection across or inside it, use the `selectionInside` input instead.
+
+```diff
+- @if (selected()) {
++ @if (selected() || selectionInside()) {
+```
+
 ## v14.0.1 (2025-08-16)
 
 #### Bug Fixes
