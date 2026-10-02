@@ -71,7 +71,10 @@ export class TiptapEditorDirective implements OnInit, AfterViewInit, ControlValu
     this.elRef.nativeElement.innerHTML = '';
 
     // insert the editor in the dom
-    this.elRef.nativeElement.append(...Array.from(editor.options.element?.childNodes || []));
+    const { element } = editor.options;
+    if (element instanceof Element) {
+      this.elRef.nativeElement.append(...Array.from(element.childNodes));
+    }
 
     // update the options for the editor
     editor.setOptions({ element: this.elRef.nativeElement });

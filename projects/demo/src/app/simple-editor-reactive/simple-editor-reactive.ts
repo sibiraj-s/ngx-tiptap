@@ -10,7 +10,7 @@ import { TiptapEditorDirective } from 'ngx-tiptap';
 @Component({
   selector: 'app-simple-editor-reactive',
   imports: [CommonModule, ReactiveFormsModule, TiptapEditorDirective],
-  templateUrl: './simple-editor-reactive.html',
+  templateUrl: './simple-editor-reactive.component.html',
   styleUrls: ['./simple-editor-reactive.css'],
 })
 export class SimpleEditorReactive implements OnDestroy {
@@ -25,10 +25,7 @@ export class SimpleEditorReactive implements OnDestroy {
   });
 
   editor = new Editor({
-    extensions: [
-      StarterKit,
-      Placeholder,
-    ],
+    extensions: [StarterKit, Placeholder],
     editorProps: {
       attributes: {
         class: 'p-2 border-black border-2 rounded-b-md outline-hidden',

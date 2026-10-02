@@ -23,11 +23,7 @@ describe('FloatingMenuDirective', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [
-        TestComponent,
-        TiptapEditorDirective,
-        TiptapFloatingMenuDirective,
-      ],
+      imports: [TestComponent, TiptapEditorDirective, TiptapFloatingMenuDirective],
       providers: [
         {
           provide: ElementRef,

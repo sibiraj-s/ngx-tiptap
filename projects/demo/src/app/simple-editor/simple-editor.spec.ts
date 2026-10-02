@@ -9,9 +9,7 @@ describe('SimpleEditorComponent', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [
-        SimpleEditor,
-      ],
+      imports: [SimpleEditor],
     });
 
     await TestBed.compileComponents();
@@ -33,7 +31,7 @@ describe('SimpleEditorComponent', () => {
 
   // https://github.com/sibiraj-s/ngx-tiptap/issues/24
   it('should not call the handleValueChange function on render without any changes', async () => {
-    spyOn(component, 'handleValueChange').and.callThrough();
+    vi.spyOn(component, 'handleValueChange');
     await fixture.whenStable();
     expect(component.handleValueChange).not.toHaveBeenCalled();
   });

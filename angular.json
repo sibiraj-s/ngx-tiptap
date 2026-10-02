@@ -22,13 +22,9 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "tsConfig": "projects/ngx-tiptap/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "tsConfig": "projects/ngx-tiptap/tsconfig.spec.json"
           }
         },
         "lint": {
@@ -53,9 +49,6 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "projects/demo/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
             "tsConfig": "projects/demo/tsconfig.app.json",
             "assets": [
               {
@@ -70,6 +63,12 @@
             "outputMode": "server",
             "ssr": {
               "entry": "projects/demo/src/server.ts"
+            },
+            "security": {
+              "allowedHosts": [
+                "localhost",
+                "127.0.0.1"
+              ]
             }
           },
           "configurations": {
@@ -92,6 +91,11 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "testing": {
+              "aot": false,
+              "optimization": false,
+              "extractLicenses": false
             }
           },
           "defaultConfiguration": "production"
@@ -106,28 +110,23 @@
               "buildTarget": "demo:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "allowedHosts": [
+              "localhost",
+              "127.0.0.1"
+            ]
+          }
         },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
             "tsConfig": "projects/demo/tsconfig.spec.json",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "projects/demo/public"
-              }
-            ],
-            "styles": [
-              "projects/demo/src/styles.css"
-            ]
+            "buildTarget": ":build:testing",
+            "runner": "vitest"
           }
         },
         "lint": {

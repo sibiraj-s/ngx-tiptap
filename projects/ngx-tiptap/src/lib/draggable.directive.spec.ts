@@ -8,15 +8,14 @@ import { TiptapDraggableDirective } from './draggable.directive';
   template: '<div tiptapDraggable>Hello Tiptap!</div>',
   imports: [TiptapDraggableDirective],
 })
-class TestComponent { }
+class TestComponent {}
 
 describe('DraggableDirective', () => {
   let fixture: ComponentFixture<TestComponent>;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [TestComponent,
-        TiptapDraggableDirective],
+      imports: [TestComponent, TiptapDraggableDirective],
     });
 
     await TestBed.compileComponents();

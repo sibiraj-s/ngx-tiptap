@@ -10,7 +10,7 @@ import { TiptapEditorDirective } from 'ngx-tiptap';
 @Component({
   selector: 'app-simple-editor',
   imports: [CommonModule, FormsModule, TiptapEditorDirective],
-  templateUrl: './simple-editor.html',
+  templateUrl: './simple-editor.component.html',
   styleUrls: ['./simple-editor.css'],
 })
 export class SimpleEditor implements OnDestroy {
@@ -23,10 +23,7 @@ export class SimpleEditor implements OnDestroy {
     `;
 
   editor = new Editor({
-    extensions: [
-      StarterKit,
-      Placeholder,
-    ],
+    extensions: [StarterKit, Placeholder],
     editorProps: {
       attributes: {
         class: 'p-2 border-black border-2 rounded-b-md outline-hidden',

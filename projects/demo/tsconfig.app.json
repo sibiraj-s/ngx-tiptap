@@ -4,13 +4,13 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/app",
+    "rootDir": "./src",
     "types": [
       "node"
     ]
   },
   "include": [
-    "src/**/*.ts",
-    "tailwind.config.ts"
+    "src/**/*.ts"
   ],
   "exclude": [
     "src/**/*.spec.ts"

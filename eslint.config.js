@@ -107,5 +107,16 @@ export default tseslint.config(
     rules: {
       "no-console": "off"
     }
+  },
+  {
+    // not part of any tsconfig, lint it with the default project
+    files: ["cypress.config.ts"],
+    languageOptions: {
+      parserOptions: {
+        projectService: {
+          allowDefaultProject: ["cypress.config.ts"],
+        },
+      },
+    },
   }
 );

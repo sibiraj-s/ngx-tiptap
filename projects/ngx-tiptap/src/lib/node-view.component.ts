@@ -1,7 +1,18 @@
 import { Component, input } from '@angular/core';
 import type { NodeViewProps } from '@tiptap/core';
 
-type Inputs = 'editor' | 'node' | 'decorations' | 'innerDecorations' | 'view' | 'selected' | 'extension' | 'HTMLAttributes' | 'getPos' | 'updateAttributes' | 'deleteNode';
+type Inputs =
+  | 'editor'
+  | 'node'
+  | 'decorations'
+  | 'innerDecorations'
+  | 'view'
+  | 'selected'
+  | 'extension'
+  | 'HTMLAttributes'
+  | 'getPos'
+  | 'updateAttributes'
+  | 'deleteNode';
 type NodeViewPropsWithoutInputs = Omit<NodeViewProps, Inputs>;
 
 @Component({

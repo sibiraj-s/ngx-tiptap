@@ -18,7 +18,7 @@ export class TiptapFloatingMenuDirective implements OnInit, OnDestroy {
   readonly shouldShow = input<FloatingMenuPluginProps['shouldShow']>(null);
   readonly updateDelay = input<FloatingMenuPluginProps['updateDelay']>();
   readonly resizeDelay = input<FloatingMenuPluginProps['resizeDelay']>();
-  readonly appendTo = input<FloatingMenuPluginProps['appendTo']>(null);
+  readonly appendTo = input<FloatingMenuPluginProps['appendTo']>();
 
   ngOnInit(): void {
     const editor = this.editor();

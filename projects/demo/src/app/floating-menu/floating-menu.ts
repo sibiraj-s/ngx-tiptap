@@ -9,7 +9,7 @@ import { TiptapEditorDirective, TiptapFloatingMenuDirective } from 'ngx-tiptap';
 @Component({
   selector: 'app-floating-menu',
   imports: [CommonModule, FormsModule, TiptapEditorDirective, TiptapFloatingMenuDirective],
-  templateUrl: './floating-menu.html',
+  templateUrl: './floating-menu.component.html',
   styleUrls: ['./floating-menu.css'],
 })
 export class FloatingMenu implements OnDestroy {

@@ -8,16 +8,14 @@ import { TiptapNodeViewContentDirective } from './node-view-content.directive';
   template: '<div tiptapNodeViewContent>Hello Tiptap!</div>',
   imports: [TiptapNodeViewContentDirective],
 })
-
-class TestComponent { }
+class TestComponent {}
 
 describe('NodeViewContentDirective', () => {
   let fixture: ComponentFixture<TestComponent>;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [TestComponent,
-        TiptapNodeViewContentDirective],
+      imports: [TestComponent, TiptapNodeViewContentDirective],
     });
 
     await TestBed.compileComponents();

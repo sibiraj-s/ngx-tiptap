@@ -24,11 +24,7 @@ describe('BubbleMenuDirective', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [
-        TestComponent,
-        TiptapEditorDirective,
-        TiptapBubbleMenuDirective,
-      ],
+      imports: [TestComponent, TiptapEditorDirective, TiptapBubbleMenuDirective],
       providers: [
         {
           provide: ElementRef,

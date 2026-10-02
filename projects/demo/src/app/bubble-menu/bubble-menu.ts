@@ -10,7 +10,7 @@ import { TiptapBubbleMenuDirective, TiptapEditorDirective } from 'ngx-tiptap';
 @Component({
   selector: 'app-bubble-menu',
   imports: [CommonModule, FormsModule, TiptapEditorDirective, TiptapBubbleMenuDirective],
-  templateUrl: './bubble-menu.html',
+  templateUrl: './bubble-menu.component.html',
   styleUrls: ['./bubble-menu.css'],
 })
 export class BubbleMenu implements OnDestroy {
@@ -19,10 +19,7 @@ export class BubbleMenu implements OnDestroy {
   <p>Remember: you have full control about content and styling of this menu.</p>`;
 
   editor = new Editor({
-    extensions: [
-      StarterKit,
-      Placeholder,
-    ],
+    extensions: [StarterKit, Placeholder],
     editorProps: {
       attributes: {
         class: 'p-2 border-black focus:border-blue-700 border-2 rounded-md outline-hidden',

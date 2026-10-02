@@ -17,8 +17,8 @@ export class TiptapBubbleMenuDirective implements OnInit, OnDestroy {
   readonly shouldShow = input<BubbleMenuPluginProps['shouldShow']>(null);
   readonly updateDelay = input<BubbleMenuPluginProps['updateDelay']>();
   readonly resizeDelay = input<BubbleMenuPluginProps['resizeDelay']>();
-  readonly appendTo = input<BubbleMenuPluginProps['appendTo']>(null);
-  readonly virtualElement = input<BubbleMenuPluginProps['getReferencedVirtualElement']>(null);
+  readonly appendTo = input<BubbleMenuPluginProps['appendTo']>();
+  readonly virtualElement = input<BubbleMenuPluginProps['getReferencedVirtualElement']>();
 
   ngOnInit(): void {
     const editor = this.editor();
