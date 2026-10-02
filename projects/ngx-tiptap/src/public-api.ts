@@ -8,6 +8,9 @@ export * from './lib/bubble-menu.directive';
 export * from './lib/draggable.directive';
 export * from './lib/node-view-content.directive';
 export * from './lib/node-view.component';
+export * from './lib/mark-view-content.directive';
+export * from './lib/mark-view.component';
 
 export * from './lib/AngularRenderer';
 export * from './lib/NodeViewRenderer';
+export * from './lib/MarkViewRenderer';

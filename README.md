@@ -271,6 +271,54 @@ renderer.dom; // get the HTMLElement for the component
 renderer.destroy(); // destroy the component and its instance
 ```
 
+## AngularMarkViewRenderer
+
+This enables rendering Angular Components as MarkViews.
+
+```ts
+import { Injector } from '@angular/core';
+import { Mark, mergeAttributes } from '@tiptap/core';
+import { AngularMarkViewRenderer } from 'ngx-tiptap';
+
+import { HighlightComponent } from './highlight/highlight.component';
+
+const HighlightExtension = (injector: Injector): Mark => {
+  return Mark.create({
+    // ...other configuration hidden for brevity
+    parseHTML() {
+      return [{ tag: 'mark' }];
+    },
+    renderHTML({ HTMLAttributes }) {
+      return ['mark', mergeAttributes(HTMLAttributes), 0];
+    },
+    addMarkView() {
+      return AngularMarkViewRenderer(HighlightComponent, { injector });
+    },
+  });
+};
+```
+
+Extend the `AngularMarkViewComponent` to access the mark props (`mark`, `editor`, `updateAttributes` ...) and add the `tiptapMarkViewContent` directive where the content of the mark should be rendered. Make sure to import the `TiptapMarkViewContentDirective` to your component.
+
+```ts
+import { Component } from '@angular/core';
+import { AngularMarkViewComponent, TiptapMarkViewContentDirective } from 'ngx-tiptap';
+
+@Component({
+  selector: 'app-highlight',
+  imports: [TiptapMarkViewContentDirective],
+  template: `
+    <span [style.background]="mark().attrs.color" tiptapMarkViewContent></span>
+    <button type="button" (click)="updateAttributes()({ color: 'red' })">red</button>
+  `,
+})
+export class HighlightComponent extends AngularMarkViewComponent {}
+```
+
+The rendered element gets a `mark-<name>` class. Use the `className` and `attrs` options to add more classes and attributes.
+
+Refer: https://tiptap.dev/docs/editor/extensions/custom-extensions/mark-views
+
 ## Contributing
 
 All types of contributions are welcome. See [CONTRIBUTING.md](./.github/CONTRIBUTING.md) to get started.
