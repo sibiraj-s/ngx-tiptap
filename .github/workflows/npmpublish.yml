@@ -24,11 +24,10 @@ jobs:
           registry-url: https://registry.npmjs.org/
           cache: npm
 
-      - run: npm install -g npm@latest
       - run: npm ci
       - run: npm run build
         env:
           NODE_ENV: production
 
       - name: Publish to NPM
-        run: npm publish dist/ngx-tiptap/ --provenance
+        run: npm stage publish dist/ngx-tiptap/
